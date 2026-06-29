@@ -223,19 +223,26 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
             @php
             $homeTutors = [
-                ['name'=>'Murtaza Ali','qual'=>'M.Sc. Applied Mathematics, Punjab University','tags'=>['Mathematics','O/A Level','SAT·GRE·GAT'],'exp'=>25,'city'=>'Lahore','initials'=>'MA','bg'=>'#2563EB'],
-                ['name'=>'Shamoil','qual'=>'MPhil Physics, UET Lahore','tags'=>['Physics','O/A Level','IBDP·MYP'],'exp'=>19,'city'=>'Lahore','initials'=>'SM','bg'=>'#7c3aed'],
-                ['name'=>'Faiza Javaid','qual'=>'M.A., M.Ed., B.S. Chemistry/Biology','tags'=>['Chemistry','Biology','O/A Level·AP·IB'],'exp'=>15,'city'=>'Lahore','initials'=>'FJ','bg'=>'#16a34a'],
+                ['name'=>'Murtaza Ali','qual'=>'M.Sc. Applied Mathematics, Punjab University','tags'=>['Mathematics','O/A Level','SAT·GRE·GAT'],'exp'=>25,'city'=>'Lahore','initials'=>'MA','bg'=>'#2563EB','photo'=>'images/Murtaza ali.png'],
+                ['name'=>'Shamoil','qual'=>'MPhil Physics, UET Lahore','tags'=>['Physics','O/A Level','IBDP·MYP'],'exp'=>19,'city'=>'Lahore','initials'=>'SM','bg'=>'#7c3aed','photo'=>'images/Shamoil.png'],
+                ['name'=>'Faiza Javaid','qual'=>'M.A., M.Ed., B.S. Chemistry/Biology','tags'=>['Chemistry','Biology','O/A Level·AP·IB'],'exp'=>15,'city'=>'Lahore','initials'=>'FJ','bg'=>'#16a34a','photo'=>'images/faiza javad.png'],
             ];
             @endphp
             @foreach($homeTutors as $ht)
             <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden" data-aos="fade-up" data-aos-delay="{{ ($loop->index + 1) * 150 }}">
                 <div class="p-6">
                     <div class="flex items-start gap-4 mb-4">
-                        <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-white text-lg font-black shadow-md flex-shrink-0"
-                             style="background-color:{{ $ht['bg'] }};">
-                            {{ $ht['initials'] }}
-                        </div>
+                        @if(!empty($ht['photo']))
+                            <div class="w-16 h-16 rounded-2xl overflow-hidden shadow-md flex-shrink-0 flex items-center justify-center"
+                                 style="background-color:{{ $ht['bg'] }}14;">
+                                <img src="{{ asset($ht['photo']) }}" alt="{{ $ht['name'] }}" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block;">
+                            </div>
+                        @else
+                            <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-white text-lg font-black shadow-md flex-shrink-0"
+                                 style="background-color:{{ $ht['bg'] }};">
+                                {{ $ht['initials'] }}
+                            </div>
+                        @endif
                         <div class="flex-1 min-w-0 pt-0.5">
                             <h3 class="text-lg font-black text-gray-900 mb-1">{{ $ht['name'] }}</h3>
                             <p class="text-[11px] text-blue-600 font-bold leading-snug">{{ $ht['qual'] }}</p>
