@@ -417,7 +417,7 @@ $featuredTutors = [
         </div>
 
         {{-- Result Count --}}
-        <div class="mt-3 flex items-center gap-2">
+        <div class="mt-3 flex items-center gap-2" style="display: none;">
             <span class="text-xs font-black text-gray-400 uppercase tracking-widest">Showing</span>
             <span id="tutor-count" class="text-sm font-black text-blue-600">15</span>
             <span class="text-xs font-black text-gray-400 uppercase tracking-widest">tutors</span>

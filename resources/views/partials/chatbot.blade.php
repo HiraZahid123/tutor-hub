@@ -1,5 +1,8 @@
 <!-- Chatbot Toggle Button -->
-<button id="chat-toggle-button" class="chat-toggle-button" aria-label="Open Chat" onclick="toggleChat()">💬</button>
+<button id="chat-toggle-button" class="chat-toggle-button" aria-label="Open Chat" onclick="toggleChat()"
+        style="background-color: #25D366 !important; color: #ffffff !important; display: flex !important; align-items: center !important; justify-content: center !important; border: none !important;">
+    <i class="fab fa-whatsapp" style="color: #ffffff !important; font-size: 36px !important; display: block !important; margin: 0 !important; padding: 0 !important;"></i>
+</button>
 
 <!-- Chatbot Window -->
 <div id="chatbot-container" class="chatbot-container" style="display: none;">
