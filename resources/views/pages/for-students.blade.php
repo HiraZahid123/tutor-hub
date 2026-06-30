@@ -255,7 +255,7 @@ $featuredTutors = [
         'area'          => 'DHA',
         'initials'      => 'AM',
         'bg'            => '#d97706',
-        'photo'         => null,
+        'photo'         => 'images/Ali murtaza.png',
     ],
     [
         'id'            => 12,
