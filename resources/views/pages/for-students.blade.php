@@ -637,16 +637,57 @@ $featuredTutors = [
             <p class="text-blue-100 mb-8 max-w-lg mx-auto font-medium">
                 We have many more qualified tutors available. Tell us what you need and we'll find the perfect match within 24 hours.
             </p>
+            <style>
+                @keyframes ctaOrangePulse {
+                    0%, 100% {
+                        transform: scale(1);
+                        box-shadow: 0 4px 15px rgba(255, 103, 0, 0.4);
+                    }
+                    50% {
+                        transform: scale(1.03);
+                        box-shadow: 0 8px 25px rgba(255, 103, 0, 0.6);
+                    }
+                }
+                @keyframes ctaGreenPulse {
+                    0%, 100% {
+                        transform: scale(1);
+                        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+                    }
+                    50% {
+                        transform: scale(1.03);
+                        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+                    }
+                }
+                .animate-cta-orange {
+                    animation: ctaOrangePulse 2s infinite ease-in-out;
+                    transition: all 0.3s ease !important;
+                }
+                .animate-cta-green {
+                    animation: ctaGreenPulse 2s infinite ease-in-out;
+                    animation-delay: 0.5s;
+                    transition: all 0.3s ease !important;
+                }
+                .animate-cta-orange:hover {
+                    animation: none !important;
+                    transform: scale(1.06) !important;
+                    box-shadow: 0 10px 25px rgba(255, 103, 0, 0.7) !important;
+                }
+                .animate-cta-green:hover {
+                    animation: none !important;
+                    transform: scale(1.06) !important;
+                    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.7) !important;
+                }
+            </style>
             <div class="flex flex-wrap gap-4 justify-center">
                 <a href="{{ route('find-a-tutor') }}"
-                   class="inline-flex items-center gap-2 font-black text-sm uppercase tracking-widest px-8 py-4 rounded-xl transition-all active:scale-95"
+                   class="animate-cta-orange inline-flex items-center gap-2 font-black text-sm uppercase tracking-widest px-8 py-4 rounded-xl transition-all active:scale-95"
                    style="background:#ff6700;color:#fff;">
                     <i class="fas fa-search"></i> Submit a Request
                 </a>
                 <a href="https://wa.me/923414133395" target="_blank"
-                   class="inline-flex items-center gap-2 font-black text-sm uppercase tracking-widest px-8 py-4 rounded-xl transition-all active:scale-95"
-                   style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;">
-                    <i class="fab fa-whatsapp"></i> WhatsApp Us
+                   class="animate-cta-green inline-flex items-center gap-2 font-black text-sm uppercase tracking-widest px-8 py-4 rounded-xl transition-all active:scale-95"
+                   style="background:#25D366;color:#fff;border:none;">
+                    <i class="fab fa-whatsapp text-lg"></i> WhatsApp Us
                 </a>
             </div>
         </div>
