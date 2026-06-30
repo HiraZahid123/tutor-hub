@@ -233,9 +233,9 @@
                 <div class="p-6">
                     <div class="flex items-start gap-4 mb-4">
                         @if(!empty($ht['photo']))
-                            <div class="w-16 h-16 rounded-2xl overflow-hidden shadow-md flex-shrink-0 flex items-center justify-center"
-                                 style="background-color:{{ $ht['bg'] }}14;">
-                                <img src="{{ asset($ht['photo']) }}" alt="{{ $ht['name'] }}" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block;">
+                            <div class="w-16 h-16 rounded-2xl overflow-hidden shadow-md flex-shrink-0"
+                                 style="background-color:#ffffff;transform:translateZ(0);backface-visibility:hidden;">
+                                <img src="{{ asset($ht['photo']) }}" alt="{{ $ht['name'] }}" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transform:translateZ(0);backface-visibility:hidden;">
                             </div>
                         @else
                             <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-white text-lg font-black shadow-md flex-shrink-0"

@@ -13,6 +13,27 @@
 #tutor-modal { transition: opacity 0.2s ease; }
 #tutor-modal.flex { display: flex !important; }
 
+/* Card lift + image zoom on hover — same as Leadership Team */
+.tutor-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.tutor-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 24px 44px rgba(0,0,0,0.14);
+}
+.tutor-photo-wrap { overflow: hidden; }
+.tutor-photo-wrap img {
+    transition: transform 0.5s ease;
+}
+.tutor-card:hover .tutor-photo-wrap img {
+    transform: scale(1.08);
+}
+
+/* CSS sharpening for soft-focus photos */
+.img-sharpen {
+    filter: contrast(1.13) saturate(1.07);
+}
+
 /* City filter buttons */
 @keyframes city-btn-enter {
     from { opacity: 0; transform: translateY(14px); }
@@ -71,6 +92,7 @@ $featuredTutors = [
         'initials'      => 'MA',
         'bg'            => '#2563EB',
         'photo'         => 'images/Murtaza ali.png',
+        'sharpen'       => true,
     ],
     [
         'id'            => 2,
@@ -87,6 +109,7 @@ $featuredTutors = [
         'initials'      => 'SM',
         'bg'            => '#7c3aed',
         'photo'         => 'images/Shamoil.png',
+        'sharpen'       => true,
     ],
     [
         'id'            => 3,
@@ -119,6 +142,7 @@ $featuredTutors = [
         'initials'      => 'IQ',
         'bg'            => '#0d9488',
         'photo'         => 'images/Iqra.png',
+        'sharpen'       => true,
     ],
     [
         'id'            => 5,
@@ -183,6 +207,7 @@ $featuredTutors = [
         'initials'      => 'NC',
         'bg'            => '#4f46e5',
         'photo'         => 'images/Nicolas.png',
+        'sharpen'       => true,
     ],
     [
         'id'            => 9,
@@ -263,6 +288,7 @@ $featuredTutors = [
         'initials'      => 'JS',
         'bg'            => '#e11d48',
         'photo'         => 'images/Jessica.png',
+        'sharpen'       => true,
     ],
     [
         'id'            => 14,
@@ -447,15 +473,16 @@ $featuredTutors = [
                         {{-- Avatar / Photo --}}
                         <div class="flex-shrink-0">
                             @if(!empty($tutor['photo']))
-                                <div class="rounded-2xl overflow-hidden shadow-lg border-2 border-gray-100 flex items-center justify-center"
-                                     style="width:118px;height:138px;background:{{ $tutor['bg'] }}14;">
+                                <div class="tutor-photo-wrap rounded-2xl shadow-lg border-2 border-gray-100"
+                                     style="width:118px;height:118px;flex-shrink:0;background:#ffffff;">
                                     <img src="{{ asset($tutor['photo']) }}"
                                          alt="{{ $tutor['name'] }}"
-                                         style="width:100%;height:100%;object-fit:contain;object-position:center;display:block;">
+                                         class="{{ !empty($tutor['sharpen']) ? 'img-sharpen' : '' }}"
+                                         style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
                                 </div>
                             @else
                                 <div class="rounded-2xl flex items-center justify-center text-white font-black shadow-lg"
-                                     style="width:118px;height:138px;font-size:2rem;background-color:{{ $tutor['bg'] }};">
+                                     style="width:118px;height:118px;font-size:2rem;background-color:{{ $tutor['bg'] }};">
                                     {{ $tutor['initials'] }}
                                 </div>
                             @endif
@@ -640,8 +667,8 @@ function openTutorModal(id) {
 
     // Avatar
     const avatarHtml = tutor.photo
-        ? `<div style="width:110px;height:130px;border-radius:1rem;overflow:hidden;border:2px solid #f1f5f9;background:${tutor.bg}14;display:flex;align-items:center;justify-content:center;">
-               <img src="${assetBase}/${tutor.photo}" alt="${tutor.name}" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block;">
+        ? `<div style="width:110px;height:110px;border-radius:1rem;overflow:hidden;border:2px solid #f1f5f9;background:#ffffff;">
+               <img src="${assetBase}/${tutor.photo}" alt="${tutor.name}" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
            </div>`
         : `<div style="width:110px;height:110px;border-radius:1rem;display:flex;align-items:center;justify-content:center;color:#fff;font-size:2rem;font-weight:900;background:${tutor.bg};">
                ${tutor.initials}
