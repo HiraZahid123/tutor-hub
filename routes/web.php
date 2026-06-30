@@ -41,6 +41,8 @@ Route::post('/contact', [ContactController::class, 'store'])->name('contact.stor
 // Auth Routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'login'])->name('login.submit')->middleware('guest');
+Route::get('/login/social/{provider}', [LoginController::class, 'socialRedirect'])->name('login.social')->middleware('guest');
+Route::get('/login/social/{provider}/callback', [LoginController::class, 'socialCallback'])->middleware('guest');
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register')->middleware('guest');
 Route::post('/register', [RegisterController::class, 'register'])->name('register.submit')->middleware('guest');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
