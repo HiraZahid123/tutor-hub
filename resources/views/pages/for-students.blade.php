@@ -459,7 +459,7 @@ $featuredTutors = [
     <div class="container">
         <div id="tutors-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach($featuredTutors as $tutor)
-            <div class="tutor-card bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col"
+            <div class="tutor-card group bg-white rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 hover:scale-[1.01] transition-all duration-300 overflow-hidden flex flex-col"
                  data-country="{{ $tutor['country'] }}"
                  data-city="{{ $tutor['city'] }}"
                  data-area="{{ $tutor['area'] }}"
@@ -473,11 +473,11 @@ $featuredTutors = [
                         {{-- Avatar / Photo --}}
                         <div class="flex-shrink-0">
                             @if(!empty($tutor['photo']))
-                                <div class="tutor-photo-wrap rounded-2xl shadow-lg border-2 border-gray-100"
+                                <div class="tutor-photo-wrap rounded-2xl shadow-lg border-2 border-gray-100 overflow-hidden"
                                      style="width:118px;height:118px;flex-shrink:0;background:#ffffff;">
                                     <img src="{{ asset($tutor['photo']) }}"
                                          alt="{{ $tutor['name'] }}"
-                                         class="{{ !empty($tutor['sharpen']) ? 'img-sharpen' : '' }}"
+                                         class="{{ !empty($tutor['sharpen']) ? 'img-sharpen' : '' }} transition-transform duration-500 group-hover:scale-110"
                                          style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
                                 </div>
                             @else
@@ -527,12 +527,12 @@ $featuredTutors = [
                 <div class="px-7 pb-6 pt-1 flex gap-3">
                     <a href="https://wa.me/923414133395?text=Hi%2C%20I%20am%20interested%20in%20{{ urlencode($tutor['name']) }}"
                        target="_blank"
-                       class="flex-1 text-center text-[10px] font-black uppercase tracking-widest py-3.5 rounded-xl transition-all active:scale-95"
+                       class="flex-1 text-center text-[10px] font-black uppercase tracking-widest py-3.5 rounded-xl transition-all active:scale-95 hover:bg-blue-700 hover:shadow-lg duration-300"
                        style="background:#2563EB;color:#fff;">
                         Book Session
                     </a>
                     <button onclick="openTutorModal({{ $tutor['id'] }})"
-                            class="view-more-btn px-4 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center gap-1.5 cursor-pointer"
+                            class="view-more-btn px-4 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center gap-1.5 cursor-pointer hover:bg-orange-500 hover:text-white hover:border-orange-500 transition-all duration-300"
                             style="background:#fff7ed;color:#ea580c;border:2px solid #ea580c;">
                         <i class="fas fa-eye text-[9px]"></i> View More
                     </button>

@@ -232,13 +232,13 @@
             ];
             @endphp
             @foreach($homeTutors as $ht)
-            <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden" data-aos="fade-up" data-aos-delay="{{ ($loop->index + 1) * 150 }}">
+            <div class="group bg-white rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 overflow-hidden" data-aos="fade-up" data-aos-delay="{{ ($loop->index + 1) * 150 }}">
                 <div class="p-6">
                     <div class="flex items-start gap-4 mb-4">
                         @if(!empty($ht['photo']))
                             <div class="w-16 h-16 rounded-2xl overflow-hidden shadow-md flex-shrink-0"
                                  style="background-color:#ffffff;transform:translateZ(0);backface-visibility:hidden;">
-                                <img src="{{ asset($ht['photo']) }}" alt="{{ $ht['name'] }}" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transform:translateZ(0);backface-visibility:hidden;">
+                                <img src="{{ asset($ht['photo']) }}" alt="{{ $ht['name'] }}" class="transition-transform duration-500 group-hover:scale-110" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transform:translateZ(0);backface-visibility:hidden;">
                             </div>
                         @else
                             <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-white text-lg font-black shadow-md flex-shrink-0"
@@ -258,20 +258,17 @@
                     </div>
                     <div class="flex items-center justify-between">
                         <span class="text-xs font-bold text-gray-500"><i class="fas fa-star text-orange-400 mr-1"></i>{{ $ht['exp'] }}+ Years · {{ $ht['city'] }}</span>
-                        <a href="{{ route('for-students') }}" class="text-[10px] font-black uppercase tracking-wider text-blue-600 hover:text-blue-800 transition-colors">View →</a>
+                        <a href="{{ route('for-students') }}" 
+                           class="inline-flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest px-3.5 py-2 rounded-full border border-gray-200 text-gray-500 transition-all duration-300 active:scale-95 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 group-hover:shadow-md hover:!bg-blue-700">
+                            View <i class="fas fa-arrow-right text-[8px] transition-transform duration-300 group-hover:translate-x-0.5"></i>
+                        </a>
                     </div>
                 </div>
             </div>
             @endforeach
         </div>
 
-        <div class="text-center" data-aos="fade-up">
-            <a href="{{ route('for-students') }}"
-               class="inline-flex items-center gap-2 font-black text-sm uppercase tracking-widest px-10 py-4 rounded-full transition-all active:scale-95 hover:scale-105"
-               style="background:#ff6700;color:#fff;box-shadow:0 4px 20px rgba(255,103,0,0.35);">
-                <i class="fas fa-users"></i> View All 15 Best Tutors
-            </a>
-        </div>
+
     </div>
 </section>
 
