@@ -223,49 +223,115 @@
             <p class="text-gray-500 max-w-xl mx-auto text-base">Discover highly qualified tutors with decades of experience, ready to guide your child to excellence.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-            @php
-            $homeTutors = [
-                ['name'=>'Murtaza Ali','qual'=>'M.Sc. Applied Mathematics, Punjab University','tags'=>['Mathematics','O/A Level','SAT·GRE·GAT'],'exp'=>25,'city'=>'Lahore','initials'=>'MA','bg'=>'#2563EB','photo'=>'images/Murtaza ali.png'],
-                ['name'=>'Shamoil','qual'=>'MPhil Physics, UET Lahore','tags'=>['Physics','O/A Level','IBDP·MYP'],'exp'=>19,'city'=>'Lahore','initials'=>'SM','bg'=>'#7c3aed','photo'=>'images/Shamoil.png'],
-                ['name'=>'Faiza Javaid','qual'=>'M.A., M.Ed., B.S. Chemistry/Biology','tags'=>['Chemistry','Biology','O/A Level·AP·IB'],'exp'=>15,'city'=>'Lahore','initials'=>'FJ','bg'=>'#16a34a','photo'=>'images/faiza javad.png'],
-            ];
-            @endphp
-            @foreach($homeTutors as $ht)
-            <div class="group bg-white rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 overflow-hidden" data-aos="fade-up" data-aos-delay="{{ ($loop->index + 1) * 150 }}">
-                <div class="p-6">
-                    <div class="flex items-start gap-4 mb-4">
-                        @if(!empty($ht['photo']))
-                            <div class="w-16 h-16 rounded-2xl overflow-hidden shadow-md flex-shrink-0"
-                                 style="background-color:#ffffff;transform:translateZ(0);backface-visibility:hidden;">
-                                <img src="{{ asset($ht['photo']) }}" alt="{{ $ht['name'] }}" class="transition-transform duration-500 group-hover:scale-110" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transform:translateZ(0);backface-visibility:hidden;">
+        <style>
+            /* Keep all tutor cards in the slider at the exact same height */
+            .slick-slider-custom .slick-track {
+                display: flex !important;
+            }
+            .slick-slider-custom .slick-slide {
+                height: inherit !important;
+                display: flex !important;
+            }
+            .slick-slider-custom .slick-slide > div {
+                width: 100%;
+                display: flex;
+            }
+            /* Custom styling for the navigation arrows */
+            .slider-arrow-btn {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 44px;
+                height: 44px;
+                border-radius: 50%;
+                background: #ffffff;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+                border: 1px solid #f3f4f6;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #2563eb;
+                transition: all 0.3s ease;
+                z-index: 10;
+                cursor: pointer;
+            }
+            .slider-arrow-btn:hover {
+                background: #2563eb;
+                color: #ffffff;
+                border-color: #2563eb;
+                box-shadow: 0 6px 20px rgba(37,99,235,0.25);
+            }
+            .slider-arrow-btn:active {
+                transform: translateY(-50%) scale(0.92);
+            }
+        </style>
+
+        <div class="relative px-4 md:px-12 mb-10" data-aos="fade-up">
+            {{-- Prev Arrow --}}
+            <button id="tutors-prev" class="slider-arrow-btn left-0 md:left-2">
+                <i class="fas fa-chevron-left text-sm"></i>
+            </button>
+
+            {{-- Slider Container --}}
+            <div id="tutors-slider" class="slick-slider-custom">
+                @php
+                $homeTutors = [
+                    ['name'=>'Murtaza Ali','qual'=>'M.Sc. Applied Mathematics, Punjab University','tags'=>['Mathematics','O/A Level','SAT·GRE·GAT'],'exp'=>25,'city'=>'Lahore','initials'=>'MA','bg'=>'#2563EB','photo'=>'images/Murtaza ali.png'],
+                    ['name'=>'Shamoil','qual'=>'MPhil Physics, UET Lahore','tags'=>['Physics','O/A Level','IBDP·MYP'],'exp'=>19,'city'=>'Lahore','initials'=>'SM','bg'=>'#7c3aed','photo'=>'images/Shamoil.png'],
+                    ['name'=>'Faiza Javaid','qual'=>'M.A., M.Ed., B.S. Chemistry/Biology','tags'=>['Chemistry','Biology','O/A Level·AP·IB'],'exp'=>15,'city'=>'Lahore','initials'=>'FJ','bg'=>'#16a34a','photo'=>'images/faiza javad.png'],
+                    ['name'=>'Iqra','qual'=>'MPhil Microbiology, UAF','tags'=>['Chemistry','O/A Level · AP','IB Chemistry'],'exp'=>28,'city'=>'Lahore','initials'=>'IQ','bg'=>'#0d9488','photo'=>'images/Iqra.png'],
+                    ['name'=>'Areej','qual'=>'Diploma in Montessori Education (AMI)','tags'=>['Montessori','Early Childhood','Phonics'],'exp'=>15,'city'=>'Lahore','initials'=>'AR','bg'=>'#ec4899','photo'=>'images/Areej.png'],
+                    ['name'=>'Samiya','qual'=>'Chartered Accountant (CA) — ICAP','tags'=>['Accounting','Business','O/A Level'],'exp'=>19,'city'=>'Lahore','initials'=>'SA','bg'=>'#ea580c','photo'=>'images/Samiya.png'],
+                    ['name'=>'Rotua','qual'=>'Master\'s in German, NUML','tags'=>['German','Goethe Prep','O/A Level'],'exp'=>16,'city'=>'Lahore','initials'=>'RO','bg'=>'#dc2626','photo'=>'images/Rotua.png'],
+                    ['name'=>'Nicolas','qual'=>'Master\'s in French, Sorbonne','tags'=>['French','DELF/DALF','O/A Level'],'exp'=>30,'city'=>'Lahore','initials'=>'NL','bg'=>'#1e3a8a','photo'=>'images/Nicolas.png'],
+                ];
+                @endphp
+                @foreach($homeTutors as $ht)
+                <div class="px-3 h-full">
+                    <div class="group bg-white rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1.5 hover:scale-[1.01] transition-all duration-300 overflow-hidden h-full flex flex-col justify-between" style="border: 1px solid #f3f4f6;">
+                        <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-start gap-4 mb-4">
+                                    @if(!empty($ht['photo']))
+                                        <div class="w-16 h-16 rounded-2xl overflow-hidden shadow-md flex-shrink-0"
+                                             style="background-color:#ffffff;transform:translateZ(0);backface-visibility:hidden;">
+                                            <img src="{{ asset($ht['photo']) }}" alt="{{ $ht['name'] }}" class="transition-transform duration-500 group-hover:scale-110" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transform:translateZ(0);backface-visibility:hidden;">
+                                        </div>
+                                    @else
+                                        <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-white text-lg font-black shadow-md flex-shrink-0"
+                                             style="background-color:{{ $ht['bg'] }};">
+                                            {{ $ht['initials'] }}
+                                        </div>
+                                    @endif
+                                    <div class="flex-1 min-w-0 pt-0.5">
+                                        <h3 class="text-lg font-black text-gray-900 mb-1 leading-tight">{{ $ht['name'] }}</h3>
+                                        <p class="text-[11px] text-blue-600 font-bold leading-snug">{{ $ht['qual'] }}</p>
+                                    </div>
+                                </div>
+                                <div class="flex flex-wrap gap-1.5 mb-5">
+                                    @foreach($ht['tags'] as $tag)
+                                    <span class="text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider" style="background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;">{{ $tag }}</span>
+                                    @endforeach
+                                </div>
                             </div>
-                        @else
-                            <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-white text-lg font-black shadow-md flex-shrink-0"
-                                 style="background-color:{{ $ht['bg'] }};">
-                                {{ $ht['initials'] }}
+                            <div class="flex items-center justify-between mt-auto">
+                                <span class="text-xs font-bold text-gray-500"><i class="fas fa-star text-orange-400 mr-1"></i>{{ $ht['exp'] }}+ Years · {{ $ht['city'] }}</span>
+                                <a href="{{ route('for-students') }}" 
+                                   class="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full bg-blue-50 text-blue-600 border border-blue-100 transition-all duration-300 hover:scale-105 active:scale-95 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 group-hover:shadow-lg group-hover:shadow-blue-500/25">
+                                    <span>View</span>
+                                    <i class="fas fa-arrow-right text-[8px] transition-transform duration-300 group-hover:translate-x-1"></i>
+                                </a>
                             </div>
-                        @endif
-                        <div class="flex-1 min-w-0 pt-0.5">
-                            <h3 class="text-lg font-black text-gray-900 mb-1">{{ $ht['name'] }}</h3>
-                            <p class="text-[11px] text-blue-600 font-bold leading-snug">{{ $ht['qual'] }}</p>
                         </div>
                     </div>
-                    <div class="flex flex-wrap gap-1.5 mb-4">
-                        @foreach($ht['tags'] as $tag)
-                        <span class="text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider" style="background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;">{{ $tag }}</span>
-                        @endforeach
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-xs font-bold text-gray-500"><i class="fas fa-star text-orange-400 mr-1"></i>{{ $ht['exp'] }}+ Years · {{ $ht['city'] }}</span>
-                        <a href="{{ route('for-students') }}" 
-                           class="inline-flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest px-3.5 py-2 rounded-full border border-gray-200 text-gray-500 transition-all duration-300 active:scale-95 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 group-hover:shadow-md hover:!bg-blue-700">
-                            View <i class="fas fa-arrow-right text-[8px] transition-transform duration-300 group-hover:translate-x-0.5"></i>
-                        </a>
-                    </div>
                 </div>
+                @endforeach
             </div>
-            @endforeach
+
+            {{-- Next Arrow --}}
+            <button id="tutors-next" class="slider-arrow-btn right-0 md:right-2">
+                <i class="fas fa-chevron-right text-sm"></i>
+            </button>
         </div>
 
 
@@ -538,7 +604,7 @@
         counters.forEach(counter => observer.observe(counter));
     });
 
-    // Slick Testimonial Slider
+    // Slick Testimonial & Tutors Slider
     $(document).ready(function() {
         $('#testimonial-slider').slick({
             dots: true,
@@ -554,6 +620,23 @@
             responsive: [
                 { breakpoint: 10000, settings: { slidesToShow: 3, slidesToScroll: 1, infinite: true }},
                 { breakpoint: 1024, settings: { slidesToShow: 2, slidesToScroll: 1, initialSlide: 2 }},
+                { breakpoint: 640, settings: { slidesToShow: 1, slidesToScroll: 1 }}
+            ]
+        });
+
+        $('#tutors-slider').slick({
+            dots: true,
+            arrows: true,
+            prevArrow: $('#tutors-prev'),
+            nextArrow: $('#tutors-next'),
+            infinite: true,
+            speed: 500,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            responsive: [
+                { breakpoint: 1024, settings: { slidesToShow: 2, slidesToScroll: 1 }},
                 { breakpoint: 640, settings: { slidesToShow: 1, slidesToScroll: 1 }}
             ]
         });
