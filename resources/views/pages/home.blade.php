@@ -276,14 +276,14 @@
             <div id="tutors-slider" class="slick-slider-custom">
                 @php
                 $homeTutors = [
-                    ['name'=>'Murtaza Ali','qual'=>'M.Sc. Applied Mathematics, Punjab University','tags'=>['Mathematics','O/A Level','SAT·GRE·GAT'],'exp'=>25,'city'=>'Lahore','initials'=>'MA','bg'=>'#2563EB','photo'=>'images/Murtaza ali.png'],
-                    ['name'=>'Shamoil','qual'=>'MPhil Physics, UET Lahore','tags'=>['Physics','O/A Level','IBDP·MYP'],'exp'=>19,'city'=>'Lahore','initials'=>'SM','bg'=>'#7c3aed','photo'=>'images/Shamoil.png'],
-                    ['name'=>'Faiza Javaid','qual'=>'M.A., M.Ed., B.S. Chemistry/Biology','tags'=>['Chemistry','Biology','O/A Level·AP·IB'],'exp'=>15,'city'=>'Lahore','initials'=>'FJ','bg'=>'#16a34a','photo'=>'images/faiza javad.png'],
-                    ['name'=>'Iqra','qual'=>'MPhil Microbiology, UAF','tags'=>['Chemistry','O/A Level · AP','IB Chemistry'],'exp'=>28,'city'=>'Lahore','initials'=>'IQ','bg'=>'#0d9488','photo'=>'images/Iqra.png'],
-                    ['name'=>'Areej','qual'=>'Diploma in Montessori Education (AMI)','tags'=>['Montessori','Early Childhood','Phonics'],'exp'=>15,'city'=>'Lahore','initials'=>'AR','bg'=>'#ec4899','photo'=>'images/Areej.png'],
-                    ['name'=>'Samiya','qual'=>'Chartered Accountant (CA) — ICAP','tags'=>['Accounting','Business','O/A Level'],'exp'=>19,'city'=>'Lahore','initials'=>'SA','bg'=>'#ea580c','photo'=>'images/Samiya.png'],
-                    ['name'=>'Rotua','qual'=>'Master\'s in German, NUML','tags'=>['German','Goethe Prep','O/A Level'],'exp'=>16,'city'=>'Lahore','initials'=>'RO','bg'=>'#dc2626','photo'=>'images/Rotua.png'],
-                    ['name'=>'Nicolas','qual'=>'Master\'s in French, Sorbonne','tags'=>['French','DELF/DALF','O/A Level'],'exp'=>30,'city'=>'Lahore','initials'=>'NL','bg'=>'#1e3a8a','photo'=>'images/Nicolas.png'],
+                    ['id'=>1, 'name'=>'Murtaza Ali','qual'=>'M.Sc. Applied Mathematics, Punjab University','tags'=>['Mathematics','O/A Level','SAT·GRE·GAT'],'exp'=>25,'city'=>'Lahore','initials'=>'MA','bg'=>'#2563EB','photo'=>'images/Murtaza ali.png'],
+                    ['id'=>2, 'name'=>'Shamoil','qual'=>'MPhil Physics, UET Lahore','tags'=>['Physics','O/A Level','IBDP·MYP'],'exp'=>19,'city'=>'Lahore','initials'=>'SM','bg'=>'#7c3aed','photo'=>'images/Shamoil.png'],
+                    ['id'=>3, 'name'=>'Faiza Javaid','qual'=>'M.A., M.Ed., B.S. Chemistry/Biology','tags'=>['Chemistry','Biology','O/A Level·AP·IB'],'exp'=>15,'city'=>'Lahore','initials'=>'FJ','bg'=>'#16a34a','photo'=>'images/faiza javad.png'],
+                    ['id'=>4, 'name'=>'Iqra','qual'=>'MPhil Microbiology, UAF','tags'=>['Chemistry','O/A Level · AP','IB Chemistry'],'exp'=>28,'city'=>'Lahore','initials'=>'IQ','bg'=>'#0d9488','photo'=>'images/Iqra.png'],
+                    ['id'=>5, 'name'=>'Areej','qual'=>'Diploma in Montessori Education (AMI)','tags'=>['Montessori','Early Childhood','Phonics'],'exp'=>15,'city'=>'Lahore','initials'=>'AR','bg'=>'#ec4899','photo'=>'images/Areej.png'],
+                    ['id'=>6, 'name'=>'Samiya','qual'=>'Chartered Accountant (CA) — ICAP','tags'=>['Accounting','Business','O/A Level'],'exp'=>19,'city'=>'Lahore','initials'=>'SA','bg'=>'#ea580c','photo'=>'images/Samiya.png'],
+                    ['id'=>7, 'name'=>'Rotua','qual'=>'Master\'s in German, NUML','tags'=>['German','Goethe Prep','O/A Level'],'exp'=>16,'city'=>'Lahore','initials'=>'RO','bg'=>'#dc2626','photo'=>'images/Rotua.png'],
+                    ['id'=>8, 'name'=>'Nicolas','qual'=>'Master\'s in French, Sorbonne','tags'=>['French','DELF/DALF','O/A Level'],'exp'=>30,'city'=>'Lahore','initials'=>'NL','bg'=>'#1e3a8a','photo'=>'images/Nicolas.png'],
                 ];
                 @endphp
                 @foreach($homeTutors as $ht)
@@ -316,7 +316,7 @@
                             </div>
                             <div class="flex items-center justify-between mt-auto">
                                 <span class="text-xs font-bold text-gray-500"><i class="fas fa-star text-orange-400 mr-1"></i>{{ $ht['exp'] }}+ Years · {{ $ht['city'] }}</span>
-                                <a href="{{ route('for-students') }}" 
+                                <a href="javascript:void(0)" onclick="openTutorModal({{ $ht['id'] }})"
                                    class="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full bg-blue-50 text-blue-600 border border-blue-100 transition-all duration-300 hover:scale-105 active:scale-95 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 group-hover:shadow-lg group-hover:shadow-blue-500/25">
                                     <span>View</span>
                                     <i class="fas fa-arrow-right text-[8px] transition-transform duration-300 group-hover:translate-x-1"></i>
@@ -563,6 +563,77 @@
 </script>
     </div>
 </div>
+
+{{-- ==================== TUTOR DETAIL MODAL ==================== --}}
+<div id="tutor-modal"
+     class="hidden fixed inset-0 z-50 items-center justify-center p-4"
+     style="background:rgba(0,0,0,0.72);backdrop-filter:blur(5px);"
+     onclick="if(event.target===this)closeTutorModal()">
+    <div class="bg-white rounded-3xl shadow-2xl w-full max-w-lg relative overflow-hidden"
+         style="max-height:90vh;overflow-y:auto;">
+
+        {{-- Close --}}
+        <button onclick="closeTutorModal()"
+                class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-all"
+                style="flex-shrink:0;">
+            <i class="fas fa-times text-gray-500 text-sm"></i>
+        </button>
+
+        {{-- Header --}}
+        <div class="p-7 pb-5 flex items-start gap-5">
+            <div id="modal-avatar" class="flex-shrink-0"></div>
+            <div class="flex-1 min-w-0 pt-1">
+                <h2 id="modal-name" class="text-2xl font-black text-gray-900 leading-tight mb-1.5"></h2>
+                <p id="modal-qual" class="text-xs text-blue-600 font-bold leading-snug mb-3"></p>
+                <span id="modal-exp"
+                      class="inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider px-3 py-1.5 rounded-full"
+                      style="background:#fff7ed;color:#ea580c;border:1px solid #fed7aa;"></span>
+            </div>
+        </div>
+
+        <div class="mx-7 border-t border-gray-100"></div>
+
+        {{-- Body --}}
+        <div class="px-7 py-5 space-y-5">
+
+            <div>
+                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Subjects</p>
+                <div id="modal-tags" class="flex flex-wrap gap-2"></div>
+            </div>
+
+            <div>
+                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">About</p>
+                <p id="modal-bio" class="text-sm text-gray-600 leading-relaxed"></p>
+            </div>
+
+            <div>
+                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Schools & Institutions</p>
+                <p id="modal-affiliation" class="text-sm text-gray-600 font-semibold leading-relaxed"></p>
+            </div>
+
+            <div class="flex items-center gap-2.5">
+                <i class="fas fa-map-marker-alt text-orange-500 text-sm flex-shrink-0"></i>
+                <span id="modal-location" class="text-sm font-bold text-gray-700"></span>
+            </div>
+        </div>
+
+        <div class="mx-7 border-t border-gray-100"></div>
+
+        {{-- Footer Buttons --}}
+        <div class="px-7 py-6 flex gap-3">
+            <a id="modal-book" href="#" target="_blank"
+               class="flex-1 text-center text-[11px] font-black uppercase tracking-widest py-4 rounded-xl transition-all active:scale-95 flex items-center justify-center gap-2"
+               style="background:#2563EB;color:#fff;">
+                <i class="fas fa-calendar-check"></i> Book Session
+            </a>
+            <a href="https://wa.me/923414133395" target="_blank"
+               class="flex items-center justify-center px-5 rounded-xl transition-all hover:bg-green-100"
+               style="background:#f0fdf4;border:2px solid #bbf7d0;color:#16a34a;">
+                <i class="fab fa-whatsapp text-xl"></i>
+            </a>
+        </div>
+    </div>
+</div>
 @endsection
 
 @push('scripts')
@@ -781,5 +852,171 @@ document.addEventListener('click', function(e) {
         _heroList.classList.add('hidden');
     }
 });
+
+// Tutor Modal functionality
+const tutorsData = [
+    {
+        id: 1,
+        name: "Murtaza Ali",
+        qualification: "M.Sc. Applied Mathematics, Punjab University",
+        bio: "Expert in O/A Level and IGCSE Mathematics with 25+ years of experience. Specialist in SAT, GRE, GAT and entry test preparation for NUST, UET, FAST, LUMS, and IIU.",
+        subject_tags: ["Mathematics", "O/A Level", "SAT · GRE · GAT"],
+        experience: 25,
+        affiliation: "Beaconhouse, LGS, Roots International, HITEC Cambridge, Zawiya Academy",
+        country: "Pakistan",
+        city: "Lahore",
+        area: "DHA",
+        initials: "MA",
+        bg: "#2563EB",
+        photo: "images/Murtaza ali.png"
+    },
+    {
+        id: 2,
+        name: "Shamoil",
+        qualification: "MPhil Physics, UET Lahore",
+        bio: "Specialized in CAIE O/A Level and IGCSE Physics with 19+ years at top international schools. Deep expertise in IBDP and MYP Physics.",
+        subject_tags: ["Physics", "O/A Level", "IBDP · MYP"],
+        experience: 19,
+        affiliation: "LGS, ISL, Oneiro School House, King's House School London, Army Public School",
+        country: "Pakistan",
+        city: "Lahore",
+        area: "Allama Iqbal Town",
+        initials: "SM",
+        bg: "#7c3aed",
+        photo: "images/Shamoil.png"
+    },
+    {
+        id: 3,
+        name: "Faiza Javaid",
+        qualification: "M.A., M.Ed., B.S. Zoology/Botany/Chemistry, B.Ed.",
+        bio: "Versatile science educator with 15 years of experience in Cambridge Sciences, AP Chemistry, and IB Chemistry at top international schools.",
+        subject_tags: ["Chemistry", "Biology · Zoology", "O/A Level · AP · IB"],
+        experience: 15,
+        affiliation: "Beaconhouse, The City School, Bloomfield Hall, Froebels International",
+        country: "Pakistan",
+        city: "Lahore",
+        area: "Johar Town",
+        initials: "FJ",
+        bg: "#16a34a",
+        photo: "images/faiza javad.png"
+    },
+    {
+        id: 4,
+        name: "Iqra",
+        qualification: "MPhil Microbiology, UAF",
+        bio: "Chemistry expert with 28 years of teaching and pharmaceutical industry experience, bridging academic chemistry with real-world applications.",
+        subject_tags: ["Chemistry", "O/A Level · AP", "IB Chemistry"],
+        experience: 28,
+        affiliation: "Roots International, Bloomfield Hall, The City School",
+        country: "Pakistan",
+        city: "Lahore",
+        area: "Gulberg",
+        initials: "IQ",
+        bg: "#0d9488",
+        photo: "images/Iqra.png"
+    },
+    {
+        id: 5,
+        name: "Areej",
+        qualification: "Diploma in Montessori Education (AMI Certified)",
+        bio: "Specialist in Montessori early childhood education with 15 years of experience. AMI-trained with expertise in child development and activity-based learning.",
+        subject_tags: ["Montessori", "Early Childhood", "Phonics · Nursery"],
+        experience: 15,
+        affiliation: "Beaconhouse (Montessori), LGS, Cornerstone School",
+        country: "Pakistan",
+        city: "Lahore",
+        area: "Model Town",
+        initials: "AR",
+        bg: "#ec4899",
+        photo: "images/Areej.png"
+    },
+    {
+        id: 6,
+        name: "Samiya",
+        qualification: "Chartered Accountant (CA) — ICAP",
+        bio: "CA-qualified educator with 19 years of experience in CAIE O/A Level Accounting, Business, and Economics. Expert in IGCSE and Edexcel curricula.",
+        subject_tags: ["Accounting", "Business · Economics", "O/A Level · IGCSE"],
+        experience: 19,
+        affiliation: "American International School (AIS), International School of Lahore (ISL)",
+        country: "Pakistan",
+        city: "Lahore",
+        area: "Gulberg",
+        initials: "SA",
+        bg: "#ea580c",
+        photo: "images/Samiya.png"
+    },
+    {
+        id: 7,
+        name: "Rotua",
+        qualification: "Master's in German Language & Literature, NUML",
+        bio: "German language specialist (A1–C1) with 16 years of experience in Goethe Certification preparation, O/A Level German, and multilingual education.",
+        subject_tags: ["German A1–C1", "Goethe Certification", "O/A Level German"],
+        experience: 16,
+        affiliation: "Roots International, Roots Millennium, Aitchison College, C.A.S. School Karachi",
+        country: "Pakistan",
+        city: "Lahore",
+        area: "Garden Town",
+        initials: "RO",
+        bg: "#dc2626",
+        photo: "images/Rotua.png"
+    },
+    {
+        id: 8,
+        name: "Nicolas",
+        qualification: "Master's in French Language & Linguistics, Sorbonne",
+        bio: "Native-level French educator (A1–C2) with 30 years of international experience. Expert in DELF/DALF preparation, O/A Level French, and immersive language teaching.",
+        subject_tags: ["French A1–C2", "DELF/DALF Prep", "O/A Level French"],
+        experience: 30,
+        affiliation: "Sorbonne, LGS, Roots, Aitchison",
+        country: "Pakistan",
+        city: "Lahore",
+        area: "DHA",
+        initials: "NL",
+        bg: "#1e3a8a",
+        photo: "images/Nicolas.png"
+    }
+];
+
+const assetBase = "{{ rtrim(asset(''), '/') }}";
+
+function openTutorModal(id) {
+    const tutor = tutorsData.find(t => t.id === id);
+    if (!tutor) return;
+
+    // Avatar
+    const avatarHtml = tutor.photo
+        ? `<div style="width:110px;height:110px;border-radius:1rem;overflow:hidden;border:2px solid #f1f5f9;background:#ffffff;">
+               <img src="${assetBase}/${tutor.photo}" alt="${tutor.name}" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+           </div>`
+        : `<div style="width:110px;height:110px;border-radius:1rem;display:flex;align-items:center;justify-content:center;color:#fff;font-size:2rem;font-weight:900;background:${tutor.bg};">
+               ${tutor.initials}
+           </div>`;
+    document.getElementById('modal-avatar').innerHTML = avatarHtml;
+
+    document.getElementById('modal-name').textContent = tutor.name;
+    document.getElementById('modal-qual').textContent  = tutor.qualification;
+    document.getElementById('modal-exp').innerHTML     = `<i class="fas fa-star" style="font-size:9px;"></i> ${tutor.experience}+ Years Experience`;
+    document.getElementById('modal-bio').textContent         = tutor.bio;
+    document.getElementById('modal-affiliation').textContent = tutor.affiliation;
+    document.getElementById('modal-location').textContent    = `${tutor.area}, ${tutor.city}, ${tutor.country}`;
+
+    const tagsHtml = tutor.subject_tags.map(tag =>
+        `<span style="font-size:10px;font-weight:900;padding:4px 12px;border-radius:9999px;text-transform:uppercase;letter-spacing:0.05em;background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;">${tag}</span>`
+    ).join('');
+    document.getElementById('modal-tags').innerHTML = tagsHtml;
+
+    document.getElementById('modal-book').href =
+        `https://wa.me/923414133395?text=Hi%2C%20I%20am%20interested%20in%20${encodeURIComponent(tutor.name)}`;
+
+    const modal = document.getElementById('tutor-modal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+}
+
+function closeTutorModal() {
+    const modal = document.getElementById('tutor-modal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+}
 </script>
 @endpush
