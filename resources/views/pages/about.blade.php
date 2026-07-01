@@ -6,7 +6,7 @@
     <div class="max-w-6xl mx-auto px-6 py-16">
 
         <!-- Leadership Team (TOP) -->
-        <div class="mb-20" data-aos="fade-up">
+        <div id="team" class="mb-20" data-aos="fade-up">
             <div class="text-center mb-16">
                 <span class="text-sm font-black text-orange-400 tracking-widest uppercase mb-2 block">The Minds Behind</span>
                 <h2 class="text-4xl font-extrabold text-gray-900">Meet Our Leadership Team</h2>

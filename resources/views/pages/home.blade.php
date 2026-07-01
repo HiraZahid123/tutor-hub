@@ -94,53 +94,126 @@
 {{-- ==================== COUNTER SECTION ==================== --}}
 <section class="bg-primary">
     <div class="container">
-        <div class="counter_grid text-black text-center">
+        <div class="counter_grid text-black text-center py-6">
             <div class="mb-6 lg:mb-0">
-                <p class="text-4xl font-bold"><span class="counter" data-target="{{ $stats['tutors'] }}" data-suffix="+">0</span></p>
-                <p class="text-lg font-medium mt-1">Expert tutors</p>
+                <p class="text-3xl md:text-[32px] font-black"><span class="counter" data-target="3029" data-suffix="+">0</span></p>
+                <p class="text-[15px] font-bold text-gray-800 mt-1">Expert tutors</p>
             </div>
             <div class="mb-6 lg:mb-0">
-                <p class="text-4xl font-bold"><span class="counter" data-target="{{ $stats['hours'] }}" data-suffix="">0</span></p>
-                <p class="text-lg font-medium mt-1">Hours content</p>
+                <p class="text-3xl md:text-[32px] font-black"><span class="counter" data-target="3025" data-suffix="+">0</span></p>
+                <p class="text-[15px] font-bold text-gray-800 mt-1">Hours content</p>
             </div>
             <div class="mb-6 lg:mb-0">
-                <p class="text-4xl font-bold"><span class="counter" data-target="{{ $stats['subjects'] }}" data-suffix="">0</span></p>
-                <p class="text-lg font-medium mt-1">Subject and courses</p>
+                <p class="text-3xl md:text-[32px] font-black"><span class="counter" data-target="4.6" data-suffix="+">4.6+</span></p>
+                <p class="text-[15px] font-bold text-gray-800 mt-1">Ranked on google</p>
             </div>
             <div>
-                <p class="text-4xl font-bold"><span class="counter" data-target="{{ $stats['students'] }}" data-suffix="">0</span></p>
-                <p class="text-lg font-medium mt-1">Active students</p>
+                <p class="text-3xl md:text-[32px] font-black"><span class="counter" data-target="798" data-suffix="+">0</span></p>
+                <p class="text-[15px] font-bold text-gray-800 mt-1">Active students</p>
             </div>
         </div>
     </div>
 </section>
 
-{{-- ==================== WHY CHOOSE US ==================== --}}
-<section class="overflow-x-hidden">
+{{-- ==================== GOOGLE REVIEWS BADGE SECTION ==================== --}}
+<section class="bg-gray-50 border-b border-gray-100 py-6">
     <div class="container">
-        <div class="text-center">
-            <span class="text-blue-700 text-lg font-semibold uppercase">Why Choose us</span>
-            <h1 class="text-3xl md:text-4xl font-semibold mt-2 max-w-[500px] m-auto leading-tight">
-                Benefits of online tutoring services with us
-            </h1>
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6 max-w-4xl mx-auto px-4">
+            {{-- Left: Text --}}
+            <div class="text-center md:text-left">
+                <h2 class="text-2xl md:text-3xl font-black text-gray-900 leading-tight">
+                    What People say about us on Google
+                </h2>
+            </div>
+            
+            {{-- Right: Interactive Badge --}}
+            <div onclick="openGoogleReviewsModal()" 
+                 class="bg-white border border-gray-200 rounded-xl px-5 py-3.5 shadow-sm hover:shadow-md hover:border-blue-400 transition-all duration-300 flex items-center gap-4 cursor-pointer select-none">
+                {{-- Google G Bubble --}}
+                <div class="w-12 h-12 flex items-center justify-center bg-gray-50 rounded-lg border border-gray-100 flex-shrink-0">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22c-.22-.67-.35-1.37-.35-2.09z"/>
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                    </svg>
+                </div>
+                
+                {{-- Stats --}}
+                <div class="flex flex-col">
+                    <span class="text-xs text-gray-500 font-bold tracking-tight">Google Reviews</span>
+                    <div class="flex items-center gap-2 mt-0.5">
+                        <span class="text-2xl font-black text-gray-900">4.9</span>
+                        <div class="flex flex-col">
+                            <div class="flex text-yellow-400 gap-0.5">
+                                <i class="fas fa-star text-[10px]"></i>
+                                <i class="fas fa-star text-[10px]"></i>
+                                <i class="fas fa-star text-[10px]"></i>
+                                <i class="fas fa-star text-[10px]"></i>
+                                <i class="fas fa-star text-[10px]"></i>
+                            </div>
+                            <span class="text-[10px] text-gray-400 font-bold">289 reviews</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-9">
+    </div>
+</section>
+
+{{-- ==================== SELECT THE TUTORS SECTION ==================== --}}
+<section class="py-12 bg-white overflow-hidden">
+    <div class="container">
+        <div class="text-center mb-10">
+            <h3 class="text-blue-600 text-lg md:text-xl font-black uppercase tracking-[0.20em] block mb-3">Select the tutors why?</h3>
+            <h2 class="text-3xl md:text-4xl font-black text-gray-900 leading-tight">Truly suits you:</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-9">
             @php
-                $whyChooseData = [
-                    ['title' => 'One-on-one Teaching', 'desc' => 'All of our special education experts have a degree in special education.', 'icon' => 'fas fa-om', 'bgColor' => '#0063ff', 'delay' => 100],
-                    ['title' => '24/7 Tutor Availability', 'desc' => 'Our tutors are always available to respond as quick as possible for you', 'icon' => 'fas fa-dumbbell', 'bgColor' => '#73bc00', 'delay' => 200],
-                    ['title' => 'Interactive Whiteboard', 'desc' => 'Our digital whiteboard equipped with audio and video chat features.', 'icon' => 'fas fa-briefcase', 'bgColor' => '#fa6400', 'delay' => 300],
-                    ['title' => 'Affordable Prices', 'desc' => 'Choose an expert tutor based on your budget and per hour.', 'icon' => 'fas fa-tags', 'bgColor' => '#fe6baa', 'delay' => 400],
+                $tutorSections = [
+                    [
+                        'title' => 'Home Tutors in Lahore',
+                        'url'   => route('for-students', ['city' => 'Lahore']),
+                        'delay' => 100
+                    ],
+                    [
+                        'title' => 'Home Tutors in Karachi',
+                        'url'   => route('for-students', ['city' => 'Karachi']),
+                        'delay' => 200
+                    ],
+                    [
+                        'title' => 'Home Tutors in Islamabad',
+                        'url'   => route('for-students', ['city' => 'Islamabad']),
+                        'delay' => 300
+                    ],
+                    [
+                        'title' => 'Quran Tutors',
+                        'url'   => route('for-students', ['q' => 'Quran']),
+                        'delay' => 400
+                    ],
+                    [
+                        'title' => 'Home Tutors in Pakistan',
+                        'url'   => route('for-students'),
+                        'delay' => 500
+                    ],
+                    [
+                        'title' => 'Other Tutors',
+                        'url'   => route('contact'),
+                        'delay' => 600
+                    ]
                 ];
             @endphp
-            @foreach($whyChooseData as $data)
-                <div class="bg-slate-50 shadow-[0_0_22px_0_rgba(0,0,0,0.15)] p-7 rounded-xl" data-aos="fade-left" data-aos-delay="{{ $data['delay'] }}">
-                    <div style="background-color: {{ $data['bgColor'] }}" class="w-10 h-10 flex items-center justify-center rounded-lg mb-2">
-                        <span class="text-2xl text-white"><i class="{{ $data['icon'] }}"></i></span>
-                    </div>
-                    <h3 class="text-[21px] lg:text-lg mb-1 font-semibold">{{ $data['title'] }}</h3>
-                    <p class="text-lg lg:text-base text-gray-600">{{ $data['desc'] }}</p>
-                </div>
+            
+            @foreach($tutorSections as $sec)
+                <a href="{{ $sec['url'] }}"
+                   class="group block bg-[#2563EB] text-white p-8 rounded-2xl text-center shadow-[0_8px_20px_rgba(37,99,235,0.2)] transform hover:-translate-y-3 hover:scale-[1.06] hover:shadow-[0_20px_40px_rgba(37,99,235,0.45)] transition-all duration-300"
+                   data-aos="fade-up" data-aos-delay="{{ $sec['delay'] }}">
+                    <h3 class="text-base sm:text-lg font-black tracking-tight leading-tight mb-2.5">{{ $sec['title'] }}</h3>
+                    <p class="text-[10px] text-blue-100 font-bold uppercase tracking-wider inline-flex items-center gap-1.5 justify-center">
+                        Explore Tutors <i class="fas fa-chevron-right text-[8px] transition-transform group-hover:translate-x-1 duration-300"></i>
+                    </p>
+                </a>
             @endforeach
         </div>
     </div>
@@ -264,6 +337,57 @@
             .slider-arrow-btn:active {
                 transform: translateY(-50%) scale(0.92);
             }
+
+            /* Custom profile photo hover animation */
+            .tutor-photo-wrap-interactive {
+                transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+            }
+            .tutor-photo-wrap-interactive:hover {
+                transform: translateY(-8px) scale(1.03);
+                box-shadow: 0 16px 32px rgba(0,0,0,0.18);
+            }
+            
+            /* Custom subject tags hover animation */
+            .subject-tag-interactive {
+                transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s, border-color 0.2s, box-shadow 0.3s;
+                cursor: pointer;
+            }
+            .subject-tag-interactive:hover {
+                transform: translateY(-4px) scale(1.05);
+                box-shadow: 0 6px 12px rgba(37,99,235,0.15);
+                background-color: #dbeafe !important;
+                border-color: #3b82f6 !important;
+                color: #1d4ed8 !important;
+            }
+
+            /* Custom text interactive hover animation */
+            .text-interactive-hover {
+                display: block;
+                width: fit-content;
+                transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+            }
+            .text-interactive-hover:hover {
+                transform: translateY(-4px);
+            }
+
+            /* Custom button interactive hover animation */
+            .button-interactive-hover {
+                transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+            }
+            .button-interactive-hover:hover {
+                transform: translateY(-3px) scale(1.01);
+                box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            }
+
+            /* Custom badge interactive hover animation */
+            .badge-interactive-hover {
+                transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+                cursor: pointer;
+            }
+            .badge-interactive-hover:hover {
+                transform: translateY(-4px) scale(1.02);
+                box-shadow: 0 4px 10px rgba(234, 88, 12, 0.15);
+            }
         </style>
 
         <div class="relative px-4 md:px-12 mb-10" data-aos="fade-up">
@@ -275,62 +399,303 @@
             {{-- Slider Container --}}
             <div id="tutors-slider" class="slick-slider-custom">
                 @php
-                $homeTutors = [
-                    ['id'=>1, 'name'=>'Murtaza Ali','qual'=>'M.Sc. Applied Mathematics, Punjab University','tags'=>['Mathematics','O/A Level','SAT·GRE·GAT'],'exp'=>25,'city'=>'Lahore','initials'=>'MA','bg'=>'#2563EB','photo'=>'images/Murtaza ali.png'],
-                    ['id'=>2, 'name'=>'Shamoil','qual'=>'MPhil Physics, UET Lahore','tags'=>['Physics','O/A Level','IBDP·MYP'],'exp'=>22,'city'=>'Lahore','initials'=>'SM','bg'=>'#7c3aed','photo'=>'images/Shamoil.png'],
-                    ['id'=>16, 'name'=>'Tahir','qual'=>'M.Sc. Data Science (AI)','tags'=>['Data Science','AI','Programming'],'exp'=>9,'city'=>'Lahore','initials'=>'TH','bg'=>'#3b82f6','photo'=>'images/Tahir.png'],
-                    ['id'=>6, 'name'=>'Samiya','qual'=>'Chartered Accountant (CA) — ICAP','tags'=>['Accounting','Business','O/A Level'],'exp'=>19,'city'=>'Lahore','initials'=>'SA','bg'=>'#ea580c','photo'=>'images/Samiya.png'],
-                    ['id'=>10, 'name'=>'Sean','qual'=>'PhD in Artificial Intelligence & Robotics, UET Lahore','tags'=>['AI & Robotics','Machine Learning','Robotics'],'exp'=>10,'city'=>'Lahore','initials'=>'SN','bg'=>'#475569','photo'=>'images/Sean.png'],
-                    ['id'=>14, 'name'=>'Shoaib','qual'=>'MPhil Educational Leadership, BNU','tags'=>['Business Studies','Economics','Management'],'exp'=>30,'city'=>'Lahore','initials'=>'SB','bg'=>'#7c3aed','photo'=>'images/Shoib.png'],
-                    ['id'=>5, 'name'=>'Areej','qual'=>'Diploma in Montessori Education (AMI)','tags'=>['Montessori','Early Childhood','Phonics'],'exp'=>15,'city'=>'Lahore','initials'=>'AR','bg'=>'#ec4899','photo'=>'images/Areej.png'],
-                    ['id'=>3, 'name'=>'Faiza Javaid','qual'=>'M.A., M.Ed., B.S. Chemistry/Biology','tags'=>['Chemistry','Biology','O/A Level·AP·IB'],'exp'=>18,'city'=>'Lahore','initials'=>'FJ','bg'=>'#16a34a','photo'=>'images/faiza javad.png'],
-                    ['id'=>7, 'name'=>'Rotua','qual'=>'Master\'s in German, NUML','tags'=>['German','Goethe Prep','O/A Level'],'exp'=>16,'city'=>'Lahore','initials'=>'RO','bg'=>'#dc2626','photo'=>'images/Rotua.png'],
-                    ['id'=>15, 'name'=>'Mohsin','qual'=>'M.A. English, University of the Punjab','tags'=>['English','IELTS·TOEFL','IGCSE'],'exp'=>15,'city'=>'Lahore','initials'=>'MH','bg'=>'#1d4ed8','photo'=>'images/Mohsin.png'],
-                    ['id'=>8, 'name'=>'Nicolas','qual'=>'Master\'s in French, Sorbonne','tags'=>['French','DELF/DALF','O/A Level'],'exp'=>30,'city'=>'Lahore','initials'=>'NL','bg'=>'#1e3a8a','photo'=>'images/Nicolas.png'],
-                    ['id'=>9, 'name'=>'Ali','qual'=>'MCS, UET Lahore','tags'=>['Computer Science','Python','Programming'],'exp'=>16,'city'=>'Lahore','initials'=>'AL','bg'=>'#0891b2','photo'=>'images/Ali.png'],
-                    ['id'=>12, 'name'=>'Qari Jawad','qual'=>'Dars-e-Nizami, Jamia Ashrafia','tags'=>['Quran','Tajweed','Islamic Studies'],'exp'=>25,'city'=>'Lahore','initials'=>'QJ','bg'=>'#059669','photo'=>'images/Qari javad.png'],
-                    ['id'=>11, 'name'=>'Ali Murtaza','qual'=>'Master\'s in History & Geography, Punjab University','tags'=>['History','Pakistan Studies','Geography'],'exp'=>20,'city'=>'Lahore','initials'=>'AM','bg'=>'#d97706','photo'=>'images/Ali murtaza.png'],
-                    ['id'=>13, 'name'=>'Jessica','qual'=>'Doctor of Musical Arts, Uni of London','tags'=>['Music','Piano·Guitar','Violin'],'exp'=>15,'city'=>'Lahore','initials'=>'JS','bg'=>'#e11d48','photo'=>'images/Jessica.png'],
-                    ['id'=>4, 'name'=>'Iqra','qual'=>'MPhil Microbiology, UAF','tags'=>['Chemistry','O/A Level · AP','IB Chemistry'],'exp'=>28,'city'=>'Lahore','initials'=>'IQ','bg'=>'#0d9488','photo'=>'images/Iqra.png'],
+                                $homeTutors = [
+                    [
+                        'id'            => 1,
+                        'name'          => 'Murtaza Ali',
+                        'qualification' => 'M.Sc. Applied Mathematics, University of the Punjab',
+                        'subject_tags'  => ['Mathematics', 'O/A Level', 'SAT · GRE · GAT'],
+                        'experience'    => 25,
+                        'country'       => 'Pakistan',
+                        'city'          => 'Lahore',
+                        'area'          => 'DHA',
+                        'initials'      => 'MA',
+                        'bg'            => '#2563EB',
+                        'photo'         => 'images/Murtaza ali.png',
+                    ],
+                    [
+                        'id'            => 2,
+                        'name'          => 'Shamoil',
+                        'qualification' => 'MPhil Physics, UET Lahore',
+                        'subject_tags'  => ['Physics', 'O/A Level', 'IBDP · MYP'],
+                        'experience'    => 22,
+                        'country'       => 'Pakistan',
+                        'city'          => 'Lahore',
+                        'area'          => 'Allama Iqbal Town',
+                        'initials'      => 'SM',
+                        'bg'            => '#7c3aed',
+                        'photo'         => 'images/Shamoil.png',
+                        'sharpen'       => true,
+                    ],
+                    [
+                        'id'            => 16,
+                        'name'          => 'Tahir',
+                        'qualification' => 'M.Sc. Data Science (AI)',
+                        'subject_tags'  => ['Data Science', 'AI', 'Programming'],
+                        'experience'    => 9,
+                        'country'       => 'Pakistan',
+                        'city'          => 'Lahore',
+                        'area'          => 'Gulberg',
+                        'initials'      => 'TH',
+                        'bg'            => '#3b82f6',
+                        'photo'         => 'images/Tahir.png',
+                    ],
+                    [
+                        'id'            => 6,
+                        'name'          => 'Samiya',
+                        'qualification' => 'Chartered Accountant (CA) — ICAP',
+                        'subject_tags'  => ['Accounting', 'Business · Economics', 'O/A Level · IGCSE'],
+                        'experience'    => 19,
+                        'country'       => 'Pakistan',
+                        'city'          => 'Lahore',
+                        'area'          => 'Gulberg',
+                        'initials'      => 'SA',
+                        'bg'            => '#ea580c',
+                        'photo'         => 'images/Samiya.png',
+                    ],
+                    [
+                        'id'            => 10,
+                        'name'          => 'Sean',
+                        'qualification' => 'PhD in Artificial Intelligence & Robotics, UET Lahore',
+                        'subject_tags'  => ['Artificial Intelligence', 'Machine Learning', 'Robotics · Deep Learning'],
+                        'experience'    => 10,
+                        'country'       => 'Pakistan',
+                        'city'          => 'Lahore',
+                        'area'          => 'Johar Town',
+                        'initials'      => 'SN',
+                        'bg'            => '#475569',
+                        'photo'         => 'images/Sean.png',
+                    ],
+                    [
+                        'id'            => 14,
+                        'name'          => 'Shoaib',
+                        'qualification' => 'MPhil Educational Leadership, Beaconhouse National University (BNU)',
+                        'subject_tags'  => ['Business Studies', 'Economics · Marketing', 'Management'],
+                        'experience'    => 30,
+                        'country'       => 'Pakistan',
+                        'city'          => 'Lahore',
+                        'area'          => 'Johar Town',
+                        'initials'      => 'SB',
+                        'bg'            => '#7c3aed',
+                        'photo'         => 'images/Shoib.png',
+                    ],
+                    [
+                        'id'            => 5,
+                        'name'          => 'Areej',
+                        'qualification' => 'Diploma in Montessori Education (AMI Certified)',
+                        'subject_tags'  => ['Montessori', 'Early Childhood', 'Phonics · Nursery'],
+                        'experience'    => 15,
+                        'country'       => 'Pakistan',
+                        'city'          => 'Lahore',
+                        'area'          => 'Model Town',
+                        'initials'      => 'AR',
+                        'bg'            => '#ec4899',
+                        'photo'         => 'images/Areej.png',
+                    ],
+                    [
+                        'id'            => 3,
+                        'name'          => 'Faiza Javaid',
+                        'qualification' => 'M.A., M.Ed., B.S. Zoology/Botany/Chemistry, B.Ed.',
+                        'subject_tags'  => ['Chemistry', 'Biology · Zoology', 'O/A Level · AP · IB'],
+                        'experience'    => 18,
+                        'country'       => 'Pakistan',
+                        'city'          => 'Lahore',
+                        'area'          => 'Johar Town',
+                        'initials'      => 'FJ',
+                        'bg'            => '#16a34a',
+                        'photo'         => 'images/faiza javad.png',
+                    ],
+                    [
+                        'id'            => 7,
+                        'name'          => 'Rotua',
+                        'qualification' => 'Master\'s in German Language & Literature, NUML Islamabad',
+                        'subject_tags'  => ['German A1–C1', 'Goethe Certification', 'O/A Level German'],
+                        'experience'    => 16,
+                        'country'       => 'Pakistan',
+                        'city'          => 'Lahore',
+                        'area'          => 'Garden Town',
+                        'initials'      => 'RO',
+                        'bg'            => '#dc2626',
+                        'photo'         => 'images/Rotua.png',
+                    ],
+                    [
+                        'id'            => 15,
+                        'name'          => 'Mohsin',
+                        'qualification' => 'M.A. English, University of the Punjab, Lahore',
+                        'subject_tags'  => ['English Language', 'English Literature', 'IELTS · TOEFL · IGCSE'],
+                        'experience'    => 15,
+                        'country'       => 'Pakistan',
+                        'city'          => 'Lahore',
+                        'area'          => 'Model Town',
+                        'initials'      => 'MH',
+                        'bg'            => '#1d4ed8',
+                        'photo'         => 'images/Mohsin.png',
+                    ],
+                    [
+                        'id'            => 8,
+                        'name'          => 'Nicolas',
+                        'qualification' => 'Master\'s in French Language & Linguistics, Sorbonne Nouvelle, Paris',
+                        'subject_tags'  => ['French A1–C2', 'DELF/DALF', 'O/A Level French'],
+                        'experience'    => 30,
+                        'country'       => 'Pakistan',
+                        'city'          => 'Lahore',
+                        'area'          => 'Gulberg',
+                        'initials'      => 'NC',
+                        'bg'            => '#4f46e5',
+                        'photo'         => 'images/Nicolas.png',
+                        'sharpen'       => true,
+                    ],
+                    [
+                        'id'            => 9,
+                        'name'          => 'Ali',
+                        'qualification' => 'MCS (Master\'s in Computer Science), UET Lahore',
+                        'subject_tags'  => ['Computer Science', 'Python · Programming', 'IGCSE · A Level CS'],
+                        'experience'    => 16,
+                        'country'       => 'Pakistan',
+                        'city'          => 'Lahore',
+                        'area'          => 'Garden Town',
+                        'initials'      => 'AL',
+                        'bg'            => '#0891b2',
+                        'photo'         => 'images/Ali.png',
+                    ],
+                    [
+                        'id'            => 12,
+                        'name'          => 'Qari Jawad',
+                        'qualification' => 'Dars-e-Nizami, Jamia Ashrafia, Lahore',
+                        'subject_tags'  => ['Quran (Tajweed · Hifz)', 'Islamic Studies', 'Online & Home'],
+                        'experience'    => 25,
+                        'country'       => 'Pakistan',
+                        'city'          => 'Lahore',
+                        'area'          => 'Raiwind',
+                        'initials'      => 'QJ',
+                        'bg'            => '#059669',
+                        'photo'         => 'images/Qari javad.png',
+                    ],
+                    [
+                        'id'            => 11,
+                        'name'          => 'Ali Murtaza',
+                        'qualification' => 'Master\'s in History & Geography, University of the Punjab',
+                        'subject_tags'  => ['History & Geography', 'Pakistan Studies', 'O/A Level · IGCSE'],
+                        'experience'    => 20,
+                        'country'       => 'Pakistan',
+                        'city'          => 'Lahore',
+                        'area'          => 'DHA',
+                        'initials'      => 'AM',
+                        'bg'            => '#d97706',
+                        'photo'         => 'images/Ali murtaza.png',
+                    ],
+                    [
+                        'id'            => 13,
+                        'name'          => 'Jessica',
+                        'qualification' => 'Doctor of Musical Arts (DMA), University of London',
+                        'subject_tags'  => ['Music (O/A Level)', 'ABRSM Grades 1–8', 'Piano · Guitar · Violin'],
+                        'experience'    => 15,
+                        'country'       => 'Pakistan',
+                        'city'          => 'Lahore',
+                        'area'          => 'DHA',
+                        'initials'      => 'JS',
+                        'bg'            => '#e11d48',
+                        'photo'         => 'images/Jessica.png',
+                        'sharpen'       => true,
+                    ],
+                    [
+                        'id'            => 4,
+                        'name'          => 'Iqra',
+                        'qualification' => 'MPhil Microbiology, University of Agriculture, Faisalabad',
+                        'subject_tags'  => ['Chemistry', 'O/A Level · AP', 'IB Chemistry'],
+                        'experience'    => 28,
+                        'country'       => 'Pakistan',
+                        'city'          => 'Lahore',
+                        'area'          => 'Gulberg',
+                        'initials'      => 'IQ',
+                        'bg'            => '#0d9488',
+                        'photo'         => 'images/Iqra.png',
+                        'sharpen'       => true,
+                    ],
                 ];
                 @endphp
                 @foreach($homeTutors as $ht)
                 <div class="px-3 h-full">
-                    <div class="group bg-white rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1.5 hover:scale-[1.01] transition-all duration-300 overflow-hidden h-full flex flex-col justify-between" style="border: 1px solid #f3f4f6;">
-                        <div class="p-6 flex-1 flex flex-col justify-between">
-                            <div>
-                                <div class="flex items-start gap-4 mb-4">
+                    <div class="tutor-card group bg-white rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1.5 hover:scale-[1.01] transition-all duration-300 overflow-hidden h-full flex flex-col justify-between" style="border: 1px solid #f3f4f6;">
+                        
+                        {{-- Card Header --}}
+                        <div class="p-7 pb-4">
+                            <div class="flex items-start gap-5">
+                                {{-- Avatar / Photo --}}
+                                <div class="flex-shrink-0">
                                     @if(!empty($ht['photo']))
-                                        <div class="w-16 h-16 rounded-2xl overflow-hidden shadow-md flex-shrink-0"
-                                             style="background-color:#ffffff;transform:translateZ(0);backface-visibility:hidden;">
-                                            <img src="{{ asset($ht['photo']) }}" alt="{{ $ht['name'] }}" class="transition-transform duration-500 group-hover:scale-110" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transform:translateZ(0);backface-visibility:hidden;">
+                                        <div class="tutor-photo-wrap tutor-photo-wrap-interactive rounded-2xl shadow-lg border-2 border-gray-100 overflow-hidden"
+                                             style="width:118px;height:118px;flex-shrink:0;background:#ffffff;">
+                                            <img src="{{ asset($ht['photo']) }}"
+                                                 alt="{{ $ht['name'] }}"
+                                                 class="{{ !empty($ht['sharpen']) ? 'img-sharpen' : '' }} transition-transform duration-500 group-hover:scale-110"
+                                                 style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
                                         </div>
                                     @else
-                                        <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-white text-lg font-black shadow-md flex-shrink-0"
-                                             style="background-color:{{ $ht['bg'] }};">
+                                        <div class="rounded-2xl flex items-center justify-center text-white font-black shadow-lg"
+                                             style="width:118px;height:118px;font-size:2rem;background-color:{{ $ht['bg'] }};">
                                             {{ $ht['initials'] }}
                                         </div>
                                     @endif
-                                    <div class="flex-1 min-w-0 pt-0.5">
-                                        <h3 class="text-lg font-black text-gray-900 mb-1 leading-tight">{{ $ht['name'] }}</h3>
-                                        <p class="text-[11px] text-blue-600 font-bold leading-snug">{{ $ht['qual'] }}</p>
-                                    </div>
                                 </div>
-                                <div class="flex flex-wrap gap-1.5 mb-5">
-                                    @foreach($ht['tags'] as $tag)
-                                    <span class="text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider" style="background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;">{{ $tag }}</span>
-                                    @endforeach
+                                {{-- Name & Qualification --}}
+                                <div class="flex-1 min-w-0 pt-1">
+                                    <h3 class="text-[20px] font-black text-gray-900 leading-tight mb-1.5 text-interactive-hover">{{ $ht['name'] }}</h3>
+                                    <p class="text-[11px] text-blue-600 font-bold leading-snug mb-3 text-interactive-hover">{{ $ht['qualification'] }}</p>
+                                    <span class="inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider px-3 py-1.5 rounded-full badge-interactive-hover"
+                                          style="background:#fff7ed;color:#ea580c;border:1px solid #fed7aa;">
+                                        <i class="fas fa-star text-[9px]"></i> {{ $ht['experience'] }}+ Yrs Exp
+                                    </span>
                                 </div>
-                            </div>
-                            <div class="flex items-center justify-between mt-auto">
-                                <span class="text-xs font-bold text-gray-500"><i class="fas fa-star text-orange-400 mr-1"></i>{{ $ht['exp'] }}+ Years · {{ $ht['city'] }}</span>
-                                <a href="javascript:void(0)" onclick="openTutorModal({{ $ht['id'] }})"
-                                   class="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full bg-blue-50 text-blue-600 border border-blue-100 transition-all duration-300 hover:scale-105 active:scale-95 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 group-hover:shadow-lg group-hover:shadow-blue-500/25">
-                                    <span>View</span>
-                                    <i class="fas fa-arrow-right text-[8px] transition-transform duration-300 group-hover:translate-x-1"></i>
-                                </a>
                             </div>
                         </div>
+
+                        {{-- Subject Tags --}}
+                        <div class="px-7 pb-4 flex flex-wrap gap-2">
+                            @foreach($ht['subject_tags'] as $tag)
+                            <span class="subject-tag-interactive text-[10px] font-black px-3 py-1.5 rounded-full uppercase tracking-wider"
+                                  style="background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;">
+                                {{ $tag }}
+                            </span>
+                            @endforeach
+                        </div>
+
+                        {{-- Spacer: pushes bottom section to a consistent position --}}
+                        <div class="flex-1"></div>
+
+                        {{-- Reviews & Stars --}}
+                        <div class="px-7 py-3.5">
+                            <div class="flex items-center gap-2">
+                                <div class="flex text-yellow-400 gap-0.5">
+                                    <i class="fas fa-star text-[11px]"></i>
+                                    <i class="fas fa-star text-[11px]"></i>
+                                    <i class="fas fa-star text-[11px]"></i>
+                                    <i class="fas fa-star text-[11px]"></i>
+                                    <i class="fas fa-star-half-alt text-[11px]"></i>
+                                </div>
+                                <span class="text-sm font-black text-gray-900 ml-1">4.7</span>
+                                <span class="text-xs text-gray-400 font-semibold">({{ (($ht['id'] * 7 + 13) % 20) + 15 }} reviews)</span>
+                            </div>
+                        </div>
+
+                        {{-- Divider --}}
+                        <div class="mx-7 border-t border-gray-100"></div>
+
+                        {{-- Action Buttons --}}
+                        <div class="px-7 pb-6 pt-3 flex flex-col gap-2.5">
+                            <a href="https://wa.me/923414133395?text=Hi%2C%20I%20am%20interested%20in%20{{ urlencode($ht['name']) }}"
+                               target="_blank"
+                               class="w-full text-center text-[10px] font-black uppercase tracking-widest py-3.5 rounded-xl transition-all hover:bg-blue-700 hover:shadow-lg duration-300 button-interactive-hover"
+                               style="background:#2563EB;color:#fff;">
+                                Book Session
+                            </a>
+                            <button onclick="openTutorModal({{ $ht['id'] }})"
+                                    class="view-more-btn w-full text-center text-[10px] font-black uppercase tracking-widest py-3.5 rounded-xl transition-all hover:bg-orange-500 hover:text-white hover:border-orange-500 duration-300 button-interactive-hover flex items-center justify-center gap-1.5 cursor-pointer"
+                                    style="background:#fff7ed;color:#ea580c;border:2px solid #ea580c;">
+                                <i class="fas fa-eye text-[9px]"></i> View More About {{ $ht['name'] }}
+                            </button>
+                        </div>
+
                     </div>
                 </div>
                 @endforeach
@@ -498,8 +863,185 @@
     </div>
 </div>
 
+{{-- ==================== QUICK SEARCH DIRECTORY ==================== --}}
+<section class="py-16 bg-slate-50/70 border-t border-b border-gray-100 overflow-hidden">
+    <div class="container">
+        <div class="text-center mb-12" data-aos="fade-up">
+            <span class="text-xs font-bold text-blue-600 uppercase tracking-[0.25em] mb-3 block">Browse Directory</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight mb-3">Quick Search Directory</h2>
+            <p class="text-gray-500 max-w-xl mx-auto text-[15px] leading-relaxed">Select a city or region below to quickly find certified home and online tutors near you.</p>
+        </div>
+
+        {{-- Directory Tabs --}}
+        <div class="flex flex-wrap justify-center gap-3 mb-10" data-aos="fade-up">
+            <button onclick="switchHomeDirectoryTab('Pakistan')" id="home-tab-btn-pakistan"
+                    class="home-directory-tab-btn px-7 py-3.5 rounded-xl text-sm font-bold uppercase tracking-wider transition-all bg-blue-600 text-white shadow-md">
+                <i class="fas fa-globe-asia mr-2 text-yellow-300"></i> Tutors in Pakistan
+            </button>
+            <button onclick="switchHomeDirectoryTab('Lahore')" id="home-tab-btn-lahore"
+                    class="home-directory-tab-btn px-7 py-3.5 rounded-xl text-sm font-bold uppercase tracking-wider transition-all bg-white text-gray-600 hover:bg-gray-100 border border-gray-200">
+                <i class="fas fa-map-marker-alt mr-2 text-blue-600"></i> Tutors in Lahore
+            </button>
+            <button onclick="switchHomeDirectoryTab('Karachi')" id="home-tab-btn-karachi"
+                    class="home-directory-tab-btn px-7 py-3.5 rounded-xl text-sm font-bold uppercase tracking-wider transition-all bg-white text-gray-600 hover:bg-gray-100 border border-gray-200">
+                <i class="fas fa-map-marker-alt mr-2 text-blue-600"></i> Tutors in Karachi
+            </button>
+            <button onclick="switchHomeDirectoryTab('Islamabad')" id="home-tab-btn-islamabad"
+                    class="home-directory-tab-btn px-7 py-3.5 rounded-xl text-sm font-bold uppercase tracking-wider transition-all bg-white text-gray-600 hover:bg-gray-100 border border-gray-200">
+                <i class="fas fa-map-marker-alt mr-2 text-blue-600"></i> Tutors in Islamabad
+            </button>
+        </div>
+
+        {{-- Directory Panels Wrapper --}}
+        <div class="space-y-12">
+            @php
+                $locations = [
+                    'Pakistan' => '',
+                    'Lahore' => 'Lahore',
+                    'Karachi' => 'Karachi',
+                    'Islamabad' => 'Islamabad'
+                ];
+            @endphp
+
+            @foreach($locations as $name => $cityVal)
+                <div id="home-directory-{{ strtolower($name) }}" class="home-directory-panel {{ $loop->first ? '' : 'hidden' }} space-y-12" data-aos="fade-up">
+                    
+                    {{-- Row 1: Home Tutors --}}
+                    <div>
+                        <div class="flex items-center gap-3 mb-6 border-b border-gray-100 pb-3">
+                            <div class="w-8 h-8 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center">
+                                <i class="fas fa-home text-sm"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900">Home Tutors in {{ $name }}</h3>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                            {{-- O Level Home Column --}}
+                            <div>
+                                <h4 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 pb-2 border-b border-gray-100">O Level Home Tutors</h4>
+                                <ul class="space-y-2.5 text-[13px] text-gray-600">
+                                    <li><a href="{{ route('for-students') }}?q=chemistry{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Chemistry Home Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=mathematics{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Math Home Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=physics{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Physics Home Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=accounting{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Accounting Home Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=business{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Business Home Tutor in {{ $name }}</span></a></li>
+                                </ul>
+                            </div>
+
+                            {{-- A Level Home Column --}}
+                            <div>
+                                <h4 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 pb-2 border-b border-gray-100">A Level Home Tutors</h4>
+                                <ul class="space-y-2.5 text-[13px] text-gray-600">
+                                    <li><a href="{{ route('for-students') }}?q=chemistry{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Chemistry Home Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=mathematics{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Math Home Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=physics{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Physics Home Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=business{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Business Home Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=economics{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Economics Home Tutor in {{ $name }}</span></a></li>
+                                </ul>
+                            </div>
+
+                            {{-- IB Home Column --}}
+                            <div>
+                                <h4 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 pb-2 border-b border-gray-100">IB Home Tutors</h4>
+                                <ul class="space-y-2.5 text-[13px] text-gray-600">
+                                    <li><a href="{{ route('for-students') }}?q=chemistry{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Chemistry Home Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=mathematics{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Math Home Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=physics{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Physics Home Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=business{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Business Home Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=economics{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Economics Home Tutor in {{ $name }}</span></a></li>
+                                </ul>
+                            </div>
+
+                            {{-- Grade 1-8 Home Column --}}
+                            <div>
+                                <h4 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 pb-2 border-b border-gray-100">Grade 1-8 Home Tutors</h4>
+                                <ul class="space-y-2.5 text-[13px] text-gray-600">
+                                    <li><a href="{{ route('for-students') }}?q=montessori{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Montessori Home Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=child{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Primary Grade Home Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=english{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Grade 5 Home Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=mathematics{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Grade 8 Home Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=quran{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Quran Home Tutor in {{ $name }}</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Row 2: Online Tutors --}}
+                    <div>
+                        <div class="flex items-center gap-3 mb-6 border-b border-gray-100 pb-3">
+                            <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center">
+                                <i class="fas fa-laptop text-sm"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900">Online Tutors in {{ $name }}</h3>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                            {{-- O Level Online Column --}}
+                            <div>
+                                <h4 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 pb-2 border-b border-gray-100">O Level Online Tutors</h4>
+                                <ul class="space-y-2.5 text-[13px] text-gray-600">
+                                    <li><a href="{{ route('for-students') }}?q=chemistry{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Chemistry Online Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=mathematics{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Math Online Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=physics{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Physics Online Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=accounting{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Accounting Online Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=business{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Business Online Tutor in {{ $name }}</span></a></li>
+                                </ul>
+                            </div>
+
+                            {{-- A Level Online Column --}}
+                            <div>
+                                <h4 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 pb-2 border-b border-gray-100">A Level Online Tutors</h4>
+                                <ul class="space-y-2.5 text-[13px] text-gray-600">
+                                    <li><a href="{{ route('for-students') }}?q=chemistry{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Chemistry Online Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=mathematics{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Math Online Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=physics{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Physics Online Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=business{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Business Online Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=economics{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Economics Online Tutor in {{ $name }}</span></a></li>
+                                </ul>
+                            </div>
+
+                            {{-- IB Online Column --}}
+                            <div>
+                                <h4 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 pb-2 border-b border-gray-100">IB Online Tutors</h4>
+                                <ul class="space-y-2.5 text-[13px] text-gray-600">
+                                    <li><a href="{{ route('for-students') }}?q=chemistry{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Chemistry Online Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=mathematics{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Math Online Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=physics{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Physics Online Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=business{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Business Online Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=economics{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Economics Online Tutor in {{ $name }}</span></a></li>
+                                </ul>
+                            </div>
+
+                            {{-- Grade 1-8 Online Column --}}
+                            <div>
+                                <h4 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 pb-2 border-b border-gray-100">Grade 1-8 Online Tutors</h4>
+                                <ul class="space-y-2.5 text-[13px] text-gray-600">
+                                    <li><a href="{{ route('for-students') }}?q=montessori{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Montessori Online Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=child{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Primary Grade Online Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=english{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Grade 5 Online Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=mathematics{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Grade 8 Online Tutor in {{ $name }}</span></a></li>
+                                    <li><a href="{{ route('for-students') }}?q=quran{{ $cityVal ? '&city='.$cityVal : '' }}" class="text-blue-600 underline hover:no-underline flex items-start gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Quran Online Tutor in {{ $name }}</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- READ MORE Button --}}
+                    <div class="text-center pt-4">
+                        <a href="{{ route('for-students') }}{{ $cityVal ? '?city='.$cityVal : '' }}"
+                           class="inline-flex items-center gap-2 font-black text-xs uppercase tracking-widest px-8 py-3.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white transition-all duration-300 hover:scale-105 active:scale-95 shadow-md hover:shadow-orange-500/25">
+                            Read More Tutors in {{ $name }} <i class="fas fa-arrow-right text-[10px]"></i>
+                        </a>
+                    </div>
+
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
 {{-- FAQ SECTION --}}
-<section class="pt-4 pb-12 bg-white overflow-hidden">
+<section id="faq" class="pt-4 pb-12 bg-white overflow-hidden">
     <div class="container">
         <div class="text-center mb-16">
             <span class="text-[10px] font-black text-blue-600 uppercase tracking-[0.3em] mb-4 block">Got Questions?</span>
@@ -572,6 +1114,134 @@
     </div>
 </div>
 
+{{-- ==================== ONLINE TUTORS DIRECTORY SECTION ==================== --}}
+<section class="py-16 bg-zinc-950 border-t border-zinc-900 text-white overflow-hidden">
+    <div class="container">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <span class="text-xs font-bold text-orange-500 uppercase tracking-[0.25em] mb-3 block">Global Learning</span>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-3">Online Tutors in Pakistan</h2>
+            <p class="text-zinc-400 max-w-xl mx-auto text-[15px] leading-relaxed">Connect with top-rated online educators across various disciplines from the comfort of your home.</p>
+        </div>
+
+        {{-- Grid Container --}}
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12" data-aos="fade-up">
+            
+            {{-- Column 1: O Level --}}
+            <div>
+                <h3 class="text-sm font-bold text-zinc-200 uppercase tracking-wider mb-5 pb-3 border-b border-zinc-800/60">O Level Online Tutors</h3>
+                <ul class="space-y-3 text-[13px] text-zinc-400">
+                    <li><a href="{{ route('for-students') }}?q=chemistry" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Chemistry Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=mathematics" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Math Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=physics" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Physics Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=accounting" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Accounting Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=business" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Business Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=economics" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Economics Online Tutor in Pakistan</span></a></li>
+                </ul>
+            </div>
+
+            {{-- Column 2: A Level --}}
+            <div>
+                <h3 class="text-sm font-bold text-zinc-200 uppercase tracking-wider mb-5 pb-3 border-b border-zinc-800/60">A Level Online Tutors</h3>
+                <ul class="space-y-3 text-[13px] text-zinc-400">
+                    <li><a href="{{ route('for-students') }}?q=chemistry" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Chemistry Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=mathematics" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Math Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=physics" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Physics Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=accounting" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Accounting Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=business" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Business Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=economics" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Economics Online Tutor in Pakistan</span></a></li>
+                </ul>
+            </div>
+
+            {{-- Column 3: Test Prep --}}
+            <div>
+                <h3 class="text-sm font-bold text-zinc-200 uppercase tracking-wider mb-5 pb-3 border-b border-zinc-800/60">Test Prep Online Tutors</h3>
+                <ul class="space-y-3 text-[13px] text-zinc-400">
+                    <li><a href="{{ route('for-students') }}?q=sat" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">SAT Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=ielts" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IELTS Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=gre" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">GRE Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=prep" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">ECAT Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=prep" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">MDCAT Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=prep" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">ACT Online Tutor in Pakistan</span></a></li>
+                </ul>
+            </div>
+
+            {{-- Column 4: IB --}}
+            <div>
+                <h3 class="text-sm font-bold text-zinc-200 uppercase tracking-wider mb-5 pb-3 border-b border-zinc-800/60">IB Online Tutors</h3>
+                <ul class="space-y-3 text-[13px] text-zinc-400">
+                    <li><a href="{{ route('for-students') }}?q=chemistry" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Chemistry Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=mathematics" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Math Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=physics" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Physics Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=accounting" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Accounting Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=business" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Business Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=economics" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Economics Online Tutor in Pakistan</span></a></li>
+                </ul>
+            </div>
+
+            {{-- Column 5: AP --}}
+            <div>
+                <h3 class="text-sm font-bold text-zinc-200 uppercase tracking-wider mb-5 pb-3 border-b border-zinc-800/60">AP Online Tutors</h3>
+                <ul class="space-y-3 text-[13px] text-zinc-400">
+                    <li><a href="{{ route('for-students') }}?q=mathematics" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">AP Calculus Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=physics" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">AP Physics Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=biology" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">AP Biology Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=english" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">AP English Literature Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=history" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">AP World History Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=child" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">AP Psychology Online Tutor in Pakistan</span></a></li>
+                </ul>
+            </div>
+
+            {{-- Column 6: Mathematics --}}
+            <div>
+                <h3 class="text-sm font-bold text-zinc-200 uppercase tracking-wider mb-5 pb-3 border-b border-zinc-800/60">Mathematics Online Tutors</h3>
+                <ul class="space-y-3 text-[13px] text-zinc-400">
+                    <li><a href="{{ route('for-students') }}?q=mathematics" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Calculus Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=mathematics" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Algebra Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=mathematics" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Statistics Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=mathematics" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Probability Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=mathematics" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Discrete Math Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=mathematics" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Geometry Online Tutor in Pakistan</span></a></li>
+                </ul>
+            </div>
+
+            {{-- Column 7: Computer Languages --}}
+            <div>
+                <h3 class="text-sm font-bold text-zinc-200 uppercase tracking-wider mb-5 pb-3 border-b border-zinc-800/60">Programming Online Tutors</h3>
+                <ul class="space-y-3 text-[13px] text-zinc-400">
+                    <li><a href="{{ route('for-students') }}?q=programming" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">C++ Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=programming" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">JavaScript Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=python" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Python Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=programming" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">HTML Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=programming" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">CSS Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=programming" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Java Online Tutor in Pakistan</span></a></li>
+                </ul>
+            </div>
+
+            {{-- Column 8: Languages & Literature --}}
+            <div>
+                <h3 class="text-sm font-bold text-zinc-200 uppercase tracking-wider mb-5 pb-3 border-b border-zinc-800/60">Languages Online Tutors</h3>
+                <ul class="space-y-3 text-[13px] text-zinc-400">
+                    <li><a href="{{ route('for-students') }}?q=language" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Chinese Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=english" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">English Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=french" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">French Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=german" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">German Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=language" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Italian Online Tutor in Pakistan</span></a></li>
+                    <li><a href="{{ route('for-students') }}?q=language" class="hover:text-orange-500 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[8px] text-zinc-700 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Japanese Online Tutor in Pakistan</span></a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        {{-- Center Button --}}
+        <div class="text-center mt-16 pt-4">
+            <a href="{{ route('for-students') }}"
+               class="inline-flex items-center gap-2.5 font-black text-xs uppercase tracking-widest px-8 py-4 rounded-xl border-2 border-zinc-800 hover:border-zinc-500 text-zinc-300 hover:text-white bg-transparent transition-all duration-300 hover:scale-105 active:scale-95 shadow-md">
+                View All Disciplines <i class="fas fa-arrow-right text-[10px]"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
 {{-- ==================== TUTOR DETAIL MODAL ==================== --}}
 <div id="tutor-modal"
      class="hidden fixed inset-0 z-50 items-center justify-center p-4"
@@ -642,10 +1312,223 @@
         </div>
     </div>
 </div>
+
+{{-- ==================== GOOGLE REVIEWS MODAL ==================== --}}
+<div id="google-reviews-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-zinc-950/70 backdrop-blur-md hidden" onclick="if(event.target===this)closeGoogleReviewsModal()">
+    <div class="bg-white rounded-[2rem] w-full max-w-2xl overflow-hidden shadow-[0_24px_50px_-12px_rgba(0,0,0,0.25)] border border-gray-100 flex flex-col max-h-[85vh] animate-[modalFadeIn_0.3s_cubic-bezier(0.16,1,0.3,1)]">
+        
+        {{-- Header Section (Google Ratings Dashboard Layout) --}}
+        <div class="relative p-6 sm:p-8 border-b border-gray-100 bg-gradient-to-b from-gray-50/80 to-white flex-shrink-0">
+            {{-- Close Button --}}
+            <button onclick="closeGoogleReviewsModal()" class="absolute top-4 sm:top-6 right-4 sm:right-6 text-gray-400 hover:text-gray-905 transition-colors p-2 rounded-full hover:bg-gray-100 cursor-pointer">
+                <i class="fas fa-times text-lg"></i>
+            </button>
+            
+            <div class="grid sm:grid-cols-2 gap-6 items-center pr-8">
+                {{-- Overall Stats (Left) --}}
+                <div class="flex flex-col items-center sm:items-start text-center sm:text-left">
+                    <div class="flex items-center gap-2 mb-2">
+                        <svg class="w-8 h-8" viewBox="0 0 24 24">
+                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22c-.22-.67-.35-1.37-.35-2.09z"/>
+                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                        </svg>
+                        <span class="text-base font-black text-gray-800 tracking-tight">Google Review Rating</span>
+                    </div>
+                    
+                    <div class="flex items-baseline gap-2.5">
+                        <span class="text-5xl font-black text-gray-900 tracking-tighter">4.9</span>
+                        <span class="text-sm font-bold text-gray-400">/ 5.0</span>
+                    </div>
+                    
+                    <div class="flex text-yellow-400 gap-1 my-2">
+                        <i class="fas fa-star text-[14px]"></i>
+                        <i class="fas fa-star text-[14px]"></i>
+                        <i class="fas fa-star text-[14px]"></i>
+                        <i class="fas fa-star text-[14px]"></i>
+                        <i class="fas fa-star text-[14px]"></i>
+                    </div>
+                    
+                    <span class="text-xs text-gray-500 font-bold">Based on 289 verified customer reviews</span>
+                </div>
+                
+                {{-- Progress Bar Breakdown (Right) --}}
+                <div class="space-y-1.5 text-xs font-semibold text-gray-500">
+                    {{-- 5 Star --}}
+                    <div class="flex items-center gap-3">
+                        <span class="w-12 text-right">5 Star</span>
+                        <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                            <div class="bg-amber-400 h-full rounded-full" style="width: 95%"></div>
+                        </div>
+                        <span class="w-8 text-right text-gray-800 font-bold">95%</span>
+                    </div>
+                    {{-- 4 Star --}}
+                    <div class="flex items-center gap-3">
+                        <span class="w-12 text-right">4 Star</span>
+                        <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                            <div class="bg-amber-400 h-full rounded-full" style="width: 4%"></div>
+                        </div>
+                        <span class="w-8 text-right text-gray-800 font-bold">4%</span>
+                    </div>
+                    {{-- 3 Star --}}
+                    <div class="flex items-center gap-3">
+                        <span class="w-12 text-right">3 Star</span>
+                        <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                            <div class="bg-amber-400 h-full rounded-full" style="width: 1%"></div>
+                        </div>
+                        <span class="w-8 text-right text-gray-800 font-bold">1%</span>
+                    </div>
+                    {{-- 2 Star --}}
+                    <div class="flex items-center gap-3">
+                        <span class="w-12 text-right">2 Star</span>
+                        <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                            <div class="bg-amber-400 h-full rounded-full" style="width: 0%"></div>
+                        </div>
+                        <span class="w-8 text-right text-gray-800 font-bold">0%</span>
+                    </div>
+                    {{-- 1 Star --}}
+                    <div class="flex items-center gap-3">
+                        <span class="w-12 text-right">1 Star</span>
+                        <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                            <div class="bg-amber-400 h-full rounded-full" style="width: 0%"></div>
+                        </div>
+                        <span class="w-8 text-right text-gray-800 font-bold">0%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        {{-- Reviews List (Scrollable) --}}
+        <div class="flex-1 overflow-y-auto p-6 sm:p-8 space-y-5 bg-gray-50/50">
+            @php
+                $googleReviewsList = [
+                    [
+                        'name' => 'Ayesha Khan',
+                        'avatar' => 'AK',
+                        'bg' => 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
+                        'rating' => 5,
+                        'time' => '2 weeks ago',
+                        'text' => 'Tutor Hub has been an absolute game changer for my daughter\'s O Level Chemistry & Physics prep. Within 2 months, her concepts cleared up completely. Highly recommended!'
+                    ],
+                    [
+                        'name' => 'Muhammad Bilal',
+                        'avatar' => 'MB',
+                        'bg' => 'linear-gradient(135deg, #10b981, #047857)',
+                        'rating' => 5,
+                        'time' => '1 month ago',
+                        'text' => 'Extremely professional tutors. The convenience of learning from home while getting quality guidance is unmatched. The customer service support is very responsive.'
+                    ],
+                    [
+                        'name' => 'Sarah Jenkins',
+                        'avatar' => 'SJ',
+                        'bg' => 'linear-gradient(135deg, #f59e0b, #b45309)',
+                        'rating' => 5,
+                        'time' => '2 months ago',
+                        'text' => 'Highly qualified teachers who really focus on conceptual clarity rather than rote memorization. My son scored A* in O Level Math under Murtaza Ali\'s mentorship.'
+                    ],
+                    [
+                        'name' => 'Dr. Kamran Malik',
+                        'avatar' => 'KM',
+                        'bg' => 'linear-gradient(135deg, #8b5cf6, #6d28d9)',
+                        'rating' => 5,
+                        'time' => '3 months ago',
+                        'text' => 'As a parent, I was looking for a dedicated A Level Chemistry teacher. Tutor Hub helped me find the perfect matching profile within 24 hours. Exceptionally helpful coordinators!'
+                    ]
+                ];
+            @endphp
+            
+            @foreach($googleReviewsList as $review)
+                <div class="bg-white border border-gray-100 rounded-2xl p-5 sm:p-6 shadow-sm hover:shadow-md hover:scale-[1.005] hover:border-gray-200 transition-all duration-200 flex gap-4 items-start">
+                    {{-- Avatar Wrapper with Google Icon Badge overlay --}}
+                    <div class="relative flex-shrink-0">
+                        <div class="w-11 h-11 rounded-full flex items-center justify-center text-white font-black text-sm shadow-md"
+                             style="background: {{ $review['bg'] }}">
+                            {{ $review['avatar'] }}
+                        </div>
+                        {{-- Small Google overlay icon badge --}}
+                        <div class="absolute -bottom-1.5 -right-1.5 w-5.5 h-5.5 bg-white border border-gray-100 rounded-full flex items-center justify-center shadow-sm">
+                            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24">
+                                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22c-.22-.67-.35-1.37-.35-2.09z"/>
+                                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center justify-between mb-1">
+                            <h4 class="text-[15px] font-black text-gray-900 leading-tight">{{ $review['name'] }}</h4>
+                            <span class="text-xs text-gray-400 font-bold">{{ $review['time'] }}</span>
+                        </div>
+                        <div class="flex items-center gap-2 mb-3">
+                            <div class="flex text-yellow-400 gap-0.5">
+                                @for($i = 0; $i < $review['rating']; $i++)
+                                    <i class="fas fa-star text-[10px]"></i>
+                                @endfor
+                            </div>
+                            <span class="inline-flex items-center gap-1 text-[9px] font-black text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                                <i class="fas fa-check-circle text-[9px]"></i> Verified Reviewer
+                            </span>
+                        </div>
+                        <p class="text-[13.5px] text-gray-600 leading-relaxed font-medium">{{ $review['text'] }}</p>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        
+        {{-- Modal Footer --}}
+        <div class="p-6 bg-gradient-to-t from-gray-50/80 to-white border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4 flex-shrink-0">
+            <span class="text-[11px] text-gray-400 font-bold text-center sm:text-left leading-normal">
+                Ratings are based on genuine surveys of parents & students.
+            </span>
+            <a href="https://www.google.com/search?q=TutorHub+Pakistan+reviews" target="_blank"
+               class="bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase tracking-widest px-6 py-3.5 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 whitespace-nowrap cursor-pointer">
+                Write a Review
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    @keyframes modalFadeIn {
+        from { opacity: 0; transform: scale(0.96) translateY(10px); }
+        to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+</style>
 @endsection
 
 @push('scripts')
 <script>
+    // Tab switcher for Home Directory Directory Links
+    function switchHomeDirectoryTab(city) {
+        document.querySelectorAll('.home-directory-panel').forEach(p => p.classList.add('hidden'));
+        const panel = document.getElementById(`home-directory-${city.toLowerCase()}`);
+        if (panel) panel.classList.remove('hidden');
+
+        document.querySelectorAll('.home-directory-tab-btn').forEach(btn => {
+            btn.classList.remove('bg-blue-600', 'text-white', 'shadow-md');
+            btn.classList.add('bg-white', 'text-gray-600', 'hover:bg-gray-100', 'border', 'border-gray-200');
+            const icon = btn.querySelector('i');
+            if (icon) {
+                icon.classList.remove('text-yellow-300');
+                icon.classList.add('text-blue-600');
+            }
+        });
+
+        const activeBtn = document.getElementById(`home-tab-btn-${city.toLowerCase()}`);
+        if (activeBtn) {
+            activeBtn.classList.add('bg-blue-600', 'text-white', 'shadow-md');
+            activeBtn.classList.remove('bg-white', 'text-gray-600', 'hover:bg-gray-100', 'border', 'border-gray-200');
+            const icon = activeBtn.querySelector('i');
+            if (icon) {
+                icon.classList.remove('text-blue-600');
+                icon.classList.add('text-yellow-300');
+            }
+        }
+    }
+
     // CountUp animation
     document.addEventListener('DOMContentLoaded', function() {
         const counters = document.querySelectorAll('.counter');
@@ -653,9 +1536,16 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const el = entry.target;
-                    const target = parseInt(el.getAttribute('data-target'));
+                    const targetAttr = el.getAttribute('data-target');
                     const suffix = el.getAttribute('data-suffix') || '';
                     
+                    if (isNaN(targetAttr) || targetAttr.includes('.')) {
+                        el.textContent = targetAttr + suffix;
+                        observer.unobserve(el);
+                        return;
+                    }
+                    
+                    const target = parseInt(targetAttr);
                     let current = 0;
                     const duration = 2000; // 2 seconds
                     const frameRate = 1000 / 60;
@@ -732,94 +1622,19 @@
 <script>
 // ── Hero Subject Search ──────────────────────────────────────────
 const _heroSubjects = [
-    // Mathematics
-    { label:'Mathematics',              value:'mathematics',           icon:'fa-square-root-alt' },
-    { label:'O Level Mathematics',      value:'mathematics',           icon:'fa-square-root-alt' },
-    { label:'A Level Mathematics',      value:'mathematics',           icon:'fa-square-root-alt' },
-    { label:'IGCSE Mathematics',        value:'mathematics',           icon:'fa-square-root-alt' },
-    { label:'Additional Mathematics',   value:'mathematics',           icon:'fa-square-root-alt' },
-    { label:'SAT Preparation',          value:'mathematics',           icon:'fa-square-root-alt' },
-    { label:'GRE / GAT Prep',           value:'mathematics',           icon:'fa-square-root-alt' },
-    { label:'Entry Test Prep',          value:'mathematics',           icon:'fa-square-root-alt' },
-    // Physics
-    { label:'Physics',                  value:'physics',               icon:'fa-atom' },
-    { label:'O Level Physics',          value:'physics',               icon:'fa-atom' },
-    { label:'A Level Physics',          value:'physics',               icon:'fa-atom' },
-    { label:'IGCSE Physics',            value:'physics',               icon:'fa-atom' },
-    { label:'IBDP Physics',             value:'physics',               icon:'fa-atom' },
-    { label:'MYP Physics',              value:'physics',               icon:'fa-atom' },
-    // Chemistry
-    { label:'Chemistry',                value:'chemistry',             icon:'fa-flask' },
-    { label:'O Level Chemistry',        value:'chemistry',             icon:'fa-flask' },
-    { label:'A Level Chemistry',        value:'chemistry',             icon:'fa-flask' },
-    { label:'AP Chemistry',             value:'chemistry',             icon:'fa-flask' },
-    { label:'IB Chemistry',             value:'chemistry',             icon:'fa-flask' },
-    // Biology
-    { label:'Biology',                  value:'biology',               icon:'fa-leaf' },
-    { label:'Zoology',                  value:'biology',               icon:'fa-leaf' },
-    { label:'Botany',                   value:'biology',               icon:'fa-leaf' },
-    // CS
-    { label:'Computer Science',         value:'computer',              icon:'fa-laptop-code' },
-    { label:'Python Programming',       value:'computer',              icon:'fa-laptop-code' },
-    { label:'OOP',                      value:'computer',              icon:'fa-laptop-code' },
-    { label:'Data Structures',          value:'computer',              icon:'fa-laptop-code' },
-    { label:'Algorithms',               value:'computer',              icon:'fa-laptop-code' },
-    { label:'Web Development',          value:'computer',              icon:'fa-laptop-code' },
-    { label:'IGCSE Computer Science',   value:'computer',              icon:'fa-laptop-code' },
-    { label:'A Level Computer Science', value:'computer',              icon:'fa-laptop-code' },
-    // AI
-    { label:'Artificial Intelligence',  value:'artificial intelligence', icon:'fa-robot' },
-    { label:'Machine Learning',         value:'artificial intelligence', icon:'fa-robot' },
-    { label:'Deep Learning',            value:'artificial intelligence', icon:'fa-robot' },
-    { label:'Robotics',                 value:'artificial intelligence', icon:'fa-robot' },
-    { label:'Computer Vision',          value:'artificial intelligence', icon:'fa-robot' },
-    // Commerce
-    { label:'Accounting',               value:'accounting',            icon:'fa-calculator' },
-    { label:'O Level Accounting',       value:'accounting',            icon:'fa-calculator' },
-    { label:'A Level Accounting',       value:'accounting',            icon:'fa-calculator' },
-    { label:'Business Studies',         value:'business',              icon:'fa-briefcase' },
-    { label:'Economics',                value:'economics',             icon:'fa-chart-line' },
-    { label:'Microeconomics',           value:'economics',             icon:'fa-chart-line' },
-    { label:'Marketing',                value:'marketing',             icon:'fa-bullhorn' },
-    // Humanities
-    { label:'History',                  value:'history',               icon:'fa-landmark' },
-    { label:'World History',            value:'history',               icon:'fa-landmark' },
-    { label:'Pakistan Studies',         value:'pakistan studies',      icon:'fa-flag' },
-    { label:'Geography',                value:'geography',             icon:'fa-globe' },
-    // English
-    { label:'English Language',         value:'english',               icon:'fa-language' },
-    { label:'English Literature',       value:'english',               icon:'fa-language' },
-    { label:'IGCSE English',            value:'english',               icon:'fa-language' },
-    { label:'A Level English',          value:'english',               icon:'fa-language' },
-    { label:'IELTS Preparation',        value:'english',               icon:'fa-language' },
-    { label:'TOEFL Preparation',        value:'english',               icon:'fa-language' },
-    { label:'Essay Writing',            value:'english',               icon:'fa-language' },
-    // German
-    { label:'German Language',          value:'german',                icon:'fa-language' },
-    { label:'Goethe Certification',     value:'german',                icon:'fa-language' },
-    { label:'O Level German',           value:'german',                icon:'fa-language' },
-    // French
-    { label:'French Language',          value:'french',                icon:'fa-language' },
-    { label:'DELF / DALF',              value:'french',                icon:'fa-language' },
-    { label:'O Level French',           value:'french',                icon:'fa-language' },
-    // Quran & Islamic
-    { label:'Quran (Tajweed)',          value:'quran',                 icon:'fa-book-open' },
-    { label:'Quran Hifz',              value:'quran',                 icon:'fa-book-open' },
-    { label:'Nazra',                    value:'quran',                 icon:'fa-book-open' },
-    { label:'Islamic Studies',          value:'islamic',               icon:'fa-mosque' },
-    { label:'Tafseer',                  value:'quran',                 icon:'fa-book-open' },
-    // Music
-    { label:'Music',                    value:'music',                 icon:'fa-music' },
-    { label:'Piano Lessons',            value:'music',                 icon:'fa-music' },
-    { label:'Guitar Lessons',           value:'music',                 icon:'fa-music' },
-    { label:'Violin Lessons',           value:'music',                 icon:'fa-music' },
-    { label:'ABRSM Grades 1–8',        value:'music',                 icon:'fa-music' },
-    { label:'Vocal Training',           value:'music',                 icon:'fa-music' },
-    // Montessori
-    { label:'Montessori',               value:'montessori',            icon:'fa-child' },
-    { label:'Early Childhood Education',value:'montessori',            icon:'fa-child' },
-    { label:'Phonics',                  value:'montessori',            icon:'fa-child' },
-    { label:'Nursery / KG',             value:'montessori',            icon:'fa-child' },
+    { label:'Primary and Middle Grades',            value:'Primary and Middle Grades',            icon:'fa-child' },
+    { label:'Cambridge O Level / IGCSE / ICE',      value:'Cambridge O Level / IGCSE / ICE',      icon:'fa-graduation-cap' },
+    { label:'Cambridge A Level / Pre-U / AICE',     value:'Cambridge A Level / Pre-U / AICE',     icon:'fa-university' },
+    { label:'AP (Advanced Placement®)',             value:'AP (Advanced Placement®)',             icon:'fa-award' },
+    { label:'Standard Tests',                       value:'Standard Tests',                       icon:'fa-file-alt' },
+    { label:'IB Diploma Programme',                 value:'IB Diploma Programme',                 icon:'fa-book-reader' },
+    { label:'Matriculation',                        value:'Matriculation',                        icon:'fa-scroll' },
+    { label:'F.Sc / I.Com / ICS',                   value:'F.Sc / I.Com / ICS',                   icon:'fa-school' },
+    { label:'Mathematics',                          value:'Mathematics',                          icon:'fa-square-root-alt' },
+    { label:'Business and Social Sciences',         value:'Business and Social Sciences',         icon:'fa-briefcase' },
+    { label:'Languages and Literature',             value:'Languages and Literature',             icon:'fa-language' },
+    { label:'Computer Languages',                   value:'Computer Languages',                   icon:'fa-laptop-code' },
+    { label:'Quran',                                value:'Quran',                                icon:'fa-book-open' }
 ];
 
 const _forStudentsUrl = "{{ route('for-students') }}";
@@ -828,10 +1643,12 @@ const _heroList       = document.getElementById('hero-suggestions');
 
 function _renderSuggestions(q) {
     _heroList.innerHTML = '';
-    if (!q) { _heroList.classList.add('hidden'); return; }
-    const hits = _heroSubjects.filter(s => s.label.toLowerCase().includes(q.toLowerCase()));
+    const hits = q 
+        ? _heroSubjects.filter(s => s.label.toLowerCase().includes(q.toLowerCase()))
+        : _heroSubjects;
+
     if (!hits.length) { _heroList.classList.add('hidden'); return; }
-    hits.slice(0, 9).forEach(function(s, i) {
+    hits.forEach(function(s, i) {
         const li = document.createElement('li');
         li.style.cssText = 'display:flex;align-items:center;gap:12px;padding:12px 18px;cursor:pointer;border-bottom:1px solid #f3f4f6;transition:background 0.15s;' + (i === hits.length - 1 ? 'border:none;' : '');
         li.onmouseenter = function(){ this.style.background='#eff6ff'; };
@@ -849,6 +1666,8 @@ function _renderSuggestions(q) {
 }
 
 _heroInput.addEventListener('input',  function() { _renderSuggestions(this.value.trim()); });
+_heroInput.addEventListener('focus',  function() { _renderSuggestions(this.value.trim()); });
+_heroInput.addEventListener('click',  function() { _renderSuggestions(this.value.trim()); });
 _heroInput.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') { _heroList.classList.add('hidden'); this.blur(); }
     if (e.key === 'Enter' && this.value.trim()) {
@@ -1145,6 +1964,23 @@ function closeTutorModal() {
     const modal = document.getElementById('tutor-modal');
     modal.classList.add('hidden');
     modal.classList.remove('flex');
+}
+
+function openGoogleReviewsModal() {
+    window.open('https://www.google.com/search?q=TutorHub+Pakistan+reviews', '_blank');
+    const modal = document.getElementById('google-reviews-modal');
+    if (modal) {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeGoogleReviewsModal() {
+    const modal = document.getElementById('google-reviews-modal');
+    if (modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
 }
 </script>
 @endpush

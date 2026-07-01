@@ -1,11 +1,5 @@
 @php
     $currentRoute = request()->route() ? request()->route()->getName() : '';
-    $navLinks = [
-        ['route' => 'home', 'label' => 'Home'],
-        ['route' => 'about', 'label' => 'About'],
-        ['route' => 'contact', 'label' => 'Contact'],
-        ['route' => 'for-students', 'label' => 'Best Tutors'],
-    ];
 @endphp
 
 <!-- Main Navbar -->
@@ -19,14 +13,54 @@
 
         <!-- Desktop Nav Links -->
         <ul class="hidden lg:flex items-center gap-8">
-            @foreach($navLinks as $link)
-                <li>
-                    <a href="{{ route($link['route']) }}"
-                       class="text-lg font-medium transition-all {{ $currentRoute === $link['route'] ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600' }}">
-                        {{ $link['label'] }}
-                    </a>
-                </li>
-            @endforeach
+            <li>
+                <a href="{{ route('home') }}"
+                   class="text-lg font-medium transition-all {{ $currentRoute === 'home' ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600' }}">
+                    Home
+                </a>
+            </li>
+
+            <!-- About Us Dropdown -->
+            <li class="relative" id="about-wrapper">
+                <span onclick="toggleAboutDropdown(event)"
+                      class="text-lg font-medium cursor-pointer text-gray-700 hover:text-blue-600 select-none flex items-center gap-1 transition-all">
+                    About Us
+                    <i class="fas fa-chevron-down text-xs text-gray-400 transition-transform duration-200" id="about-chevron"></i>
+                </span>
+                <ul id="about-dropdown"
+                    class="hidden absolute top-10 left-0 w-52 bg-white border border-gray-200 shadow-xl rounded-md z-50"
+                    style="animation:batFadeIn 0.18s ease;">
+                    <li>
+                        <a href="{{ route('about') }}" class="block px-5 py-3 hover:bg-gray-100 text-gray-700 hover:text-blue-600 font-medium">
+                            About
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('home') }}#faq" class="block px-5 py-3 hover:bg-gray-100 text-gray-700 hover:text-blue-600 font-medium">
+                            FAQ
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('about') }}#team" class="block px-5 py-3 hover:bg-gray-100 text-gray-700 hover:text-blue-600 font-medium">
+                            Our Team
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="{{ route('contact') }}"
+                   class="text-lg font-medium transition-all {{ $currentRoute === 'contact' ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600' }}">
+                    Contact
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ route('for-students') }}"
+                   class="text-lg font-medium transition-all {{ $currentRoute === 'for-students' ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600' }}">
+                    Best Tutors
+                </a>
+            </li>
 
             <!-- Become a Tutor Dropdown -->
             <li class="relative" id="bat-wrapper">
@@ -69,12 +103,33 @@
                     const isOpen  = !dd.classList.contains('hidden');
                     dd.classList.toggle('hidden', isOpen);
                     chevron.style.transform = isOpen ? '' : 'rotate(180deg)';
+
+                    // Close about dropdown
+                    document.getElementById('about-dropdown').classList.add('hidden');
+                    document.getElementById('about-chevron').style.transform = '';
+                }
+                function toggleAboutDropdown(e) {
+                    e.stopPropagation();
+                    const dd      = document.getElementById('about-dropdown');
+                    const chevron = document.getElementById('about-chevron');
+                    const isOpen  = !dd.classList.contains('hidden');
+                    dd.classList.toggle('hidden', isOpen);
+                    chevron.style.transform = isOpen ? '' : 'rotate(180deg)';
+
+                    // Close become a tutor dropdown
+                    document.getElementById('bat-dropdown').classList.add('hidden');
+                    document.getElementById('bat-chevron').style.transform = '';
                 }
                 document.addEventListener('click', function(e) {
                     const wrapper = document.getElementById('bat-wrapper');
                     if (wrapper && !wrapper.contains(e.target)) {
                         document.getElementById('bat-dropdown').classList.add('hidden');
                         document.getElementById('bat-chevron').style.transform = '';
+                    }
+                    const aboutWrapper = document.getElementById('about-wrapper');
+                    if (aboutWrapper && !aboutWrapper.contains(e.target)) {
+                        document.getElementById('about-dropdown').classList.add('hidden');
+                        document.getElementById('about-chevron').style.transform = '';
                     }
                 });
             </script>
@@ -130,14 +185,52 @@
         <input type="text" placeholder="Search..." class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-600">
     </li>
 
-    @foreach($navLinks as $link)
-        <li>
-            <a href="{{ route($link['route']) }}"
-               class="block text-lg font-medium px-4 py-2 {{ $currentRoute === $link['route'] ? 'text-blue-600 font-semibold shadow-lg' : 'text-gray-700 hover:text-blue-600' }}">
-                {{ $link['label'] }}
-            </a>
-        </li>
-    @endforeach
+    <li>
+        <a href="{{ route('home') }}"
+           class="block text-lg font-medium px-4 py-2 {{ $currentRoute === 'home' ? 'text-blue-600 font-semibold shadow-lg' : 'text-gray-700 hover:text-blue-600' }}">
+            Home
+        </a>
+    </li>
+
+    <!-- About Us Collapsible Mobile -->
+    <li class="relative">
+        <div onclick="toggleMobileAboutDropdown(event)"
+             class="flex items-center justify-between text-lg font-medium px-4 py-2 text-gray-700 hover:text-blue-600 cursor-pointer select-none">
+            <span>About Us</span>
+            <i class="fas fa-chevron-down text-xs text-gray-400 transition-transform duration-200" id="mobile-about-chevron"></i>
+        </div>
+        <ul id="mobile-about-dropdown" class="hidden pl-6 bg-gray-50 border-l-2 border-blue-500 py-1 space-y-1">
+            <li>
+                <a href="{{ route('about') }}" class="block text-base font-medium py-2 text-gray-600 hover:text-blue-600">
+                    About
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('home') }}#faq" class="block text-base font-medium py-2 text-gray-600 hover:text-blue-600">
+                    FAQ
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('about') }}#team" class="block text-base font-medium py-2 text-gray-600 hover:text-blue-600">
+                    Our Team
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <li>
+        <a href="{{ route('contact') }}"
+           class="block text-lg font-medium px-4 py-2 {{ $currentRoute === 'contact' ? 'text-blue-600 font-semibold shadow-lg' : 'text-gray-700 hover:text-blue-600' }}">
+            Contact
+        </a>
+    </li>
+
+    <li>
+        <a href="{{ route('for-students') }}"
+           class="block text-lg font-medium px-4 py-2 {{ $currentRoute === 'for-students' ? 'text-blue-600 font-semibold shadow-lg' : 'text-gray-700 hover:text-blue-600' }}">
+            Best Tutors
+        </a>
+    </li>
 
     <li>
         <a href="{{ route('tutor-policy') }}" class="block text-lg font-medium px-4 py-2 text-gray-700 hover:text-blue-600">
@@ -171,3 +264,14 @@
         </li>
     @endauth
 </ul>
+
+<script>
+    function toggleMobileAboutDropdown(e) {
+        e.stopPropagation();
+        const dd = document.getElementById('mobile-about-dropdown');
+        const chevron = document.getElementById('mobile-about-chevron');
+        const isOpen = !dd.classList.contains('hidden');
+        dd.classList.toggle('hidden', isOpen);
+        chevron.style.transform = isOpen ? '' : 'rotate(180deg)';
+    }
+</script>

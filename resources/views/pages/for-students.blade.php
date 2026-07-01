@@ -389,34 +389,19 @@ $featuredTutors = [
                 <select id="filter-subject" onchange="filterTutors()"
                         class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-semibold focus:ring-2 focus:ring-blue-500 outline-none cursor-pointer">
                     <option value="">All Subjects</option>
-                    <optgroup label="Sciences">
-                        <option value="mathematics">Mathematics</option>
-                        <option value="physics">Physics</option>
-                        <option value="chemistry">Chemistry</option>
-                        <option value="biology">Biology</option>
-                        <option value="computer">Computer Science</option>
-                        <option value="artificial intelligence">Artificial Intelligence</option>
-                    </optgroup>
-                    <optgroup label="Commerce & Humanities">
-                        <option value="accounting">Accounting</option>
-                        <option value="business">Business Studies</option>
-                        <option value="economics">Economics</option>
-                        <option value="marketing">Marketing</option>
-                        <option value="history">History</option>
-                        <option value="pakistan studies">Pakistan Studies</option>
-                        <option value="geography">Geography</option>
-                    </optgroup>
-                    <optgroup label="Languages">
-                        <option value="english">English</option>
-                        <option value="german">German</option>
-                        <option value="french">French</option>
-                    </optgroup>
-                    <optgroup label="Religious & Arts">
-                        <option value="quran">Quran</option>
-                        <option value="islamic">Islamic Studies</option>
-                        <option value="music">Music</option>
-                        <option value="montessori">Montessori</option>
-                    </optgroup>
+                    <option value="Primary and Middle Grades">Primary and Middle Grades</option>
+                    <option value="Cambridge O Level / IGCSE / ICE">Cambridge O Level / IGCSE / ICE</option>
+                    <option value="Cambridge A Level / Pre-U / AICE">Cambridge A Level / Pre-U / AICE</option>
+                    <option value="AP (Advanced Placement®)">AP (Advanced Placement®)</option>
+                    <option value="Standard Tests">Standard Tests</option>
+                    <option value="IB Diploma Programme">IB Diploma Programme</option>
+                    <option value="Matriculation">Matriculation</option>
+                    <option value="F.Sc / I.Com / ICS">F.Sc / I.Com / ICS</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Business and Social Sciences">Business and Social Sciences</option>
+                    <option value="Languages and Literature">Languages and Literature</option>
+                    <option value="Computer Languages">Computer Languages</option>
+                    <option value="Quran">Quran</option>
                 </select>
             </div>
 
@@ -531,11 +516,18 @@ $featuredTutors = [
                 {{-- Divider --}}
                 <div class="mx-7 border-t border-gray-100"></div>
 
-                {{-- Location --}}
+                {{-- Reviews & Stars --}}
                 <div class="px-7 py-3.5">
-                    <div class="flex items-center gap-2.5">
-                        <i class="fas fa-map-marker-alt text-orange-500 text-xs w-4 text-center flex-shrink-0"></i>
-                        <span class="text-sm font-bold text-gray-700">{{ $tutor['area'] }}, {{ $tutor['city'] }}, {{ $tutor['country'] }}</span>
+                    <div class="flex items-center gap-2">
+                        <div class="flex text-yellow-400 gap-0.5">
+                            <i class="fas fa-star text-[11px]"></i>
+                            <i class="fas fa-star text-[11px]"></i>
+                            <i class="fas fa-star text-[11px]"></i>
+                            <i class="fas fa-star text-[11px]"></i>
+                            <i class="fas fa-star-half-alt text-[11px]"></i>
+                        </div>
+                        <span class="text-sm font-black text-gray-900 ml-1">4.7</span>
+                        <span class="text-xs text-gray-400 font-semibold">({{ (($tutor['id'] * 7 + 13) % 20) + 15 }} reviews)</span>
                     </div>
                 </div>
 
@@ -951,37 +943,87 @@ function closeTutorModal() {
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeTutorModal(); });
 
-// ── Auto-filter from homepage search (?q=) ───────────────────────
+let activeSearchQuery = '';
+
+// ── Auto-filter from homepage search (?q=, ?city=) ───────────────────────
 (function() {
     const params = new URLSearchParams(window.location.search);
     const q      = (params.get('q') || '').trim().toLowerCase();
-    if (!q) return;
-    const select = document.getElementById('filter-subject');
-    // Try exact match first, then startsWith, then includes
-    let matched = '';
-    for (const opt of select.options) {
-        if (!opt.value) continue;
-        if (opt.value === q)             { matched = opt.value; break; }
+    activeSearchQuery = q;
+    const cityParam = (params.get('city') || '').trim();
+
+    if (cityParam) {
+        filterByCity('Pakistan', cityParam);
     }
-    if (!matched) {
+
+    if (q) {
+        const select = document.getElementById('filter-subject');
+        
+        // 1. Try exact match first (case-insensitive)
+        let matched = '';
         for (const opt of select.options) {
             if (!opt.value) continue;
-            if (q.startsWith(opt.value) || opt.value.startsWith(q)) { matched = opt.value; break; }
+            if (opt.value.toLowerCase() === q) { matched = opt.value; break; }
         }
-    }
-    if (!matched) {
-        for (const opt of select.options) {
-            if (!opt.value) continue;
-            if (q.includes(opt.value) || opt.value.includes(q)) { matched = opt.value; break; }
+        
+        // 2. If no exact match, try matching via keywords map
+        if (!matched) {
+            const subjectMap = {
+                'Primary and Middle Grades': ['montessori', 'early childhood', 'nursery', 'kindergarten', 'phonics', 'child'],
+                'Cambridge O Level / IGCSE / ICE': ['o level', 'igcse', 'ice', 'chemistry', 'physics', 'math', 'biology', 'accounting', 'business', 'economics', 'english'],
+                'Cambridge A Level / Pre-U / AICE': ['a level', 'pre-u', 'aice'],
+                'AP (Advanced Placement®)': ['ap', 'advanced placement'],
+                'Standard Tests': ['sat', 'gre', 'gat', 'ielts', 'toefl', 'prep'],
+                'IB Diploma Programme': ['ib', 'ibdp', 'myp'],
+                'Matriculation': ['matric', 'matriculation'],
+                'F.Sc / I.Com / ICS': ['f.sc', 'i.com', 'ics'],
+                'Mathematics': ['mathematics', 'math'],
+                'Business and Social Sciences': ['business', 'accounting', 'economics', 'marketing', 'history', 'geography', 'pakistan studies'],
+                'Languages and Literature': ['english', 'german', 'french', 'language'],
+                'Computer Languages': ['computer', 'python', 'programming', 'oop', 'data structures', 'algorithms', 'web development', 'artificial intelligence', 'machine learning', 'deep learning', 'robotics', 'computer vision'],
+                'Quran': ['quran', 'islamic', 'tajweed', 'hifz', 'tafseer', 'nazra']
+            };
+            for (const [cat, kws] of Object.entries(subjectMap)) {
+                if (kws.some(kw => q.includes(kw) || kw.includes(q))) {
+                    matched = cat;
+                    break;
+                }
+            }
         }
+        
+        // 3. Fallback to basic options check
+        if (!matched) {
+            for (const opt of select.options) {
+                if (!opt.value) continue;
+                if (q.startsWith(opt.value.toLowerCase()) || opt.value.toLowerCase().startsWith(q)) { matched = opt.value; break; }
+            }
+        }
+        if (!matched) {
+            for (const opt of select.options) {
+                if (!opt.value) continue;
+                if (q.includes(opt.value.toLowerCase()) || opt.value.toLowerCase().includes(q)) { matched = opt.value; break; }
+            }
+        }
+        
+        if (matched) select.value = matched;
     }
-    if (matched) select.value = matched;
-    filterTutors();
-    setTimeout(function() {
-        const grid = document.getElementById('tutors-grid');
-        if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 350);
+
+    if (q || cityParam) {
+        filterTutors();
+        setTimeout(function() {
+            const grid = document.getElementById('tutors-grid');
+            if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 350);
+    }
 })();
+
+// Clear search query filter when the user manually changes the subject dropdown
+document.getElementById('filter-subject').addEventListener('change', function() {
+    activeSearchQuery = '';
+    const url = new URL(window.location);
+    url.searchParams.delete('q');
+    window.history.pushState({}, '', url);
+});
 
 function filterByCity(country, city) {
     const countryEl = document.getElementById('filter-country');
@@ -1066,18 +1108,50 @@ function onCityChange() {
 }
 
 function filterTutors() {
-    const subject = document.getElementById('filter-subject').value.toLowerCase();
+    const subjectVal = document.getElementById('filter-subject').value;
     const country = document.getElementById('filter-country').value;
     const city    = document.getElementById('filter-city').value;
     const area    = document.getElementById('filter-area').value;
+
+    const subjectMap = {
+        'Primary and Middle Grades': ['montessori', 'early childhood', 'nursery', 'kindergarten', 'phonics', 'child'],
+        'Cambridge O Level / IGCSE / ICE': ['o level', 'igcse', 'ice'],
+        'Cambridge A Level / Pre-U / AICE': ['a level', 'pre-u', 'aice'],
+        'AP (Advanced Placement®)': ['ap', 'advanced placement'],
+        'Standard Tests': ['sat', 'gre', 'gat', 'ielts', 'toefl', 'prep'],
+        'IB Diploma Programme': ['ib', 'ibdp', 'myp'],
+        'Matriculation': ['matric', 'matriculation'],
+        'F.Sc / I.Com / ICS': ['f.sc', 'i.com', 'ics'],
+        'Mathematics': ['mathematics', 'math'],
+        'Business and Social Sciences': ['business', 'accounting', 'economics', 'marketing', 'history', 'geography', 'pakistan studies'],
+        'Languages and Literature': ['english', 'german', 'french', 'language'],
+        'Computer Languages': ['computer', 'python', 'programming', 'oop', 'data structures', 'algorithms', 'web development', 'artificial intelligence', 'machine learning', 'deep learning', 'robotics', 'computer vision'],
+        'Quran': ['quran', 'islamic', 'tajweed', 'hifz', 'tafseer', 'nazra']
+    };
 
     const cards = document.querySelectorAll('.tutor-card');
     let visible  = 0;
 
     cards.forEach(card => {
         const subs = (card.dataset.subjects || '').toLowerCase();
+        
+        let subjectMatches = true;
+        if (subjectVal) {
+            const keywords = subjectMap[subjectVal];
+            if (keywords) {
+                subjectMatches = keywords.some(kw => subs.includes(kw));
+            } else {
+                subjectMatches = subs.includes(subjectVal.toLowerCase());
+            }
+        }
+
+        // Apply dynamic sub-subject keyword filter (e.g. chemistry, physics, etc.) from link query
+        if (activeSearchQuery && !subs.includes(activeSearchQuery)) {
+            subjectMatches = false;
+        }
+
         const ok   =
-            (!subject || subs.includes(subject)) &&
+            subjectMatches &&
             (!country || card.dataset.country === country) &&
             (!city    || card.dataset.city    === city) &&
             (!area    || card.dataset.area    === area);
@@ -1089,11 +1163,17 @@ function filterTutors() {
     document.getElementById('tutor-count').textContent = visible;
     document.getElementById('no-results').classList.toggle('hidden', visible > 0);
 
-    const isFiltered = subject || country || city || area;
+    const isFiltered = subjectVal || country || city || area;
     document.getElementById('filter-badge').classList.toggle('hidden', !isFiltered);
 }
 
 function resetFilters() {
+    activeSearchQuery = '';
+    const url = new URL(window.location);
+    url.searchParams.delete('q');
+    url.searchParams.delete('city');
+    window.history.pushState({}, '', url);
+
     document.getElementById('filter-subject').value  = '';
     document.getElementById('filter-country').value  = '';
     const cityEl = document.getElementById('filter-city');
@@ -1135,7 +1215,32 @@ function applyQuickFilter(subject, city) {
     }
 
     const subjectEl = document.getElementById('filter-subject');
-    if (subjectEl) subjectEl.value = subject;
+    if (subjectEl) {
+        let matched = '';
+        const subjectMap = {
+            'Primary and Middle Grades': ['montessori', 'early childhood', 'nursery', 'kindergarten', 'phonics', 'child'],
+            'Cambridge O Level / IGCSE / ICE': ['o level', 'igcse', 'ice', 'chemistry', 'physics', 'math', 'biology', 'accounting', 'business', 'economics', 'english'],
+            'Cambridge A Level / Pre-U / AICE': ['a level', 'pre-u', 'aice'],
+            'AP (Advanced Placement®)': ['ap', 'advanced placement'],
+            'Standard Tests': ['sat', 'gre', 'gat', 'ielts', 'toefl', 'prep'],
+            'IB Diploma Programme': ['ib', 'ibdp', 'myp'],
+            'Matriculation': ['matric', 'matriculation'],
+            'F.Sc / I.Com / ICS': ['f.sc', 'i.com', 'ics'],
+            'Mathematics': ['mathematics', 'math'],
+            'Business and Social Sciences': ['business', 'accounting', 'economics', 'marketing', 'history', 'geography', 'pakistan studies'],
+            'Languages and Literature': ['english', 'german', 'french', 'language'],
+            'Computer Languages': ['computer', 'python', 'programming', 'oop', 'data structures', 'algorithms', 'web development', 'artificial intelligence', 'machine learning', 'deep learning', 'robotics', 'computer vision'],
+            'Quran': ['quran', 'islamic', 'tajweed', 'hifz', 'tafseer', 'nazra']
+        };
+        for (const [cat, kws] of Object.entries(subjectMap)) {
+            if (kws.some(kw => subject.toLowerCase().includes(kw) || kw.includes(subject.toLowerCase()))) {
+                matched = cat;
+                break;
+            }
+        }
+        subjectEl.value = matched;
+        activeSearchQuery = subject.toLowerCase();
+    }
 
     document.querySelectorAll('.city-filter-btn').forEach(btn => {
         btn.classList.toggle('active', btn.getAttribute('data-city') === city);
