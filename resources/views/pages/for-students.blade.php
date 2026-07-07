@@ -76,269 +76,8 @@
 }
 </style>
 @php
-$featuredTutors = [
-    [
-        'id'            => 1,
-        'name'          => 'Murtaza Ali',
-        'qualification' => 'M.Sc. Applied Mathematics, University of the Punjab',
-        'bio'           => 'Expert in O/A Level and IGCSE Mathematics with 25+ years of experience. Specialist in SAT, GRE, GAT and entry test preparation for NUST, UET, FAST, LUMS, and IIU.',
-        'subjects'      => 'mathematics|o level mathematics|a level mathematics|igcse mathematics|additional mathematics|sat|gre|gat|f.sc|b.sc|entry test',
-        'subject_tags'  => ['Mathematics', 'O/A Level', 'SAT · GRE · GAT'],
-        'experience'    => 25,
-        'affiliation'   => 'Beaconhouse, LGS, Roots International, HITEC Cambridge, Zawiya Academy',
-        'country'       => 'Pakistan',
-        'city'          => 'Lahore',
-        'area'          => 'DHA',
-        'initials'      => 'MA',
-        'bg'            => '#2563EB',
-        'photo'         => 'images/Murtaza ali.png',
-        'sharpen'       => true,
-    ],
-    [
-        'id'            => 2,
-        'name'          => 'Shamoil',
-        'qualification' => 'MPhil Physics, UET Lahore',
-        'bio'           => 'Specialized in CAIE O/A Level and IGCSE Physics with 22+ years at top international schools. Deep expertise in IBDP and MYP Physics.',
-        'subjects'      => 'physics|o level physics|a level physics|igcse physics|ibdp physics|myp physics|caie',
-        'subject_tags'  => ['Physics', 'O/A Level', 'IBDP · MYP'],
-        'experience'    => 22,
-        'affiliation'   => 'LGS, ISL, Oneiro School House, King\'s House School London, Army Public School',
-        'country'       => 'Pakistan',
-        'city'          => 'Lahore',
-        'area'          => 'Allama Iqbal Town',
-        'initials'      => 'SM',
-        'bg'            => '#7c3aed',
-        'photo'         => 'images/Shamoil.png',
-        'sharpen'       => true,
-    ],
-    [
-        'id'            => 16,
-        'name'          => 'Tahir',
-        'qualification' => 'M.Sc. Data Science (AI)',
-        'bio'           => 'Expert in Data Science, Artificial Intelligence, and machine learning with 9 years of teaching and industrial experience.',
-        'subjects'      => 'data science|artificial intelligence|programming|python|machine learning|deep learning|ai',
-        'subject_tags'  => ['Data Science', 'AI', 'Programming'],
-        'experience'    => 9,
-        'affiliation'   => 'FAST, NUST, UET',
-        'country'       => 'Pakistan',
-        'city'          => 'Lahore',
-        'area'          => 'Gulberg',
-        'initials'      => 'TH',
-        'bg'            => '#3b82f6',
-        'photo'         => 'images/Tahir.png',
-    ],
-    [
-        'id'            => 6,
-        'name'          => 'Samiya',
-        'qualification' => 'Chartered Accountant (CA) — ICAP',
-        'bio'           => 'CA-qualified educator with 19 years of experience in CAIE O/A Level Accounting, Business, and Economics. Expert in IGCSE and Edexcel curricula.',
-        'subjects'      => 'accounting|business|economics|financial management|cost accounting|auditing|igcse|edexcel|caie|entry test',
-        'subject_tags'  => ['Accounting', 'Business · Economics', 'O/A Level · IGCSE'],
-        'experience'    => 19,
-        'affiliation'   => 'American International School (AIS), International School of Lahore (ISL)',
-        'country'       => 'Pakistan',
-        'city'          => 'Lahore',
-        'area'          => 'Gulberg',
-        'initials'      => 'SA',
-        'bg'            => '#ea580c',
-        'photo'         => 'images/Samiya.png',
-    ],
-    [
-        'id'            => 10,
-        'name'          => 'Sean',
-        'qualification' => 'PhD in Artificial Intelligence & Robotics, UET Lahore',
-        'bio'           => 'PhD-level AI and Robotics specialist with 10 years of experience in Machine Learning, Deep Learning, Computer Vision, and research supervision.',
-        'subjects'      => 'artificial intelligence|machine learning|deep learning|robotics|python|computer vision|reinforcement learning|ros|ai|research|university',
-        'subject_tags'  => ['Artificial Intelligence', 'Machine Learning', 'Robotics · Deep Learning'],
-        'experience'    => 10,
-        'affiliation'   => 'UET Lahore, UMT Lahore, Beaconhouse International College',
-        'country'       => 'Pakistan',
-        'city'          => 'Lahore',
-        'area'          => 'Johar Town',
-        'initials'      => 'SN',
-        'bg'            => '#475569',
-        'photo'         => 'images/Sean.png',
-    ],
-    [
-        'id'            => 14,
-        'name'          => 'Shoaib',
-        'qualification' => 'MPhil Educational Leadership, Beaconhouse National University (BNU)',
-        'bio'           => 'Business and Economics specialist with 30 years of experience in Marketing Management, Business Studies, Microeconomics, and corporate training.',
-        'subjects'      => 'marketing|business studies|economics|microeconomics|management|academic coordination|curriculum',
-        'subject_tags'  => ['Business Studies', 'Economics · Marketing', 'Management'],
-        'experience'    => 30,
-        'affiliation'   => 'FAST National University (Visiting), Educational Services Pvt. Ltd.',
-        'country'       => 'Pakistan',
-        'city'          => 'Lahore',
-        'area'          => 'Johar Town',
-        'initials'      => 'SB',
-        'bg'            => '#7c3aed',
-        'photo'         => 'images/Shoib.png',
-    ],
-    [
-        'id'            => 5,
-        'name'          => 'Areej',
-        'qualification' => 'Diploma in Montessori Education (AMI Certified)',
-        'bio'           => 'Specialist in Montessori early childhood education with 15 years of experience. AMI-trained with expertise in child development and activity-based learning.',
-        'subjects'      => 'montessori|early childhood|nursery|kindergarten|phonics|child development|activity based learning|creative arts',
-        'subject_tags'  => ['Montessori', 'Early Childhood', 'Phonics · Nursery'],
-        'experience'    => 15,
-        'affiliation'   => 'Beaconhouse (Montessori), LGS, Cornerstone School',
-        'country'       => 'Pakistan',
-        'city'          => 'Lahore',
-        'area'          => 'Model Town',
-        'initials'      => 'AR',
-        'bg'            => '#ec4899',
-        'photo'         => 'images/Areej.png',
-    ],
-    [
-        'id'            => 3,
-        'name'          => 'Faiza Javaid',
-        'qualification' => 'M.A., M.Ed., B.S. Zoology/Botany/Chemistry, B.Ed.',
-        'bio'           => 'Versatile science educator with 18 years of experience in Cambridge Sciences, AP Chemistry, and IB Chemistry at top international schools.',
-        'subjects'      => 'chemistry|biology|zoology|botany|physics|o level chemistry|a level chemistry|ap chemistry|ib chemistry|cambridge science',
-        'subject_tags'  => ['Chemistry', 'Biology · Zoology', 'O/A Level · AP · IB'],
-        'experience'    => 18,
-        'affiliation'   => 'Beaconhouse, The City School, Bloomfield Hall, Froebels International',
-        'country'       => 'Pakistan',
-        'city'          => 'Lahore',
-        'area'          => 'Johar Town',
-        'initials'      => 'FJ',
-        'bg'            => '#16a34a',
-        'photo'         => 'images/faiza javad.png',
-    ],
-    [
-        'id'            => 7,
-        'name'          => 'Rotua',
-        'qualification' => 'Master\'s in German Language & Literature, NUML Islamabad',
-        'bio'           => 'German language specialist (A1–C1) with 16 years of experience in Goethe Certification preparation, O/A Level German, and multilingual education.',
-        'subjects'      => 'german|german language|goethe|o level german|a level german|language|grammar|translation',
-        'subject_tags'  => ['German A1–C1', 'Goethe Certification', 'O/A Level German'],
-        'experience'    => 16,
-        'affiliation'   => 'Roots International, Roots Millennium, Aitchison College, C.A.S. School Karachi',
-        'country'       => 'Pakistan',
-        'city'          => 'Lahore',
-        'area'          => 'Garden Town',
-        'initials'      => 'RO',
-        'bg'            => '#dc2626',
-        'photo'         => 'images/Rotua.png',
-    ],
-    [
-        'id'            => 15,
-        'name'          => 'Mohsin',
-        'qualification' => 'M.A. English, University of the Punjab, Lahore',
-        'bio'           => 'English Language and Literature specialist with 15 years of experience in CAIE O/A Levels, IGCSE, Edexcel, IELTS/TOEFL, and academic writing.',
-        'subjects'      => 'english|english language|english literature|igcse english|a level english|ielts|toefl|academic writing|essay writing|creative writing|grammar|communication',
-        'subject_tags'  => ['English Language', 'English Literature', 'IELTS · TOEFL · IGCSE'],
-        'experience'    => 15,
-        'affiliation'   => 'Beaconhouse, LGS, Army Public School, KIPS, Bloomfield Hall',
-        'country'       => 'Pakistan',
-        'city'          => 'Lahore',
-        'area'          => 'Model Town',
-        'initials'      => 'MH',
-        'bg'            => '#1d4ed8',
-        'photo'         => 'images/Mohsin.png',
-    ],
-    [
-        'id'            => 8,
-        'name'          => 'Nicolas',
-        'qualification' => 'Master\'s in French Language & Linguistics, Sorbonne Nouvelle, Paris',
-        'bio'           => 'Native-level French educator (A1–C2) with 30 years of international experience. Expert in DELF/DALF preparation, O/A Level French, and immersive language teaching.',
-        'subjects'      => 'french|french language|delf|dalf|o level french|a level french|grammar|translation|essay writing|oral expression',
-        'subject_tags'  => ['French A1–C2', 'DELF/DALF', 'O/A Level French'],
-        'experience'    => 30,
-        'affiliation'   => 'TNS Beaconhouse, Lahore American School, ISIL Islamabad, Lycée Louis-le-Grand (France)',
-        'country'       => 'Pakistan',
-        'city'          => 'Lahore',
-        'area'          => 'Gulberg',
-        'initials'      => 'NC',
-        'bg'            => '#4f46e5',
-        'photo'         => 'images/Nicolas.png',
-        'sharpen'       => true,
-    ],
-    [
-        'id'            => 9,
-        'name'          => 'Ali',
-        'qualification' => 'MCS (Master\'s in Computer Science), UET Lahore',
-        'bio'           => 'Computer Science expert with 16 years of experience in Python, OOP, Data Structures, Web Development, IGCSE/A Level CS, and university-level programming.',
-        'subjects'      => 'computer science|python|programming|oop|data structures|algorithms|web development|flask|django|igcse computer science|a level computer science|entry test',
-        'subject_tags'  => ['Computer Science', 'Python · Programming', 'IGCSE · A Level CS'],
-        'experience'    => 16,
-        'affiliation'   => 'Roots International School; FAST/NUST/GIK/UET entry test specialist',
-        'country'       => 'Pakistan',
-        'city'          => 'Lahore',
-        'area'          => 'Garden Town',
-        'initials'      => 'AL',
-        'bg'            => '#0891b2',
-        'photo'         => 'images/Ali.png',
-    ],
-    [
-        'id'            => 12,
-        'name'          => 'Qari Jawad',
-        'qualification' => 'Dars-e-Nizami, Jamia Ashrafia, Lahore',
-        'bio'           => 'Experienced Quran educator with 25 years of teaching Nazra, Tajweed, Hifz, Tafseer and Islamic Studies online and through home tuition.',
-        'subjects'      => 'quran|tajweed|hifz|tafseer|islamic studies|seerah|fiqh|aqeedah|duas|namaz|islmic rulings|nazra',
-        'subject_tags'  => ['Quran (Tajweed · Hifz)', 'Islamic Studies', 'Online & Home'],
-        'experience'    => 25,
-        'affiliation'   => 'Serving as Imam Masjid; online Quran teaching platform',
-        'country'       => 'Pakistan',
-        'city'          => 'Lahore',
-        'area'          => 'Raiwind',
-        'initials'      => 'QJ',
-        'bg'            => '#059669',
-        'photo'         => 'images/Qari javad.png',
-    ],
-    [
-        'id'            => 11,
-        'name'          => 'Ali Murtaza',
-        'qualification' => 'Master\'s in History & Geography, University of the Punjab',
-        'bio'           => 'Humanities expert with 20 years of experience in O/A Level History, Pakistan Studies, Geography, and Cambridge exam techniques.',
-        'subjects'      => 'history|world history|pakistan studies|geography|o level history|a level history|igcse global perspectives|essay writing|source analysis|map work',
-        'subject_tags'  => ['History & Geography', 'Pakistan Studies', 'O/A Level · IGCSE'],
-        'experience'    => 20,
-        'affiliation'   => 'LGS, Beaconhouse, The City School, Roots International',
-        'country'       => 'Pakistan',
-        'city'          => 'Lahore',
-        'area'          => 'DHA',
-        'initials'      => 'AM',
-        'bg'            => '#d97706',
-        'photo'         => 'images/Ali murtaza.png',
-    ],
-    [
-        'id'            => 13,
-        'name'          => 'Jessica',
-        'qualification' => 'Doctor of Musical Arts (DMA), University of London',
-        'bio'           => 'DMA-qualified music educator with 15 years of experience in O/A Level Music, ABRSM (Grades 1–8), Piano, Guitar, Violin, and Vocal Training.',
-        'subjects'      => 'music|o level music|a level music|abrsm|piano|guitar|violin|vocal|music theory|western classical|music composition|harmony',
-        'subject_tags'  => ['Music (O/A Level)', 'ABRSM Grades 1–8', 'Piano · Guitar · Violin'],
-        'experience'    => 15,
-        'affiliation'   => 'LGS Music Department',
-        'country'       => 'Pakistan',
-        'city'          => 'Lahore',
-        'area'          => 'DHA',
-        'initials'      => 'JS',
-        'bg'            => '#e11d48',
-        'photo'         => 'images/Jessica.png',
-        'sharpen'       => true,
-    ],
-    [
-        'id'            => 4,
-        'name'          => 'Iqra',
-        'qualification' => 'MPhil Microbiology, University of Agriculture, Faisalabad',
-        'bio'           => 'Chemistry expert with 28 years of teaching and pharmaceutical industry experience, bridging academic chemistry with real-world applications.',
-        'subjects'      => 'chemistry|o level chemistry|a level chemistry|ap chemistry|ib chemistry|microbiology|pharmaceutical',
-        'subject_tags'  => ['Chemistry', 'O/A Level · AP', 'IB Chemistry'],
-        'experience'    => 28,
-        'affiliation'   => 'Roots International, Bloomfield Hall, The City School',
-        'country'       => 'Pakistan',
-        'city'          => 'Lahore',
-        'area'          => 'Gulberg',
-        'initials'      => 'IQ',
-        'bg'            => '#0d9488',
-        'photo'         => 'images/Iqra.png',
-        'sharpen'       => true,
-    ],
-];
+// Tutors are now loaded from the database via PageController::forStudents()
+// $tutors is passed from the controller (approved tutors only)
 @endphp
 
 {{-- ==================== HERO ==================== --}}
@@ -459,7 +198,7 @@ $featuredTutors = [
 <section class="py-12 bg-gray-50">
     <div class="container">
         <div id="tutors-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            @foreach($featuredTutors as $tutor)
+            @forelse($tutors as $tutor)
             <div class="tutor-card group bg-white rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 hover:scale-[1.01] transition-all duration-300 overflow-hidden flex flex-col"
                  data-country="{{ $tutor['country'] }}"
                  data-city="{{ $tutor['city'] }}"
@@ -520,14 +259,23 @@ $featuredTutors = [
                 <div class="px-7 py-3.5">
                     <div class="flex items-center gap-2">
                         <div class="flex text-yellow-400 gap-0.5">
-                            <i class="fas fa-star text-[11px]"></i>
-                            <i class="fas fa-star text-[11px]"></i>
-                            <i class="fas fa-star text-[11px]"></i>
-                            <i class="fas fa-star text-[11px]"></i>
-                            <i class="fas fa-star-half-alt text-[11px]"></i>
+                            @php
+                                $rVal = $tutor['rating'] ?? 4.7;
+                                $fullStars = floor($rVal);
+                                $hasHalf = ($rVal - $fullStars) >= 0.3;
+                            @endphp
+                            @for($i = 1; $i <= 5; $i++)
+                                @if($i <= $fullStars)
+                                    <i class="fas fa-star text-[11px]"></i>
+                                @elseif($i == $fullStars + 1 && $hasHalf)
+                                    <i class="fas fa-star-half-alt text-[11px]"></i>
+                                @else
+                                    <i class="far fa-star text-[11px] text-gray-300"></i>
+                                @endif
+                            @endfor
                         </div>
-                        <span class="text-sm font-black text-gray-900 ml-1">4.7</span>
-                        <span class="text-xs text-gray-400 font-semibold">({{ (($tutor['id'] * 7 + 13) % 20) + 15 }} reviews)</span>
+                        <span class="text-sm font-black text-gray-900 ml-1">{{ $tutor['rating'] ?? 4.7 }}</span>
+                        <span class="text-xs text-gray-400 font-semibold">({{ isset($tutor['review_count']) && $tutor['review_count'] > 0 ? $tutor['review_count'] : ((($tutor['id'] * 7 + 13) % 20) + 15) }} reviews)</span>
                     </div>
                 </div>
 
@@ -546,7 +294,9 @@ $featuredTutors = [
                     </button>
                 </div>
             </div>
-            @endforeach
+            @empty
+                <!-- No dynamic or static tutors found -->
+            @endforelse
         </div>
 
         {{-- No Results Message --}}
@@ -896,7 +646,7 @@ $featuredTutors = [
 @push('scripts')
 <script>
 // Tutor data for modal
-const tutorsData = @json($featuredTutors);
+const tutorsData = @json($tutors);
 const assetBase  = "{{ rtrim(asset(''), '/') }}";
 
 function openTutorModal(id) {

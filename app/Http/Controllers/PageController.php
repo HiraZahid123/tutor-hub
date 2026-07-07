@@ -11,16 +11,89 @@ class PageController extends Controller
 {
     public function home()
     {
-        $tutors = TutorRegistration::where('is_approved', true)
-            ->has('reviews')
-            ->with(['user', 'subjects.category', 'reviews' => function($q) {
-                $q->whereNotNull('comment')->latest()->take(1);
-            }])
+        // 1. Load static featured tutors from the file
+        $featuredPath = app_path('Http/Controllers/featured_tutors.php');
+        $featuredTutors = file_exists($featuredPath) ? require $featuredPath : [];
+
+        // Shift static tutor IDs to avoid conflict with database tutor IDs (which start at 1)
+        foreach ($featuredTutors as &$ft) {
+            $ft['id'] = (int)$ft['id'] + 1000;
+        }
+        unset($ft);
+
+        // 2. Fetch approved database tutors
+        $dbTutors = TutorRegistration::where('is_approved', true)
+            ->with('subjects')
             ->withCount('reviews')
             ->withAvg('reviews', 'rating')
-            ->orderByDesc('reviews_avg_rating')
-            ->take(8)
+            ->orderBy('created_at', 'desc')
             ->get();
+
+        // 3. Map database tutors to the exact same array structure
+        $countryNames = [
+            'PK' => 'Pakistan', 'AE' => 'UAE', 'SA' => 'Saudi Arabia', 'QA' => 'Qatar', 'KW' => 'Kuwait',
+            'BH' => 'Bahrain', 'OM' => 'Oman', 'JO' => 'Jordan', 'EG' => 'Egypt', 'TR' => 'Turkey',
+            'IN' => 'India', 'BD' => 'Bangladesh', 'LK' => 'Sri Lanka', 'MY' => 'Malaysia', 'SG' => 'Singapore',
+            'ID' => 'Indonesia', 'PH' => 'Philippines', 'AF' => 'Afghanistan', 'IR' => 'Iran', 'IQ' => 'Iraq',
+            'YE' => 'Yemen', 'NG' => 'Nigeria', 'KE' => 'Kenya', 'ZA' => 'South Africa', 'GH' => 'Ghana',
+            'TZ' => 'Tanzania', 'CA' => 'Canada', 'AU' => 'Australia', 'NZ' => 'New Zealand', 'DE' => 'Germany',
+            'FR' => 'France', 'NL' => 'Netherlands',
+        ];
+
+        $mappedTutors = [];
+        foreach ($dbTutors as $tutor) {
+            $city = 'Lahore';
+            $area = 'Johar Town';
+
+            if (strtolower($tutor->country) === 'pk') {
+                $searchString = strtolower($tutor->university . ' ' . $tutor->bio . ' ' . $tutor->teaching_experience);
+                if (str_contains($searchString, 'karachi')) {
+                    $city = 'Karachi';
+                    $area = 'DHA Karachi';
+                } elseif (str_contains($searchString, 'islamabad') || str_contains($searchString, 'rawalpindi')) {
+                    $city = 'Islamabad';
+                    $area = 'F-7';
+                }
+            } else {
+                $city = $countryNames[$tutor->country] ?? $tutor->country;
+                $area = 'Central';
+            }
+
+            $subjectNames = $tutor->subjects->pluck('name')->toArray();
+            $subjectsString = strtolower(implode('|', $subjectNames));
+            $subjectTags = array_slice($subjectNames, 0, 3);
+
+            $experience = max(1, date('Y') - (int)$tutor->study_year_from);
+            
+            $words = explode(' ', trim($tutor->name));
+            $initials = strtoupper(substr($words[0] ?? '', 0, 1) . substr($words[1] ?? '', 0, 1));
+
+            $ratingVal = round($tutor->reviews_avg_rating ?? $tutor->rating ?? 5.0, 1);
+            $reviewCountVal = (int)($tutor->reviews_count ?? 0);
+
+            $mappedTutors[] = [
+                'id'            => (int)$tutor->id,
+                'name'          => $tutor->name,
+                'qualification' => $tutor->program . ' in ' . $tutor->major . ', ' . $tutor->university,
+                'bio'           => $tutor->bio,
+                'subjects'      => $subjectsString,
+                'subject_tags'  => $subjectTags,
+                'experience'    => $experience,
+                'affiliation'   => $tutor->university,
+                'country'       => $countryNames[$tutor->country] ?? $tutor->country,
+                'city'          => $city,
+                'area'          => $area,
+                'initials'      => $initials,
+                'bg'            => '#' . substr(md5($tutor->name), 0, 6),
+                'photo'         => $tutor->profile_image ? 'storage/' . $tutor->profile_image : null,
+                'sharpen'       => false,
+                'rating'        => $ratingVal,
+                'review_count'  => $reviewCountVal,
+            ];
+        }
+
+        // 4. Merge mapped database tutors with static ones
+        $tutors = array_merge($mappedTutors, $featuredTutors);
 
         $categories = \App\Models\SubjectCategory::where('is_active', true)
             ->orderBy('order')
@@ -56,6 +129,17 @@ class PageController extends Controller
 
     public function forStudents(Request $request)
     {
+        // 1. Load static featured tutors from the file
+        $featuredPath = app_path('Http/Controllers/featured_tutors.php');
+        $featuredTutors = file_exists($featuredPath) ? require $featuredPath : [];
+
+        // Shift static tutor IDs to avoid conflict with database tutor IDs (which start at 1)
+        foreach ($featuredTutors as &$ft) {
+            $ft['id'] = (int)$ft['id'] + 1000;
+        }
+        unset($ft);
+
+        // 2. Fetch approved database tutors
         $query = TutorRegistration::where('is_approved', true)
             ->with('subjects')
             ->withCount('reviews')
@@ -81,8 +165,73 @@ class PageController extends Controller
             $query->where('is_home', true);
         }
 
-        $tutors = $query->orderBy('created_at', 'desc')
-            ->get();
+        $dbTutors = $query->orderBy('created_at', 'desc')->get();
+
+        // 3. Map database tutors to the exact same array structure
+        $countryNames = [
+            'PK' => 'Pakistan', 'AE' => 'UAE', 'SA' => 'Saudi Arabia', 'QA' => 'Qatar', 'KW' => 'Kuwait',
+            'BH' => 'Bahrain', 'OM' => 'Oman', 'JO' => 'Jordan', 'EG' => 'Egypt', 'TR' => 'Turkey',
+            'IN' => 'India', 'BD' => 'Bangladesh', 'LK' => 'Sri Lanka', 'MY' => 'Malaysia', 'SG' => 'Singapore',
+            'ID' => 'Indonesia', 'PH' => 'Philippines', 'AF' => 'Afghanistan', 'IR' => 'Iran', 'IQ' => 'Iraq',
+            'YE' => 'Yemen', 'NG' => 'Nigeria', 'KE' => 'Kenya', 'ZA' => 'South Africa', 'GH' => 'Ghana',
+            'TZ' => 'Tanzania', 'CA' => 'Canada', 'AU' => 'Australia', 'NZ' => 'New Zealand', 'DE' => 'Germany',
+            'FR' => 'France', 'NL' => 'Netherlands',
+        ];
+
+        $mappedTutors = [];
+        foreach ($dbTutors as $tutor) {
+            $city = 'Lahore';
+            $area = 'Johar Town';
+
+            if (strtolower($tutor->country) === 'pk') {
+                $searchString = strtolower($tutor->university . ' ' . $tutor->bio . ' ' . $tutor->teaching_experience);
+                if (str_contains($searchString, 'karachi')) {
+                    $city = 'Karachi';
+                    $area = 'DHA Karachi';
+                } elseif (str_contains($searchString, 'islamabad') || str_contains($searchString, 'rawalpindi')) {
+                    $city = 'Islamabad';
+                    $area = 'F-7';
+                }
+            } else {
+                $city = $countryNames[$tutor->country] ?? $tutor->country;
+                $area = 'Central';
+            }
+
+            $subjectNames = $tutor->subjects->pluck('name')->toArray();
+            $subjectsString = strtolower(implode('|', $subjectNames));
+            $subjectTags = array_slice($subjectNames, 0, 3);
+
+            $experience = max(1, date('Y') - (int)$tutor->study_year_from);
+            
+            $words = explode(' ', trim($tutor->name));
+            $initials = strtoupper(substr($words[0] ?? '', 0, 1) . substr($words[1] ?? '', 0, 1));
+
+            $ratingVal = round($tutor->reviews_avg_rating ?? $tutor->rating ?? 5.0, 1);
+            $reviewCountVal = (int)($tutor->reviews_count ?? 0);
+
+            $mappedTutors[] = [
+                'id'            => (int)$tutor->id,
+                'name'          => $tutor->name,
+                'qualification' => $tutor->program . ' in ' . $tutor->major . ', ' . $tutor->university,
+                'bio'           => $tutor->bio,
+                'subjects'      => $subjectsString,
+                'subject_tags'  => $subjectTags,
+                'experience'    => $experience,
+                'affiliation'   => $tutor->university,
+                'country'       => $countryNames[$tutor->country] ?? $tutor->country,
+                'city'          => $city,
+                'area'          => $area,
+                'initials'      => $initials,
+                'bg'            => '#' . substr(md5($tutor->name), 0, 6),
+                'photo'         => $tutor->profile_image ? 'storage/' . $tutor->profile_image : null,
+                'sharpen'       => false,
+                'rating'        => $ratingVal,
+                'review_count'  => $reviewCountVal,
+            ];
+        }
+
+        // 4. Merge mapped database tutors with static ones
+        $tutors = array_merge($mappedTutors, $featuredTutors);
 
         $subjects = Subject::orderBy('name')->get();
 

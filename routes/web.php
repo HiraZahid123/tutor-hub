@@ -47,6 +47,8 @@ Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->na
 Route::post('/register', [RegisterController::class, 'register'])->name('register.submit')->middleware('guest');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
+Route::get('/register-tutor', [TutorRegistrationController::class, 'create'])->name('register-tutor');
+
 // Protected Portals
 Route::middleware(['auth'])->group(function () {
     Route::get('/student/dashboard', [StudentController::class, 'dashboard'])->name('student.dashboard');
@@ -78,7 +80,6 @@ Route::middleware(['auth'])->group(function () {
     // Route::post('/tutor/inquiries/{inquiry}/finalize', [InquiryController::class, 'finalizeHire'])->name('tutor.inquiries.finalize');
 
     // Tutor Application (New Multi-step)
-    Route::get('/register-tutor', [TutorRegistrationController::class, 'create'])->name('register-tutor');
     Route::post('/register-tutor', [TutorRegistrationController::class, 'store'])->name('register-tutor.store');
 
     // Direct Tutor Inquiry/Hire

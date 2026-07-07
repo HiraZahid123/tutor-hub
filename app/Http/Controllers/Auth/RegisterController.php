@@ -36,7 +36,7 @@ class RegisterController extends Controller
         Auth::login($user);
         
         if ($user->role === 'tutor') {
-            return redirect('/tutor/dashboard');
+            return redirect()->route('register-tutor');
         }
         return redirect('/student/dashboard');
     }

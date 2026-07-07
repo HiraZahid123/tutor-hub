@@ -17,6 +17,10 @@ class TutorRegistrationController extends Controller
      */
     public function create()
     {
+        if (!Auth::check()) {
+            return redirect()->route('register', ['role' => 'tutor']);
+        }
+
         $user = Auth::user();
 
         // Security Check: Only the 'tutor' role can apply
