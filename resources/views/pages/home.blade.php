@@ -48,16 +48,16 @@
                 </style>
                 <div class="w-full max-w-[420px] flex flex-col items-center md:items-start mt-6" data-aos="fade-up" data-aos-delay="400">
                     {{-- Buttons Wrapper --}}
-                    <div class="flex justify-center gap-4 w-full mb-8">
+                    <div class="flex justify-center gap-4 w-full mb-8 flex-wrap">
                         <a href="{{ route('for-students') }}"
-                           class="hero-btn inline-flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold text-base px-8 py-3 rounded-full transition-all duration-300 active:scale-95 flex-1 max-w-[195px]">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/></svg>
+                           class="hero-btn inline-flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold text-base px-8 py-3 rounded-full transition-all duration-300 active:scale-95 whitespace-nowrap">
+                            <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/></svg>
                             Find Tutor
                         </a>
                         <a href="{{ route('register-tutor') }}"
-                           class="hero-btn inline-flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold text-base px-8 py-3 rounded-full transition-all duration-300 active:scale-95 flex-1 max-w-[195px]">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM12 14a7 7 0 0 0-7 7h14a7 7 0 0 0-7-7z"/></svg>
-                            Apply Tutor
+                           class="hero-btn inline-flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold text-base px-8 py-3 rounded-full transition-all duration-300 active:scale-95 whitespace-nowrap">
+                            <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM12 14a7 7 0 0 0-7 7h14a7 7 0 0 0-7-7z"/></svg>
+                            Apply as a Tutor
                         </a>
                     </div>
 
