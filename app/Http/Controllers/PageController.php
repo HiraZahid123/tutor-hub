@@ -92,8 +92,8 @@ class PageController extends Controller
             ];
         }
 
-        // 4. Merge mapped database tutors with static ones
-        $tutors = array_merge($mappedTutors, $featuredTutors);
+        // 4. Only show featured static tutors on the homepage, not database tutors
+        $tutors = $featuredTutors;
 
         $categories = \App\Models\SubjectCategory::where('is_active', true)
             ->orderBy('order')
