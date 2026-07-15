@@ -65,7 +65,15 @@
             </div>
 
             <div class="flex justify-center my-4">
-                <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
+                @if(config('services.recaptcha.site_key'))
+                    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                    <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
+                @else
+                    <div class="text-red-500 text-xs font-semibold text-center border border-red-200 bg-red-50 p-3 rounded-xl w-full">
+                        <i class="fas fa-exclamation-triangle mr-1"></i> reCAPTCHA site key is missing in config!
+                        <p class="text-[10px] text-gray-500 mt-1 font-normal">Please run: <code>php artisan config:clear</code> on the live server.</p>
+                    </div>
+                @endif
             </div>
 
             <div>
@@ -111,7 +119,3 @@
     </div>
 </div>
 @endsection
-
-@push('scripts')
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-@endpush
