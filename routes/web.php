@@ -29,6 +29,9 @@ Route::get('/tutor-policy', [PageController::class, 'tutorPolicy'])->name('tutor
 Route::get('/tutoring-process', [PageController::class, 'tutoringFlow'])->name('tutoring-process');
 Route::get('/tutors/{id}', [PageController::class, 'tutorProfile'])->name('tutors.show');
 
+// Approved Tutors Directory (admin-approved tutors only, kept separate from home/for-students)
+Route::get('/find-tutors', [PageController::class, 'tutorsDirectory'])->name('tutors.directory');
+
 // Student Request (Find a Tutor)
 Route::get('/find-a-tutor', [StudentRequestController::class, 'create'])->name('find-a-tutor');
 Route::post('/find-a-tutor', [StudentRequestController::class, 'store'])->name('find-a-tutor.store');
@@ -59,25 +62,27 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/student/sent-requests', [StudentController::class, 'sentRequests'])->name('student.sent-requests');
     Route::get('/student/book/{tutor}', [StudentController::class, 'showBooking'])->name('student.book');
 
-    Route::get('/tutor/dashboard', [TutorController::class, 'dashboard'])->name('tutor.dashboard');
-    Route::get('/tutor/profile', [TutorController::class, 'editProfile'])->name('tutor.profile');
-    Route::put('/tutor/profile', [TutorController::class, 'updateProfile'])->name('tutor.profile.update');
-    Route::get('/tutor/availability', [AvailabilityController::class, 'index'])->name('tutor.availability');
-    Route::post('/tutor/availability', [AvailabilityController::class, 'store'])->name('tutor.availability.store');
-    // Chat System (Pusher Real-Time)
-    Route::get('/messages', [ChatController::class, 'index'])->name('chat.index');
-    Route::get('/messages/{conversation}', [ChatController::class, 'show'])->name('chat.show');
-    Route::post('/messages', [ChatController::class, 'store'])->name('chat.store');
-    Route::get('/api/messages/{conversation}', [ChatController::class, 'fetchMessages'])->name('chat.fetch');
-    Route::post('/api/messages/{conversation}', [ChatController::class, 'sendMessage'])->name('chat.send');
-    Route::post('/api/messages/{conversation}/read', [ChatController::class, 'markAsRead'])->name('chat.read');
-    Route::get('/api/unread-count', [ChatController::class, 'unreadCount'])->name('chat.unread-count');
-    Route::get('/api/pending-inquiries-count', [InquiryController::class, 'pendingCount'])->name('tutor.inquiries.count');
-    Route::get('/tutor/appointments', [TutorController::class, 'appointments'])->name('tutor.appointments');
-    Route::get('/tutor/payments', [TutorController::class, 'payments'])->name('tutor.payments');
-    Route::get('/tutor/inquiries', [TutorController::class, 'inquiries'])->name('tutor.inquiries');
-    Route::patch('/tutor/inquiries/{inquiry}/status', [InquiryController::class, 'updateStatus'])->name('tutor.inquiries.update');
-    // Route::post('/tutor/inquiries/{inquiry}/finalize', [InquiryController::class, 'finalizeHire'])->name('tutor.inquiries.finalize');
+    Route::middleware(['tutor.complete'])->group(function () {
+        Route::get('/tutor/dashboard', [TutorController::class, 'dashboard'])->name('tutor.dashboard');
+        Route::get('/tutor/profile', [TutorController::class, 'editProfile'])->name('tutor.profile');
+        Route::put('/tutor/profile', [TutorController::class, 'updateProfile'])->name('tutor.profile.update');
+        Route::get('/tutor/availability', [AvailabilityController::class, 'index'])->name('tutor.availability');
+        Route::post('/tutor/availability', [AvailabilityController::class, 'store'])->name('tutor.availability.store');
+        // Chat System (Pusher Real-Time)
+        Route::get('/messages', [ChatController::class, 'index'])->name('chat.index');
+        Route::get('/messages/{conversation}', [ChatController::class, 'show'])->name('chat.show');
+        Route::post('/messages', [ChatController::class, 'store'])->name('chat.store');
+        Route::get('/api/messages/{conversation}', [ChatController::class, 'fetchMessages'])->name('chat.fetch');
+        Route::post('/api/messages/{conversation}', [ChatController::class, 'sendMessage'])->name('chat.send');
+        Route::post('/api/messages/{conversation}/read', [ChatController::class, 'markAsRead'])->name('chat.read');
+        Route::get('/api/unread-count', [ChatController::class, 'unreadCount'])->name('chat.unread-count');
+        Route::get('/api/pending-inquiries-count', [InquiryController::class, 'pendingCount'])->name('tutor.inquiries.count');
+        Route::get('/tutor/appointments', [TutorController::class, 'appointments'])->name('tutor.appointments');
+        Route::get('/tutor/payments', [TutorController::class, 'payments'])->name('tutor.payments');
+        Route::get('/tutor/inquiries', [TutorController::class, 'inquiries'])->name('tutor.inquiries');
+        Route::patch('/tutor/inquiries/{inquiry}/status', [InquiryController::class, 'updateStatus'])->name('tutor.inquiries.update');
+        // Route::post('/tutor/inquiries/{inquiry}/finalize', [InquiryController::class, 'finalizeHire'])->name('tutor.inquiries.finalize');
+    });
 
     // Tutor Application (New Multi-step)
     Route::post('/register-tutor', [TutorRegistrationController::class, 'store'])->name('register-tutor.store');

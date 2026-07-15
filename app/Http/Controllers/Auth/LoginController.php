@@ -30,6 +30,10 @@ class LoginController extends Controller
                 return redirect()->intended('/admin/dashboard');
             }
             if ($role === 'tutor') {
+                $hasRegistration = \App\Models\TutorRegistration::where('user_id', Auth::id())->exists();
+                if (!$hasRegistration) {
+                    return redirect()->route('register-tutor');
+                }
                 return redirect()->intended('/tutor/dashboard');
             }
             return redirect()->intended('/student/dashboard');

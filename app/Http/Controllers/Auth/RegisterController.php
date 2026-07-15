@@ -24,6 +24,19 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'role' => ['required', 'in:student,tutor'],
+            'g-recaptcha-response' => ['required', function ($attribute, $value, $fail) {
+                $response = \Illuminate\Support\Facades\Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+                    'secret' => config('services.recaptcha.secret_key'),
+                    'response' => $value,
+                    'remoteip' => request()->ip(),
+                ]);
+
+                if (!$response->json('success')) {
+                    $fail('The Google reCAPTCHA verification failed. Please try again.');
+                }
+            }],
+        ], [
+            'g-recaptcha-response.required' => 'Please complete the reCAPTCHA verification.',
         ]);
 
         $user = User::create([

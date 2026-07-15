@@ -64,6 +64,10 @@
                 </div>
             </div>
 
+            <div class="flex justify-center my-4">
+                <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
+            </div>
+
             <div>
                 <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3.5 rounded-xl font-bold text-sm uppercase tracking-wider transition-all shadow-lg shadow-blue-500/10 active:scale-95 flex items-center justify-center">
                     Register
@@ -107,3 +111,7 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+@endpush

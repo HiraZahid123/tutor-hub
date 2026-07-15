@@ -12,10 +12,10 @@
         </a>
 
         <!-- Desktop Nav Links -->
-        <ul class="hidden lg:flex items-center gap-8">
+        <ul class="hidden lg:flex items-center gap-4">
             <li>
                 <a href="{{ route('home') }}"
-                   class="text-lg font-medium transition-all {{ $currentRoute === 'home' ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600' }}">
+                   class="text-base font-medium transition-all {{ $currentRoute === 'home' ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600' }}">
                     Home
                 </a>
             </li>
@@ -23,7 +23,7 @@
             <!-- About Us Dropdown -->
             <li class="relative" id="about-wrapper">
                 <span onclick="toggleAboutDropdown(event)"
-                      class="text-lg font-medium cursor-pointer text-gray-700 hover:text-blue-600 select-none flex items-center gap-1 transition-all">
+                      class="text-base font-medium cursor-pointer text-gray-700 hover:text-blue-600 select-none flex items-center gap-1 transition-all">
                     About Us
                     <i class="fas fa-chevron-down text-xs text-gray-400 transition-transform duration-200" id="about-chevron"></i>
                 </span>
@@ -50,14 +50,21 @@
 
             <li>
                 <a href="{{ route('contact') }}"
-                   class="text-lg font-medium transition-all {{ $currentRoute === 'contact' ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600' }}">
+                   class="text-base font-medium transition-all {{ $currentRoute === 'contact' ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600' }}">
                     Contact
                 </a>
             </li>
 
             <li>
+                <a href="{{ route('tutors.directory') }}"
+                   class="text-base font-medium transition-all {{ $currentRoute === 'tutors.directory' ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600' }}">
+                    Find Tutors
+                </a>
+            </li>
+
+            <li>
                 <a href="{{ route('for-students') }}"
-                   class="text-lg font-medium transition-all {{ $currentRoute === 'for-students' ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600' }}">
+                   class="text-base font-medium transition-all {{ $currentRoute === 'for-students' ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600' }}">
                     Best Tutors
                 </a>
             </li>
@@ -65,7 +72,7 @@
             <!-- Become a Tutor Dropdown -->
             <li class="relative" id="bat-wrapper">
                 <span onclick="toggleBatDropdown(event)"
-                      class="text-lg font-medium cursor-pointer text-gray-700 hover:text-blue-600 select-none flex items-center gap-1">
+                      class="text-base font-medium cursor-pointer text-gray-700 hover:text-blue-600 select-none flex items-center gap-1">
                     Become a Tutor
                     <i class="fas fa-chevron-down text-xs text-gray-400 transition-transform duration-200" id="bat-chevron"></i>
                 </span>
@@ -136,21 +143,21 @@
         </ul>
 
         <!-- Desktop Buttons -->
-        <div class="hidden lg:flex items-center gap-4">
+        <div class="hidden lg:flex items-center gap-3">
             @auth
                 <a href="{{ Auth::user()->isAdmin() ? route('admin.dashboard') : (Auth::user()->isTutor() ? route('tutor.dashboard') : route('student.dashboard')) }}">
-                    <button class="text-lg font-medium bg-blue-600 text-white px-7 py-2 rounded-md ml-4 hover:bg-blue-700 hover:shadow-lg transition-all duration-300 hover:scale-105">
+                    <button class="text-base font-medium bg-blue-600 text-white px-5 py-2 rounded-md ml-2 hover:bg-blue-700 hover:shadow-lg transition-all duration-300 hover:scale-105">
                         Dashboard
                     </button>
                 </a>
             @else
                 <a href="{{ route('login') }}">
-                    <button style="width:160px;height:44px;font-size:15px;font-weight:600;border-radius:6px;border:2px solid #2563EB;background:#fff;color:#2563EB;box-sizing:border-box;cursor:pointer;transition:all 0.3s;">
+                    <button style="width:130px;height:40px;font-size:14px;font-weight:600;border-radius:6px;border:2px solid #2563EB;background:#fff;color:#2563EB;box-sizing:border-box;cursor:pointer;transition:all 0.3s;">
                         Login
                     </button>
                 </a>
                 <a href="{{ route('find-a-tutor') }}">
-                    <button style="width:160px;height:44px;font-size:15px;font-weight:600;border-radius:6px;border:2px solid #2563EB;background:#2563EB;color:#fff;box-sizing:border-box;cursor:pointer;transition:all 0.3s;">
+                    <button style="width:135px;height:40px;font-size:14px;font-weight:600;border-radius:6px;border:2px solid #2563EB;background:#2563EB;color:#fff;box-sizing:border-box;cursor:pointer;transition:all 0.3s;">
                         Request Tutor
                     </button>
                 </a>
@@ -222,6 +229,13 @@
         <a href="{{ route('contact') }}"
            class="block text-lg font-medium px-4 py-2 {{ $currentRoute === 'contact' ? 'text-blue-600 font-semibold shadow-lg' : 'text-gray-700 hover:text-blue-600' }}">
             Contact
+        </a>
+    </li>
+
+    <li>
+        <a href="{{ route('tutors.directory') }}"
+           class="block text-lg font-medium px-4 py-2 {{ $currentRoute === 'tutors.directory' ? 'text-blue-600 font-semibold shadow-lg' : 'text-gray-700 hover:text-blue-600' }}">
+            Find Tutors
         </a>
     </li>
 

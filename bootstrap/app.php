@@ -15,6 +15,10 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->validateCsrfTokens(except: [
             '/payment/jazzcash/callback',
         ]);
+
+        $middleware->alias([
+            'tutor.complete' => \App\Http\Middleware\EnsureTutorProfileIsComplete::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

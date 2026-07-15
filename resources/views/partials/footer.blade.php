@@ -57,7 +57,7 @@
                         <li><a href="#" class="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300"></i> Our Subjects</a></li>
                         <li><a href="{{ route('for-students') }}" class="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300"></i> Top tutor</a></li>
                         <li><a href="{{ route('register-tutor') }}" class="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300"></i> Apply as a Tutor</a></li>
-                        <li><a href="{{ route('for-students') }}" class="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300"></i> Find a Tutor</a></li>
+                        <li><a href="{{ route('tutors.directory') }}" class="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-blue-300"></i> Find a Tutor</a></li>
                     </ul>
                 </div>
             </div>
