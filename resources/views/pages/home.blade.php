@@ -1428,6 +1428,7 @@ document.addEventListener('click', function(e) {
 
 // Tutor Modal functionality
 const tutorsData = @json($tutors);
+const assetBase  = "{{ rtrim(asset(''), '/') }}";
 function openTutorModal(id) {
     const tutor = tutorsData.find(t => t.id === id);
     if (!tutor) return;
