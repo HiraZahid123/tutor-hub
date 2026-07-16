@@ -16,7 +16,7 @@
                 <!-- CEO/Co-Founder -->
                 <div class="bg-white rounded-[2rem] p-8 shadow-md hover:shadow-xl border border-gray-100 text-center hover:-translate-y-2 transition-all duration-300 group">
                     <div class="w-48 h-48 mx-auto rounded-full overflow-hidden mb-6 border-4 border-white shadow-lg group-hover:scale-105 transition-transform duration-500">
-                        <img src="{{ asset('images/aftab alam.png') }}" alt="Engr. Hafiz Aftab Alam" class="w-full h-full object-cover" style="transform: scale(1.1); object-position: center 15%;">
+                        <img src="{{ asset('images/aftab alam.png') }}" alt="Engr. Hafiz Aftab Alam" class="w-full h-full object-cover" style="transform: scale(1.35) translateY(10px); object-position: center 15%;">
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 mb-1">Engr. Hafiz Aftab Alam</h3>
                     <p class="text-blue-600 font-semibold text-sm uppercase tracking-wider">Co-Founder & CEO</p>
