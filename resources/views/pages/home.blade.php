@@ -1024,10 +1024,6 @@
                 <p id="modal-affiliation" class="text-sm text-gray-600 font-semibold leading-relaxed"></p>
             </div>
 
-            <div class="flex items-center gap-2.5">
-                <i class="fas fa-map-marker-alt text-orange-500 text-sm flex-shrink-0"></i>
-                <span id="modal-location" class="text-sm font-bold text-gray-700"></span>
-            </div>
         </div>
 
         <div class="mx-7 border-t border-gray-100"></div>
@@ -1448,7 +1444,6 @@ function openTutorModal(id) {
     document.getElementById('modal-exp').innerHTML     = `<i class="fas fa-star" style="font-size:9px;"></i> ${tutor.experience}+ Years Experience`;
     document.getElementById('modal-bio').textContent         = tutor.bio;
     document.getElementById('modal-affiliation').textContent = tutor.affiliation;
-    document.getElementById('modal-location').textContent    = `${tutor.area}, ${tutor.city}, ${tutor.country}`;
 
     const tagsHtml = tutor.subject_tags.map(tag =>
         `<span style="font-size:10px;font-weight:900;padding:4px 12px;border-radius:9999px;text-transform:uppercase;letter-spacing:0.05em;background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;">${tag}</span>`
