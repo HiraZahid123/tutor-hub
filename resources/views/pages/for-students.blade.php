@@ -141,6 +141,7 @@
                     <option value="Languages and Literature">Languages and Literature</option>
                     <option value="Computer Languages">Computer Languages</option>
                     <option value="Quran">Quran</option>
+                    <option value="Others">Others</option>
                 </select>
             </div>
 
@@ -759,7 +760,8 @@ let activeSearchQuery = '';
                 'Business and Social Sciences': ['business', 'accounting', 'economics', 'marketing', 'history', 'geography', 'pakistan studies'],
                 'Languages and Literature': ['english', 'german', 'french', 'language'],
                 'Computer Languages': ['computer', 'python', 'programming', 'oop', 'data structures', 'algorithms', 'web development', 'artificial intelligence', 'machine learning', 'deep learning', 'robotics', 'computer vision'],
-                'Quran': ['quran', 'islamic', 'tajweed', 'hifz', 'tafseer', 'nazra']
+                'Quran': ['quran', 'islamic', 'tajweed', 'hifz', 'tafseer', 'nazra'],
+                'Others': ['others', 'other', 'general', 'misc', 'miscellaneous']
             };
             for (const [cat, kws] of Object.entries(subjectMap)) {
                 if (kws.some(kw => q.includes(kw) || kw.includes(q))) {
@@ -915,11 +917,22 @@ function filterTutors() {
         
         let subjectMatches = true;
         if (subjectVal) {
-            const keywords = subjectMap[subjectVal];
-            if (keywords) {
-                subjectMatches = keywords.some(kw => subs.includes(kw));
+            if (subjectVal === 'Others') {
+                let matchesStandardCategory = false;
+                for (const [cat, keywords] of Object.entries(subjectMap)) {
+                    if (keywords.some(kw => subs.includes(kw))) {
+                        matchesStandardCategory = true;
+                        break;
+                    }
+                }
+                subjectMatches = !matchesStandardCategory;
             } else {
-                subjectMatches = subs.includes(subjectVal.toLowerCase());
+                const keywords = subjectMap[subjectVal];
+                if (keywords) {
+                    subjectMatches = keywords.some(kw => subs.includes(kw));
+                } else {
+                    subjectMatches = subs.includes(subjectVal.toLowerCase());
+                }
             }
         }
 
@@ -1008,7 +1021,8 @@ function applyQuickFilter(subject, city) {
             'Business and Social Sciences': ['business', 'accounting', 'economics', 'marketing', 'history', 'geography', 'pakistan studies'],
             'Languages and Literature': ['english', 'german', 'french', 'language'],
             'Computer Languages': ['computer', 'python', 'programming', 'oop', 'data structures', 'algorithms', 'web development', 'artificial intelligence', 'machine learning', 'deep learning', 'robotics', 'computer vision'],
-            'Quran': ['quran', 'islamic', 'tajweed', 'hifz', 'tafseer', 'nazra']
+            'Quran': ['quran', 'islamic', 'tajweed', 'hifz', 'tafseer', 'nazra'],
+            'Others': ['others', 'other', 'general', 'misc', 'miscellaneous']
         };
         for (const [cat, kws] of Object.entries(subjectMap)) {
             if (kws.some(kw => subject.toLowerCase().includes(kw) || kw.includes(subject.toLowerCase()))) {

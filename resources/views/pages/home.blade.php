@@ -1407,7 +1407,8 @@ const _heroSubjects = [
     { label:'Business and Social Sciences',         value:'Business and Social Sciences',         icon:'fa-briefcase' },
     { label:'Languages and Literature',             value:'Languages and Literature',             icon:'fa-language' },
     { label:'Computer Languages',                   value:'Computer Languages',                   icon:'fa-laptop-code' },
-    { label:'Quran',                                value:'Quran',                                icon:'fa-book-open' }
+    { label:'Quran',                                value:'Quran',                                icon:'fa-book-open' },
+    { label:'Others',                              value:'Others',                               icon:'fa-ellipsis-h' }
 ];
 
 const _forStudentsUrl = "{{ route('for-students') }}";
