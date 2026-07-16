@@ -656,12 +656,12 @@
             </style>
             <div class="flex flex-wrap gap-4 justify-center">
                 <a href="{{ route('find-a-tutor') }}"
-                   class="animate-cta-orange inline-flex items-center gap-2 font-black text-sm uppercase tracking-widest px-8 py-4 rounded-xl transition-all active:scale-95"
+                   class="animate-cta-orange inline-flex items-center justify-center gap-2 font-black text-sm uppercase tracking-widest px-4 py-4 rounded-xl transition-all active:scale-95 w-[250px] h-[54px]"
                    style="background:#ff6700;color:#fff;">
                     <i class="fas fa-search"></i> Submit a Request
                 </a>
                 <a href="https://wa.me/923414133395" target="_blank"
-                   class="animate-cta-green inline-flex items-center gap-2 font-black text-sm uppercase tracking-widest px-8 py-4 rounded-xl transition-all active:scale-95"
+                   class="animate-cta-green inline-flex items-center justify-center gap-2 font-black text-sm uppercase tracking-widest px-4 py-4 rounded-xl transition-all active:scale-95 w-[250px] h-[54px]"
                    style="background:#25D366;color:#fff;border:none;">
                     <i class="fab fa-whatsapp text-lg"></i> WhatsApp Us
                 </a>
