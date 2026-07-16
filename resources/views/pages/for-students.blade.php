@@ -13,6 +13,32 @@
 #tutor-modal { transition: opacity 0.2s ease; }
 #tutor-modal.flex { display: flex !important; }
 
+@keyframes directoryFadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.directory-panel:not(.hidden) {
+    animation: directoryFadeIn 0.35s ease-out forwards;
+}
+@keyframes tabPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
+    50% { box-shadow: 0 0 0 8px rgba(37, 99, 235, 0); }
+}
+.city-filter-btn {
+    transition: all 0.25s ease-in-out !important;
+    animation: tabPulse 2s infinite ease-in-out;
+}
+.city-filter-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(37, 99, 235, 0.12) !important;
+}
+.directory-panel a i {
+    transition: transform 0.2s ease-in-out !important;
+}
+.directory-panel a:hover i {
+    transform: translateX(4px);
+}
+
 /* Card lift + image zoom on hover — same as Leadership Team */
 .tutor-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;

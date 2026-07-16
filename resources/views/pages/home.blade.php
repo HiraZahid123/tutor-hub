@@ -1258,6 +1258,31 @@
         from { opacity: 0; transform: scale(0.96) translateY(10px); }
         to { opacity: 1; transform: scale(1) translateY(0); }
     }
+    @keyframes directoryFadeIn {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .home-directory-panel:not(.hidden) {
+        animation: directoryFadeIn 0.35s ease-out forwards;
+    }
+    @keyframes tabPulse {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
+        50% { box-shadow: 0 0 0 8px rgba(37, 99, 235, 0); }
+    }
+    .home-directory-tab-btn {
+        transition: all 0.25s ease-in-out !important;
+        animation: tabPulse 2s infinite ease-in-out;
+    }
+    .home-directory-tab-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(37, 99, 235, 0.12) !important;
+    }
+    .home-directory-panel a i {
+        transition: transform 0.2s ease-in-out !important;
+    }
+    .home-directory-panel a:hover i {
+        transform: translateX(4px);
+    }
 </style>
 @endsection
 
