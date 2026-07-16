@@ -70,7 +70,7 @@
                                    placeholder="e.g. Physics, IELTS, Quran…"
                                    autocomplete="off"
                                    class="flex-1 px-3 py-3.5 text-sm font-medium text-gray-700 bg-transparent outline-none placeholder-gray-400">
-                            <button onclick="if(document.getElementById('hero-subject-input').value.trim()){window.location.href='{{ route('for-students') }}?q='+encodeURIComponent(document.getElementById('hero-subject-input').value.trim().toLowerCase())}"
+                            <button onclick="if(document.getElementById('hero-subject-input').value.trim()){window.location.href='{{ route('tutors.directory') }}?q='+encodeURIComponent(document.getElementById('hero-subject-input').value.trim())}"
                                     class="m-1.5 bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-all flex-shrink-0 active:scale-95">
                                 Search
                             </button>
@@ -1436,7 +1436,7 @@ const _heroSubjects = [
     { label:'Others',                              value:'Others',                               icon:'fa-ellipsis-h' }
 ];
 
-const _forStudentsUrl = "{{ route('for-students') }}";
+const _tutorsDirectoryUrl = "{{ route('tutors.directory') }}";
 const _heroInput      = document.getElementById('hero-subject-input');
 const _heroList       = document.getElementById('hero-suggestions');
 
@@ -1457,7 +1457,7 @@ function _renderSuggestions(q) {
                      + '<span style="margin-left:auto;font-size:10px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:0.05em;white-space:nowrap;">View Tutors</span>';
         li.addEventListener('mousedown', function(e) {
             e.preventDefault();
-            window.location.href = _forStudentsUrl + '?q=' + encodeURIComponent(s.value);
+            window.location.href = _tutorsDirectoryUrl + '?q=' + encodeURIComponent(s.value);
         });
         _heroList.appendChild(li);
     });
@@ -1470,7 +1470,7 @@ _heroInput.addEventListener('click',  function() { _renderSuggestions(this.value
 _heroInput.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') { _heroList.classList.add('hidden'); this.blur(); }
     if (e.key === 'Enter' && this.value.trim()) {
-        window.location.href = _forStudentsUrl + '?q=' + encodeURIComponent(this.value.trim().toLowerCase());
+        window.location.href = _tutorsDirectoryUrl + '?q=' + encodeURIComponent(this.value.trim());
     }
 });
 document.addEventListener('click', function(e) {
