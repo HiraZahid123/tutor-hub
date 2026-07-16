@@ -849,8 +849,39 @@
     </div>
 </div>
 
-{{-- ==================== ONLINE TUTORS DIRECTORY SECTION ==================== --}}
-<section class="py-16 bg-zinc-950 border-t border-zinc-900 text-white overflow-hidden">
+<style>
+    #online-directory-section {
+        background-color: #f4f4f5 !important;
+        border-color: #e4e4e7 !important;
+    }
+    #online-directory-section h2 {
+        color: #18181b !important;
+    }
+    #online-directory-section p {
+        color: #52525b !important;
+    }
+    #online-directory-section h3 {
+        color: #27272a !important;
+        border-color: #d4d4d8 !important;
+    }
+    #online-directory-section ul {
+        color: #52525b !important;
+    }
+    #online-directory-section i {
+        color: #a1a1aa !important;
+    }
+    #online-directory-section .view-all-btn {
+        border-color: #d4d4d8 !important;
+        color: #52525b !important;
+        background-color: #ffffff !important;
+    }
+    #online-directory-section .view-all-btn:hover {
+        border-color: #a1a1aa !important;
+        color: #18181b !important;
+        background-color: #f4f4f5 !important;
+    }
+</style>
+<section id="online-directory-section" class="py-16 bg-zinc-950 border-t border-zinc-900 text-white overflow-hidden">
     <div class="container">
         <div class="text-center mb-16" data-aos="fade-up">
             <span class="text-xs font-bold text-orange-500 uppercase tracking-[0.25em] mb-3 block">Global Learning</span>
@@ -970,7 +1001,7 @@
         {{-- Center Button --}}
         <div class="text-center mt-16 pt-4">
             <a href="{{ route('tutors.directory') }}"
-               class="inline-flex items-center gap-2.5 font-black text-xs uppercase tracking-widest px-8 py-4 rounded-xl border-2 border-zinc-800 hover:border-zinc-500 text-zinc-300 hover:text-white bg-transparent transition-all duration-300 hover:scale-105 active:scale-95 shadow-md">
+               class="view-all-btn inline-flex items-center gap-2.5 font-black text-xs uppercase tracking-widest px-8 py-4 rounded-xl border-2 border-zinc-800 hover:border-zinc-500 text-zinc-300 hover:text-white bg-transparent transition-all duration-300 hover:scale-105 active:scale-95 shadow-md">
                 View All Disciplines <i class="fas fa-arrow-right text-[10px]"></i>
             </a>
         </div>
