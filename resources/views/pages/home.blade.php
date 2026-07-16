@@ -783,7 +783,7 @@
             <h2 class="text-4xl font-black text-gray-900 leading-tight">Frequently Asked Questions</h2>
         </div>
 
-        <div class="max-w-3xl mx-auto space-y-4">
+        <div class="grid md:grid-cols-2 gap-4 md:gap-6 max-w-6xl mx-auto items-start">
             @php
                 $faqs = [
                     ['q' => 'Why choose Tutor Hub over other tutoring platforms?', 'a' => 'Tutor Hub is your trusted partner in unlocking academic excellence. Whether you prefer learning face to face in the comfort of your home or value the ease of personalized online sessions, Tutor Hub gives you both options with unmatched flexibility. We connect you with top-tier tutors who understand your needs and schedule. Begin your journey toward success with Tutor Hub today. Your goals are our priority.'],
@@ -798,7 +798,7 @@
             @endphp
 
             @foreach($faqs as $index => $faq)
-                <div class="faq-item border border-gray-100 rounded-3xl overflow-hidden transition-all hover:border-blue-200 mt-4" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
+                <div class="faq-item border border-gray-100 rounded-3xl overflow-hidden transition-all hover:border-blue-200 w-full" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
                     <button class="w-full text-left p-6 md:p-8 flex items-center justify-between gap-4 group" onclick="toggleFaq(this)">
                         <span class="text-lg font-bold text-gray-800 group-hover:text-blue-600 transition-colors">{{ $faq['q'] }}</span>
                         <span class="faq-icon w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 transition-transform duration-300">
