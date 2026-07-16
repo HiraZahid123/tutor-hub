@@ -156,9 +156,9 @@
                         Login
                     </button>
                 </a>
-                <a href="{{ route('find-a-tutor') }}">
+                <a href="{{ route('register') }}">
                     <button style="width:135px;height:40px;font-size:14px;font-weight:600;border-radius:6px;border:2px solid #2563EB;background:#2563EB;color:#fff;box-sizing:border-box;cursor:pointer;transition:all 0.3s;">
-                        Request Tutor
+                        Register
                     </button>
                 </a>
             @endauth
