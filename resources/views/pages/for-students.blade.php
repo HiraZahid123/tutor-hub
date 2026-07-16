@@ -444,7 +444,7 @@
         <div id="directory-lahore" class="directory-panel grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" data-aos="fade-up">
             {{-- O-Level Column --}}
             <div>
-                <h3 class="text-[13.5px] font-bold text-green-600 uppercase tracking-wider mb-4 border-b border-green-100 pb-2.5">O Level Home Tutors in Lahore</h3>
+                <h3 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-200 pb-2.5">O Level Home Tutors in Lahore</h3>
                 <ul class="space-y-2.5 text-[13px] text-gray-600">
                     <li><a href="javascript:void(0)" onclick="applyQuickFilter('chemistry', 'Lahore')" class="hover:text-blue-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-gray-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Chemistry Home Tutor in Lahore</span></a></li>
                     <li><a href="javascript:void(0)" onclick="applyQuickFilter('mathematics', 'Lahore')" class="hover:text-blue-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-gray-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Math Home Tutor in Lahore</span></a></li>
@@ -457,7 +457,7 @@
 
             {{-- A-Level Column --}}
             <div>
-                <h3 class="text-[13.5px] font-bold text-green-600 uppercase tracking-wider mb-4 border-b border-green-100 pb-2.5">A Level Home Tutors in Lahore</h3>
+                <h3 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-200 pb-2.5">A Level Home Tutors in Lahore</h3>
                 <ul class="space-y-2.5 text-[13px] text-gray-600">
                     <li><a href="javascript:void(0)" onclick="applyQuickFilter('chemistry', 'Lahore')" class="hover:text-blue-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-gray-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Chemistry Home Tutor in Lahore</span></a></li>
                     <li><a href="javascript:void(0)" onclick="applyQuickFilter('mathematics', 'Lahore')" class="hover:text-blue-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-gray-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Math Home Tutor in Lahore</span></a></li>
@@ -470,7 +470,7 @@
 
             {{-- IB Column --}}
             <div>
-                <h3 class="text-[13.5px] font-bold text-green-600 uppercase tracking-wider mb-4 border-b border-green-100 pb-2.5">IB Home Tutors in Lahore</h3>
+                <h3 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-200 pb-2.5">IB Home Tutors in Lahore</h3>
                 <ul class="space-y-2.5 text-[13px] text-gray-600">
                     <li><a href="javascript:void(0)" onclick="applyQuickFilter('chemistry', 'Lahore')" class="hover:text-blue-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-gray-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Chemistry Home Tutor in Lahore</span></a></li>
                     <li><a href="javascript:void(0)" onclick="applyQuickFilter('mathematics', 'Lahore')" class="hover:text-blue-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-gray-300 mt-1.5"></i><span class="leading-normal">IB Math Home Tutor in Lahore</span></a></li>
@@ -482,7 +482,7 @@
 
             {{-- Grade 1-8 Column --}}
             <div>
-                <h3 class="text-[13.5px] font-bold text-green-600 uppercase tracking-wider mb-4 border-b border-green-100 pb-2.5">Grade 1-8 Home Tutors in Lahore</h3>
+                <h3 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-200 pb-2.5">Grade 1-8 Home Tutors in Lahore</h3>
                 <ul class="space-y-2.5 text-[13px] text-gray-600">
                     <li><a href="javascript:void(0)" onclick="applyQuickFilter('montessori', 'Lahore')" class="hover:text-blue-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-gray-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Grade I Home Tutor in Lahore</span></a></li>
                     <li><a href="javascript:void(0)" onclick="applyQuickFilter('montessori', 'Lahore')" class="hover:text-blue-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-gray-300 mt-1.5"></i><span class="leading-normal">Grade II Home Tutor in Lahore</span></a></li>
@@ -498,7 +498,7 @@
         <div id="directory-karachi" class="directory-panel hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {{-- O-Level Column --}}
             <div>
-                <h3 class="text-[13.5px] font-bold text-green-600 uppercase tracking-wider mb-4 border-b border-green-100 pb-2.5">O Level Home Tutors in Karachi</h3>
+                <h3 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-200 pb-2.5">O Level Home Tutors in Karachi</h3>
                 <ul class="space-y-2.5 text-[13px] text-gray-600">
                     <li><a href="javascript:void(0)" onclick="applyQuickFilter('chemistry', 'Karachi')" class="hover:text-blue-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-gray-300 mt-1.5"></i><span class="leading-normal">O Level Chemistry Home Tutor in Karachi</span></a></li>
                     <li><a href="javascript:void(0)" onclick="applyQuickFilter('mathematics', 'Karachi')" class="hover:text-blue-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-gray-300 mt-1.5"></i><span class="leading-normal">O Level Math Home Tutor in Karachi</span></a></li>
@@ -511,7 +511,7 @@
 
             {{-- A-Level Column --}}
             <div>
-                <h3 class="text-[13.5px] font-bold text-green-600 uppercase tracking-wider mb-4 border-b border-green-100 pb-2.5">A Level Home Tutors in Karachi</h3>
+                <h3 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-200 pb-2.5">A Level Home Tutors in Karachi</h3>
                 <ul class="space-y-2.5 text-[13px] text-gray-600">
                     <li><a href="javascript:void(0)" onclick="applyQuickFilter('chemistry', 'Karachi')" class="hover:text-blue-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-gray-300 mt-1.5"></i><span class="leading-normal">A Level Chemistry Home Tutor in Karachi</span></a></li>
                     <li><a href="javascript:void(0)" onclick="applyQuickFilter('mathematics', 'Karachi')" class="hover:text-blue-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-gray-300 mt-1.5"></i><span class="leading-normal">A Level Math Home Tutor in Karachi</span></a></li>
@@ -524,7 +524,7 @@
 
             {{-- IB Column --}}
             <div>
-                <h3 class="text-[13.5px] font-bold text-green-600 uppercase tracking-wider mb-4 border-b border-green-100 pb-2.5">IB Home Tutors in Karachi</h3>
+                <h3 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-200 pb-2.5">IB Home Tutors in Karachi</h3>
                 <ul class="space-y-2.5 text-[13px] text-gray-600">
                     <li><a href="javascript:void(0)" onclick="applyQuickFilter('chemistry', 'Karachi')" class="hover:text-blue-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-gray-300 mt-1.5"></i><span class="leading-normal">IB Chemistry Home Tutor in Karachi</span></a></li>
                     <li><a href="javascript:void(0)" onclick="applyQuickFilter('mathematics', 'Karachi')" class="hover:text-blue-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-gray-300 mt-1.5"></i><span class="leading-normal">IB Math Home Tutor in Karachi</span></a></li>
@@ -536,7 +536,7 @@
 
             {{-- Grade 1-8 Column --}}
             <div>
-                <h3 class="text-[13.5px] font-bold text-green-600 uppercase tracking-wider mb-4 border-b border-green-100 pb-2.5">Grade 1-8 Home Tutors in Karachi</h3>
+                <h3 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-200 pb-2.5">Grade 1-8 Home Tutors in Karachi</h3>
                 <ul class="space-y-2.5 text-[13px] text-gray-600">
                     <li><a href="javascript:void(0)" onclick="applyQuickFilter('montessori', 'Karachi')" class="hover:text-blue-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-gray-300 mt-1.5"></i><span class="leading-normal">Grade I Home Tutor in Karachi</span></a></li>
                     <li><a href="javascript:void(0)" onclick="applyQuickFilter('montessori', 'Karachi')" class="hover:text-blue-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-gray-300 mt-1.5"></i><span class="leading-normal">Grade II Home Tutor in Karachi</span></a></li>
@@ -552,7 +552,7 @@
         <div id="directory-islamabad" class="directory-panel hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {{-- O-Level Column --}}
             <div>
-                <h3 class="text-[13.5px] font-bold text-green-600 uppercase tracking-wider mb-4 border-b border-green-100 pb-2.5">O Level Home Tutors in Islamabad</h3>
+                <h3 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-200 pb-2.5">O Level Home Tutors in Islamabad</h3>
                 <ul class="space-y-2.5 text-[13px] text-gray-600">
                     <li><a href="javascript:void(0)" onclick="applyQuickFilter('chemistry', 'Islamabad')" class="hover:text-blue-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-gray-300 mt-1.5"></i><span class="leading-normal">O Level Chemistry Home Tutor in Islamabad</span></a></li>
                     <li><a href="javascript:void(0)" onclick="applyQuickFilter('mathematics', 'Islamabad')" class="hover:text-blue-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-gray-300 mt-1.5"></i><span class="leading-normal">O Level Math Home Tutor in Islamabad</span></a></li>
@@ -565,7 +565,7 @@
 
             {{-- A-Level Column --}}
             <div>
-                <h3 class="text-[13.5px] font-bold text-green-600 uppercase tracking-wider mb-4 border-b border-green-100 pb-2.5">A Level Home Tutors in Islamabad</h3>
+                <h3 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-200 pb-2.5">A Level Home Tutors in Islamabad</h3>
                 <ul class="space-y-2.5 text-[13px] text-gray-600">
                     <li><a href="javascript:void(0)" onclick="applyQuickFilter('chemistry', 'Islamabad')" class="hover:text-blue-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-gray-300 mt-1.5"></i><span class="leading-normal">A Level Chemistry Home Tutor in Islamabad</span></a></li>
                     <li><a href="javascript:void(0)" onclick="applyQuickFilter('mathematics', 'Islamabad')" class="hover:text-blue-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-gray-300 mt-1.5"></i><span class="leading-normal">A Level Math Home Tutor in Islamabad</span></a></li>
@@ -578,7 +578,7 @@
 
             {{-- IB Column --}}
             <div>
-                <h3 class="text-[13.5px] font-bold text-green-600 uppercase tracking-wider mb-4 border-b border-green-100 pb-2.5">IB Home Tutors in Islamabad</h3>
+                <h3 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-200 pb-2.5">IB Home Tutors in Islamabad</h3>
                 <ul class="space-y-2.5 text-[13px] text-gray-600">
                     <li><a href="javascript:void(0)" onclick="applyQuickFilter('chemistry', 'Islamabad')" class="hover:text-blue-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-gray-300 mt-1.5"></i><span class="leading-normal">IB Chemistry Home Tutor in Islamabad</span></a></li>
                     <li><a href="javascript:void(0)" onclick="applyQuickFilter('mathematics', 'Islamabad')" class="hover:text-blue-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-gray-300 mt-1.5"></i><span class="leading-normal">IB Math Home Tutor in Islamabad</span></a></li>
@@ -590,7 +590,7 @@
 
             {{-- Grade 1-8 Column --}}
             <div>
-                <h3 class="text-[13.5px] font-bold text-green-600 uppercase tracking-wider mb-4 border-b border-green-100 pb-2.5">Grade 1-8 Home Tutors in Islamabad</h3>
+                <h3 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-200 pb-2.5">Grade 1-8 Home Tutors in Islamabad</h3>
                 <ul class="space-y-2.5 text-[13px] text-gray-600">
                     <li><a href="javascript:void(0)" onclick="applyQuickFilter('montessori', 'Islamabad')" class="hover:text-blue-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-gray-300 mt-1.5"></i><span class="leading-normal">Grade I Home Tutor in Islamabad</span></a></li>
                     <li><a href="javascript:void(0)" onclick="applyQuickFilter('montessori', 'Islamabad')" class="hover:text-blue-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-gray-300 mt-1.5"></i><span class="leading-normal">Grade II Home Tutor in Islamabad</span></a></li>
