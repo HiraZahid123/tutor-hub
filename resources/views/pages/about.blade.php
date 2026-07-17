@@ -14,30 +14,42 @@
 
             <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                 <!-- CEO/Co-Founder -->
-                <div class="bg-white rounded-[2rem] p-8 shadow-md hover:shadow-xl border border-gray-100 text-center hover:-translate-y-2 transition-all duration-300 group">
-                    <div class="w-48 h-48 mx-auto rounded-full overflow-hidden mb-6 border-4 border-white shadow-lg group-hover:scale-105 transition-transform duration-500">
-                        <img src="{{ asset('images/aftab alam.png') }}" alt="Engr. Hafiz Aftab Alam" class="w-full h-full object-cover" style="transform: scale(1.35) translateY(10px); object-position: center 15%;">
+                <div class="bg-white rounded-[2rem] p-8 shadow-md hover:shadow-xl border border-gray-100 text-center hover:-translate-y-2 transition-all duration-300 group h-full flex flex-col justify-between">
+                    <div>
+                        <div class="w-48 h-48 mx-auto rounded-full overflow-hidden mb-6 border-4 border-white shadow-lg group-hover:scale-105 transition-transform duration-500">
+                            <img src="{{ asset('images/aftab alam.png') }}" alt="Engr. Hafiz Aftab Alam" class="w-full h-full object-cover" style="transform: scale(1.35) translateY(10px); object-position: center 15%;">
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-1">Engr. Hafiz Aftab Alam</h3>
+                        <p class="text-blue-600 font-semibold text-sm uppercase tracking-wider">Co-Founder & CEO</p>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-1">Engr. Hafiz Aftab Alam</h3>
-                    <p class="text-blue-600 font-semibold text-sm uppercase tracking-wider">Co-Founder & CEO</p>
+                    <div class="mt-6 flex justify-center">
+                        <a href="https://www.linkedin.com/in/hafiz-aftab-alam-b7b676411" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 bg-[#0a66c2] hover:bg-[#004182] text-white text-xs font-semibold rounded-full shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 transform">
+                            <i class="fab fa-linkedin text-sm"></i>
+                            <span>Connect on LinkedIn</span>
+                        </a>
+                    </div>
                 </div>
 
                 <!-- Academic Director -->
-                <div class="bg-white rounded-[2rem] p-8 shadow-md hover:shadow-xl border border-gray-100 text-center hover:-translate-y-2 transition-all duration-300 group">
-                    <div class="w-48 h-48 mx-auto rounded-full overflow-hidden mb-6 border-4 border-white shadow-lg group-hover:scale-105 transition-transform duration-500">
-                        <img src="{{ asset('images/Usama Mustafa Academic Director.png') }}" alt="Usama Mustafa" class="w-full h-full object-cover" style="object-position: center 15%;">
+                <div class="bg-white rounded-[2rem] p-8 shadow-md hover:shadow-xl border border-gray-100 text-center hover:-translate-y-2 transition-all duration-300 group h-full flex flex-col justify-between">
+                    <div>
+                        <div class="w-48 h-48 mx-auto rounded-full overflow-hidden mb-6 border-4 border-white shadow-lg group-hover:scale-105 transition-transform duration-500">
+                            <img src="{{ asset('images/Usama Mustafa Academic Director.png') }}" alt="Usama Mustafa" class="w-full h-full object-cover" style="object-position: center 15%;">
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-1">Usama Mustafa</h3>
+                        <p class="text-blue-600 font-semibold text-sm uppercase tracking-wider">Academic Director</p>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-1">Usama Mustafa</h3>
-                    <p class="text-blue-600 font-semibold text-sm uppercase tracking-wider">Academic Director</p>
                 </div>
 
                 <!-- Head of Operations -->
-                <div class="bg-white rounded-[2rem] p-8 shadow-md hover:shadow-xl border border-gray-100 text-center hover:-translate-y-2 transition-all duration-300 group">
-                    <div class="w-48 h-48 mx-auto rounded-full overflow-hidden mb-6 border-4 border-white shadow-lg group-hover:scale-105 transition-transform duration-500">
-                        <img src="{{ asset('images/Khurram Mustafa Head of Operational Excellence (2).png') }}" alt="Khurram Mustafa" class="w-full h-full object-cover" style="object-position: center 15%;">
+                <div class="bg-white rounded-[2rem] p-8 shadow-md hover:shadow-xl border border-gray-100 text-center hover:-translate-y-2 transition-all duration-300 group h-full flex flex-col justify-between">
+                    <div>
+                        <div class="w-48 h-48 mx-auto rounded-full overflow-hidden mb-6 border-4 border-white shadow-lg group-hover:scale-105 transition-transform duration-500">
+                            <img src="{{ asset('images/Khurram Mustafa Head of Operational Excellence (2).png') }}" alt="Khurram Mustafa" class="w-full h-full object-cover" style="object-position: center 15%;">
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-1">Khurram Mustafa</h3>
+                        <p class="text-blue-600 font-semibold text-sm uppercase tracking-wider">Head of Operational Excellence</p>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-1">Khurram Mustafa</h3>
-                    <p class="text-blue-600 font-semibold text-sm uppercase tracking-wider">Head of Operational Excellence</p>
                 </div>
             </div>
         </div>
