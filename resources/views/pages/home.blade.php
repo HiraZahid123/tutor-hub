@@ -786,14 +786,38 @@
         <div class="grid md:grid-cols-2 gap-4 md:gap-6 max-w-6xl mx-auto items-start">
             @php
                 $faqs = [
-                    ['q' => 'Why choose Tutor Hub over other tutoring platforms?', 'a' => 'Tutor Hub is your trusted partner in unlocking academic excellence. Whether you prefer learning face to face in the comfort of your home or value the ease of personalized online sessions, Tutor Hub gives you both options with unmatched flexibility. We connect you with top-tier tutors who understand your needs and schedule. Begin your journey toward success with Tutor Hub today. Your goals are our priority.'],
-                    ['q' => 'Is it safe to hire a tutor through Tutor Hub?', 'a' => 'At Tutor Hub, your safety and trust come first. Every tutor in our network is carefully screened with verified documents and professional references before joining our platform. We believe in full transparency so you can make informed decisions with confidence. Parents are always encouraged to stay involved, observe sessions, and evaluate tutors firsthand. With a built-in rating and review system, you get real insights from real families. Your peace of mind is our promise.'],
-                    ['q' => 'How does Tutor Hub verify its tutors?', 'a' => 'At Tutor Hub, we follow a strict verification process to ensure only qualified and trustworthy individuals join our platform. Every tutor must submit personal identification documents, including CNIC and academic credentials. These are carefully cross-checked for authenticity. Until all required documents are reviewed and confirmed, no tutor is connected with any student. This process is in place to protect your trust and ensure quality at every step.'],
-                    ['q' => 'Does Tutor Hub offer free trial sessions?', 'a' => 'Absolutely. At Tutor Hub, we believe you should experience the quality before making a commitment. That is why we offer free trial sessions to help you get comfortable with our teaching style. You can enjoy a 2-day free home tutoring trial or a 1-hour online session, all scheduled around your convenience. No pressure. Just a chance to see the difference the right tutor can make.'],
-                    ['q' => 'How can I schedule a tutoring session with Tutor Hub?', 'a' => 'Scheduling a session with Tutor Hub is quick and easy. Whether you prefer home tutoring or online learning, our dedicated team is always ready to assist. Simply give us a call or send a message on WhatsApp, and our administrators will walk you through every step of the process with care and clarity. Your learning journey begins with one simple message. +92 3414133395'],
-                    ['q' => 'How long is each tutoring session at Tutor Hub?', 'a' => 'At Tutor Hub, we understand that every learner has unique needs. That is why our sessions are designed with flexibility in mind. While the minimum booking time is 1 hour, you are free to extend your session based on your goals and pace. This gives you the freedom to dive deeper into your subject and get the most out of every moment with your tutor.'],
-                    ['q' => 'How much do tutors earn at Tutor Hub?', 'a' => 'At Tutor Hub, we value the hard work and dedication of our tutors. That is why we offer a competitive monthly earning structure based on each tutor’s experience and qualifications. To support our platform’s operations and ensure top-quality service for students, a 50 percent commission is applied only on the first month’s earnings. This allows us to maintain a reliable system that benefits both tutors and learners alike.'],
-                    ['q' => 'How can I become a tutor with Tutor Hub?', 'a' => 'Tutor Hub proudly welcomes passionate and qualified educators to join our growing team. The process is simple and straightforward. Just sign up through our website and share your profile along with your educational background. Once your documents and personal details are verified by our team, you will be ready to start connecting with students and making a real impact. Your journey toward meaningful teaching starts here.'],
+                    [
+                        'q' => 'Why choose Tutor Hub over other tutoring platforms?',
+                        'a' => 'Tutor Hub is your trusted partner in unlocking academic excellence. Whether you prefer learning face to face in the comfort of your home or value the ease of personalized online sessions, Tutor Hub gives you both options with unmatched flexibility. We connect you with <a href="' . route('for-students') . '" class="text-blue-600 font-bold hover:underline">best Tutor</a> who understand your needs and schedule. Begin your journey toward success with Tutor Hub today. Your goals are our priority.'
+                    ],
+                    [
+                        'q' => 'Is it safe to hire a tutor through Tutor Hub?',
+                        'a' => 'At Tutor Hub, your safety and trust come first. Every tutor in our network is carefully screened with verified documents and professional references before joining our platform. We believe in full transparency so you can make informed decisions with confidence. <span class="text-blue-600 font-bold underline cursor-default">Parents are always encouraged</span> to stay involved, observe sessions, and evaluate tutors firsthand. With a built-in rating and review system, you get real insights from real families. Your peace of mind is our promise.'
+                    ],
+                    [
+                        'q' => 'How does Tutor Hub verify its tutors?',
+                        'a' => 'At Tutor Hub, we follow a strict verification process to ensure only qualified and trustworthy individuals join our platform. <span class="text-blue-600 font-bold underline cursor-default">Every tutor must submit personal identification documents, including CNIC and academic credentials.</span> These are carefully cross-checked for authenticity. Until all required documents are reviewed and confirmed, no tutor is connected with any student. This process is in place to protect your trust and ensure quality at every step.'
+                    ],
+                    [
+                        'q' => 'Does Tutor Hub offer free trial sessions?',
+                        'a' => 'Absolutely. At Tutor Hub, we believe you should experience the quality before making a commitment. That is why we offer free trial sessions to help you get comfortable with our teaching style. You can enjoy a <span class="text-blue-600 font-bold underline cursor-default">2-day free home tutoring trial or a 1-hour online session</span>, all scheduled around your convenience. No pressure. Just a chance to see the difference the right tutor can make.'
+                    ],
+                    [
+                        'q' => 'How can I schedule a tutoring session with Tutor Hub?',
+                        'a' => 'Scheduling a session with Tutor Hub is quick and easy. Whether you prefer home tutoring or online learning, our dedicated team is always ready to assist. Simply give us a call or send a message on WhatsApp, and our administrators will walk you through every step of the process with care and clarity. Your learning journey begins with one simple message. <a href="https://wa.me/923414133395" target="_blank" class="text-blue-600 font-bold hover:underline">+92 3414133395</a>'
+                    ],
+                    [
+                        'q' => 'How long is each tutoring session at Tutor Hub?',
+                        'a' => 'At Tutor Hub, we understand that every learner has unique needs. That is why our sessions are designed with flexibility in mind. <span class="text-blue-600 font-bold underline cursor-default">While the minimum booking time is 1 hour</span>, you are free to extend your session based on your goals and pace. This gives you the freedom to dive deeper into your subject and get the most out of every moment with your tutor.'
+                    ],
+                    [
+                        'q' => 'How much do tutors earn at Tutor Hub?',
+                        'a' => 'At Tutor Hub, we value the hard work and dedication of our tutors. That is why we offer a competitive monthly earning structure based on each tutor’s experience and qualifications. To support our platform’s operations and ensure top-quality service for students, a 50 percent commission is applied only on the first month’s earnings. This allows us to maintain a reliable system that benefits both tutors and learners alike.'
+                    ],
+                    [
+                        'q' => 'How can I become a tutor with Tutor Hub?',
+                        'a' => 'Tutor Hub proudly welcomes passionate and qualified educators to join our growing team. The process is simple and straightforward. Just <a href="' . route('register-tutor') . '" class="text-blue-600 font-bold hover:underline">sign up through our website</a> and share your profile along with your educational background. Once your documents and personal details are <a href="' . route('about') . '" class="text-blue-600 font-bold hover:underline">verified by our team</a>, you will be ready to start connecting with students and making a real impact. Your journey toward meaningful teaching starts here.'
+                    ],
                 ];
 
                 $leftFaqs = [];
@@ -823,7 +847,7 @@
                         </button>
                         <div class="faq-content h-0 opacity-0 overflow-hidden transition-all duration-300 bg-gray-50/50">
                             <div class="p-8 pt-0 text-gray-500 leading-relaxed font-medium">
-                                {{ $faq['a'] }}
+                                {!! $faq['a'] !!}
                             </div>
                         </div>
                     </div>
@@ -846,7 +870,7 @@
                         </button>
                         <div class="faq-content h-0 opacity-0 overflow-hidden transition-all duration-300 bg-gray-50/50">
                             <div class="p-8 pt-0 text-gray-500 leading-relaxed font-medium">
-                                {{ $faq['a'] }}
+                                {!! $faq['a'] !!}
                             </div>
                         </div>
                     </div>
