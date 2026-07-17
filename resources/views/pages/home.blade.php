@@ -764,7 +764,7 @@
                     {{-- READ MORE Button --}}
                     <div class="text-center pt-4">
                         <a href="{{ route('for-students') }}{{ $cityVal ? '?city='.$cityVal : '' }}"
-                           class="inline-flex items-center gap-2 font-black text-xs uppercase tracking-widest px-8 py-3.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white transition-all duration-300 hover:scale-105 active:scale-95 shadow-md hover:shadow-orange-500/25">
+                           class="read-more-btn inline-flex items-center gap-2 font-black text-xs uppercase tracking-widest px-8 py-3.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white transition-all duration-300 hover:scale-105 active:scale-95 shadow-md hover:shadow-orange-500/25">
                             Read More Tutors in {{ $name }} <i class="fas fa-arrow-right text-[10px]"></i>
                         </a>
                     </div>
@@ -907,33 +907,68 @@
     #online-directory-section ul {
         color: #52525b !important;
     }
+    #online-directory-section ul a {
+        text-decoration: underline !important;
+    }
     #online-directory-section i {
         color: #a1a1aa !important;
     }
-    #online-directory-section .view-all-btn {
+    #online-directory-section .view-all-btn,
+    .read-more-btn {
+        position: relative;
+        z-index: 10;
         border-color: #f97316 !important;
         color: #ffffff !important;
         background-color: #f97316 !important;
-        animation: orangePulse 2.2s infinite ease-in-out;
         box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3) !important;
     }
-    #online-directory-section .view-all-btn:hover {
+    #online-directory-section .view-all-btn:hover,
+    .read-more-btn:hover {
         border-color: #ea580c !important;
         color: #ffffff !important;
         background-color: #ea580c !important;
         box-shadow: 0 6px 20px rgba(249, 115, 22, 0.5) !important;
     }
-    #online-directory-section .view-all-btn i {
+    #online-directory-section .view-all-btn i,
+    .read-more-btn i {
         color: inherit !important;
     }
-    @keyframes orangePulse {
-        0%, 100% {
-            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3) !important;
-            filter: brightness(1);
+    #online-directory-section .view-all-btn::before,
+    #online-directory-section .view-all-btn::after,
+    .read-more-btn::before,
+    .read-more-btn::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0.75rem; /* rounded-xl */
+        background-color: #f97316;
+        opacity: 0.6;
+        z-index: -1;
+        pointer-events: none;
+    }
+    #online-directory-section .view-all-btn::before,
+    .read-more-btn::before {
+        animation: orangePulseOut 2.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    }
+    #online-directory-section .view-all-btn::after,
+    .read-more-btn::after {
+        animation: orangePulseOut 2.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+        animation-delay: 1.1s;
+    }
+    @keyframes orangePulseOut {
+        0% {
+            transform: scale(1);
+            opacity: 0.6;
         }
         50% {
-            box-shadow: 0 0 25px 8px rgba(249, 115, 22, 0.7) !important;
-            filter: brightness(1.15);
+            opacity: 0.4;
+        }
+        100% {
+            transform: scale(1.15, 1.35);
+            opacity: 0;
         }
     }
 </style>
