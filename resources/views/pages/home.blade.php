@@ -795,23 +795,63 @@
                     ['q' => 'How much do tutors earn at Tutor Hub?', 'a' => 'At Tutor Hub, we value the hard work and dedication of our tutors. That is why we offer a competitive monthly earning structure based on each tutor’s experience and qualifications. To support our platform’s operations and ensure top-quality service for students, a 50 percent commission is applied only on the first month’s earnings. This allows us to maintain a reliable system that benefits both tutors and learners alike.'],
                     ['q' => 'How can I become a tutor with Tutor Hub?', 'a' => 'Tutor Hub proudly welcomes passionate and qualified educators to join our growing team. The process is simple and straightforward. Just sign up through our website and share your profile along with your educational background. Once your documents and personal details are verified by our team, you will be ready to start connecting with students and making a real impact. Your journey toward meaningful teaching starts here.'],
                 ];
+
+                $leftFaqs = [];
+                $rightFaqs = [];
+                foreach ($faqs as $index => $faq) {
+                    if ($index % 2 == 0) {
+                        $leftFaqs[] = ['faq' => $faq, 'index' => $index];
+                    } else {
+                        $rightFaqs[] = ['faq' => $faq, 'index' => $index];
+                    }
+                }
             @endphp
 
-            @foreach($faqs as $index => $faq)
-                <div class="faq-item border border-gray-100 rounded-3xl overflow-hidden transition-all hover:border-blue-200 w-full" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
-                    <button class="w-full text-left p-6 md:p-8 flex items-center justify-between gap-4 group" onclick="toggleFaq(this)">
-                        <span class="text-lg font-bold text-gray-800 group-hover:text-blue-600 transition-colors">{{ $faq['q'] }}</span>
-                        <span class="faq-icon w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 transition-transform duration-300">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
-                        </span>
-                    </button>
-                    <div class="faq-content h-0 opacity-0 overflow-hidden transition-all duration-300 bg-gray-50/50">
-                        <div class="p-8 pt-0 text-gray-500 leading-relaxed font-medium">
-                            {{ $faq['a'] }}
+            {{-- Left Column --}}
+            <div class="space-y-4 md:space-y-6">
+                @foreach($leftFaqs as $item)
+                    @php
+                        $faq = $item['faq'];
+                        $index = $item['index'];
+                    @endphp
+                    <div class="faq-item border border-gray-100 rounded-3xl overflow-hidden transition-all hover:border-blue-200 w-full" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
+                        <button class="w-full text-left p-6 md:p-8 flex items-center justify-between gap-4 group" onclick="toggleFaq(this)">
+                            <span class="text-lg font-bold text-gray-800 group-hover:text-blue-600 transition-colors">{{ $faq['q'] }}</span>
+                            <span class="faq-icon w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </button>
+                        <div class="faq-content h-0 opacity-0 overflow-hidden transition-all duration-300 bg-gray-50/50">
+                            <div class="p-8 pt-0 text-gray-500 leading-relaxed font-medium">
+                                {{ $faq['a'] }}
+                            </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
+
+            {{-- Right Column --}}
+            <div class="space-y-4 md:space-y-6">
+                @foreach($rightFaqs as $item)
+                    @php
+                        $faq = $item['faq'];
+                        $index = $item['index'];
+                    @endphp
+                    <div class="faq-item border border-gray-100 rounded-3xl overflow-hidden transition-all hover:border-blue-200 w-full" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
+                        <button class="w-full text-left p-6 md:p-8 flex items-center justify-between gap-4 group" onclick="toggleFaq(this)">
+                            <span class="text-lg font-bold text-gray-800 group-hover:text-blue-600 transition-colors">{{ $faq['q'] }}</span>
+                            <span class="faq-icon w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 transition-transform duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </button>
+                        <div class="faq-content h-0 opacity-0 overflow-hidden transition-all duration-300 bg-gray-50/50">
+                            <div class="p-8 pt-0 text-gray-500 leading-relaxed font-medium">
+                                {{ $faq['a'] }}
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </div>
 </section>
@@ -871,14 +911,30 @@
         color: #a1a1aa !important;
     }
     #online-directory-section .view-all-btn {
-        border-color: #d4d4d8 !important;
-        color: #52525b !important;
-        background-color: #ffffff !important;
+        border-color: #f97316 !important;
+        color: #ffffff !important;
+        background-color: #f97316 !important;
+        animation: orangePulse 2.2s infinite ease-in-out;
+        box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3) !important;
     }
     #online-directory-section .view-all-btn:hover {
-        border-color: #a1a1aa !important;
-        color: #18181b !important;
-        background-color: #f4f4f5 !important;
+        border-color: #ea580c !important;
+        color: #ffffff !important;
+        background-color: #ea580c !important;
+        box-shadow: 0 6px 20px rgba(249, 115, 22, 0.5) !important;
+    }
+    #online-directory-section .view-all-btn i {
+        color: inherit !important;
+    }
+    @keyframes orangePulse {
+        0%, 100% {
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3) !important;
+            filter: brightness(1);
+        }
+        50% {
+            box-shadow: 0 0 25px 8px rgba(249, 115, 22, 0.7) !important;
+            filter: brightness(1.15);
+        }
     }
 </style>
 <section id="online-directory-section" class="py-16 bg-zinc-950 border-t border-zinc-900 text-white overflow-hidden">
