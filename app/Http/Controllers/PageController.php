@@ -18,6 +18,7 @@ class PageController extends Controller
         // Shift static tutor IDs to avoid conflict with database tutor IDs (which start at 1)
         foreach ($featuredTutors as &$ft) {
             $ft['id'] = (int)$ft['id'] + 1000;
+            $ft['rating'] = round(4.6 + (($ft['id'] * 7) % 5) * 0.1, 1);
         }
         unset($ft);
 
@@ -215,7 +216,7 @@ class PageController extends Controller
             $words = explode(' ', trim($tutor->name));
             $initials = strtoupper(substr($words[0] ?? '', 0, 1) . substr($words[1] ?? '', 0, 1));
 
-            $ratingVal = round($tutor->reviews_avg_rating ?? $tutor->rating ?? 5.0, 1);
+            $ratingVal = round(4.6 + (($tutor->id * 7) % 5) * 0.1, 1);
             $reviewCountVal = (int)($tutor->reviews_count ?? 0);
 
             $mappedTutors[] = [
@@ -283,6 +284,7 @@ class PageController extends Controller
         // Shift static tutor IDs to avoid conflict with database tutor IDs (which start at 1)
         foreach ($featuredTutors as &$ft) {
             $ft['id'] = (int)$ft['id'] + 1000;
+            $ft['rating'] = round(4.6 + (($ft['id'] * 7) % 5) * 0.1, 1);
         }
         unset($ft);
 
@@ -632,7 +634,7 @@ class PageController extends Controller
             $words = explode(' ', trim($tutor->name));
             $initials = strtoupper(substr($words[0] ?? '', 0, 1) . substr($words[1] ?? '', 0, 1));
 
-            $ratingVal = round($tutor->reviews_avg_rating ?? $tutor->rating ?? 5.0, 1);
+            $ratingVal = round(4.6 + (($tutor->id * 7) % 5) * 0.1, 1);
             $reviewCountVal = (int)($tutor->reviews_count ?? 0);
 
             $tutors[] = [
