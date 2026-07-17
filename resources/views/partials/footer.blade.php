@@ -20,11 +20,10 @@
                         </p>
                     </div>
                     <div class="flex items-center gap-3">
-                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-slate-900 border border-slate-800 rounded-full hover:bg-orange-500 hover:text-white transition-all text-[#FF0000] shadow-sm"><i class="fab fa-youtube"></i></a>
-                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-slate-900 border border-slate-800 rounded-full hover:bg-orange-500 hover:text-white transition-all text-[#1877F2] shadow-sm"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-slate-900 border border-slate-800 rounded-full hover:bg-orange-500 hover:text-white transition-all text-[#E1306C] shadow-sm"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-slate-900 border border-slate-800 rounded-full hover:bg-orange-500 hover:text-white transition-all text-white shadow-sm"><i class="fab fa-tiktok"></i></a>
-                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-slate-900 border border-slate-800 rounded-full hover:bg-orange-500 hover:text-white transition-all text-[#0A66C2] shadow-sm"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.youtube.com/@AHomeTuitionServices" target="_blank" class="w-10 h-10 flex items-center justify-center bg-slate-900 border border-slate-800 rounded-full hover:bg-orange-500 hover:text-white transition-all text-[#FF0000] shadow-sm" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.facebook.com/ahometuitionservices" target="_blank" class="w-10 h-10 flex items-center justify-center bg-slate-900 border border-slate-800 rounded-full hover:bg-orange-500 hover:text-white transition-all text-[#1877F2] shadow-sm" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/aftabalam7984" target="_blank" class="w-10 h-10 flex items-center justify-center bg-slate-900 border border-slate-800 rounded-full hover:bg-orange-500 hover:text-white transition-all text-[#E1306C] shadow-sm" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.threads.net/@aftabalam7984" target="_blank" class="w-10 h-10 flex items-center justify-center bg-slate-900 border border-slate-800 rounded-full hover:bg-orange-500 hover:text-white transition-all text-white shadow-sm" title="Threads"><i class="fab fa-threads"></i></a>
                     </div>
                 </div>
 
