@@ -42,17 +42,164 @@ class PageController extends Controller
 
         $mappedTutors = [];
         foreach ($dbTutors as $tutor) {
-            $city = 'Lahore';
-            $area = 'Johar Town';
+            $city = 'Others';
+            $area = 'Others';
 
             if (strtolower($tutor->country) === 'pk') {
                 $searchString = strtolower($tutor->university . ' ' . $tutor->bio . ' ' . $tutor->teaching_experience);
                 if (str_contains($searchString, 'karachi')) {
                     $city = 'Karachi';
                     $area = 'DHA Karachi';
-                } elseif (str_contains($searchString, 'islamabad') || str_contains($searchString, 'rawalpindi')) {
+                } elseif (str_contains($searchString, 'rawalpindi')) {
+                    $city = 'Rawalpindi';
+                    $area = 'Satellite Town';
+                } elseif (str_contains($searchString, 'islamabad')) {
                     $city = 'Islamabad';
                     $area = 'F-7';
+                } elseif (str_contains($searchString, 'lahore')) {
+                    $city = 'Lahore';
+                    if (str_contains($searchString, 'askari')) {
+                        $area = 'Askari';
+                    } elseif (str_contains($searchString, 'iqbal town')) {
+                        $area = 'Allama Iqbal Town';
+                    } elseif (str_contains($searchString, 'rehman garden')) {
+                        $area = 'Al-Rehman Gardens';
+                    } elseif (str_contains($searchString, 'architect')) {
+                        $area = 'Architect Society';
+                    } elseif (str_contains($searchString, 'audits')) {
+                        $area = 'Audits and Accounts Society';
+                    } elseif (str_contains($searchString, 'abdalian')) {
+                        $area = 'Abdalian Society';
+                    } elseif (str_contains($searchString, 'bahria')) {
+                        if (str_contains($searchString, 'orchard')) {
+                            $area = 'Bahria Orchard';
+                        } else {
+                            $area = 'Bahria Town';
+                        }
+                    } elseif (str_contains($searchString, 'cantt')) {
+                        if (str_contains($searchString, 'walton')) {
+                            $area = 'Walton Cantt';
+                        } else {
+                            $area = 'Cantt';
+                        }
+                    } elseif (str_contains($searchString, 'cavalry')) {
+                        $area = 'Cavalry Ground';
+                    } elseif (str_contains($searchString, 'dha')) {
+                        if (str_contains($searchString, 'rahbar')) {
+                            $area = 'DHA Rahbar';
+                        } elseif (str_contains($searchString, 'phase 5') || str_contains($searchString, 'phase 6')) {
+                            $area = 'DHA Phase 5,6';
+                        } elseif (str_contains($searchString, 'phase 7') || str_contains($searchString, 'phase 8') || str_contains($searchString, 'phase 9')) {
+                            $area = 'DHA Phase 7,8,9';
+                        } else {
+                            $area = 'DHA Phase 1,2,3,4';
+                        }
+                    } elseif (str_contains($searchString, 'divine')) {
+                        $area = 'Divine Gardens';
+                    } elseif (str_contains($searchString, 'eden')) {
+                        $area = 'Eden Society';
+                    } elseif (str_contains($searchString, 'eme')) {
+                        $area = 'EME Society';
+                    } elseif (str_contains($searchString, 'ferozpur')) {
+                        $area = 'Ferozpur Road';
+                    } elseif (str_contains($searchString, 'faisal town')) {
+                        $area = 'Faisal Town';
+                    } elseif (str_contains($searchString, 'fazaia')) {
+                        $area = 'Fazaia Housing Scheme';
+                    } elseif (str_contains($searchString, 'formanite')) {
+                        $area = 'Formanites Housing Scheme';
+                    } elseif (str_contains($searchString, 'gulberg')) {
+                        if (str_contains($searchString, 'gulberg 1') || str_contains($searchString, 'gulberg i')) {
+                            $area = 'Gulberg 1';
+                        } elseif (str_contains($searchString, 'gulberg 2') || str_contains($searchString, 'gulberg ii')) {
+                            $area = 'Gulberg 2';
+                        } elseif (str_contains($searchString, 'gulberg 3') || str_contains($searchString, 'gulberg iii')) {
+                            $area = 'Gulberg 3';
+                        } else {
+                            $area = 'Gulberg 1';
+                        }
+                    } elseif (str_contains($searchString, 'garden town')) {
+                        if (str_contains($searchString, 'new garden')) {
+                            $area = 'New Garden Town';
+                        } else {
+                            $area = 'Garden Town';
+                        }
+                    } elseif (str_contains($searchString, 'gulshan ravi')) {
+                        $area = 'Gulshan Ravi';
+                    } elseif (str_contains($searchString, 'green town')) {
+                        $area = 'Green Town';
+                    } elseif (str_contains($searchString, 'gor')) {
+                        $area = 'GOR';
+                    } elseif (str_contains($searchString, 'harbanspura')) {
+                        $area = 'Harbanspura';
+                    } elseif (str_contains($searchString, 'izmir')) {
+                        $area = 'Izmir Town';
+                    } elseif (str_contains($searchString, 'ichra')) {
+                        $area = 'Ichra';
+                    } elseif (str_contains($searchString, 'iep') || str_contains($searchString, 'engineers town')) {
+                        $area = 'IEP Engineers Town';
+                    } elseif (str_contains($searchString, 'johar town')) {
+                        $area = 'Johar Town';
+                    } elseif (str_contains($searchString, 'jubilee')) {
+                        $area = 'Jubilee Town';
+                    } elseif (str_contains($searchString, 'kot lakhpat')) {
+                        $area = 'Kot Lakhpat';
+                    } elseif (str_contains($searchString, 'lake city')) {
+                        $area = 'Lake City';
+                    } elseif (str_contains($searchString, 'model town')) {
+                        $area = 'Model Town';
+                    } elseif (str_contains($searchString, 'mughalpura') || str_contains($searchString, 'mughal pura')) {
+                        $area = 'Mughalpura';
+                    } elseif (str_contains($searchString, 'muslim town')) {
+                        $area = 'Muslim Town';
+                    } elseif (str_contains($searchString, 'mustafa town')) {
+                        $area = 'Mustafa Town';
+                    } elseif (str_contains($searchString, 'peco')) {
+                        $area = 'Peco Road';
+                    } elseif (str_contains($searchString, 'raiwind')) {
+                        $area = 'Raiwind Road';
+                    } elseif (str_contains($searchString, 'revenue')) {
+                        $area = 'Revenue Society';
+                    } elseif (str_contains($searchString, 'state life')) {
+                        $area = 'State Life Housing Society';
+                    } elseif (str_contains($searchString, 'samanabad')) {
+                        $area = 'Samanabad';
+                    } elseif (str_contains($searchString, 'sabzazar')) {
+                        $area = 'Sabzazar';
+                    } elseif (str_contains($searchString, 'sui gas')) {
+                        $area = 'Sui Gas Society';
+                    } elseif (str_contains($searchString, 'shadab')) {
+                        $area = 'Shadab Gardens';
+                    } elseif (str_contains($searchString, 'tajpura')) {
+                        $area = 'Tajpura';
+                    } elseif (str_contains($searchString, 'thokar')) {
+                        $area = 'Thokar Niaz Baig';
+                    } elseif (str_contains($searchString, 'township') || str_contains($searchString, 'town ship')) {
+                        $area = 'Town Ship';
+                    } elseif (str_contains($searchString, 'uet')) {
+                        $area = 'UET Housing Society';
+                    } elseif (str_contains($searchString, 'valencia')) {
+                        $area = 'Valencia Housing Society';
+                    } elseif (str_contains($searchString, 'vital')) {
+                        $area = 'Vital Homes Housing Society';
+                    } elseif (str_contains($searchString, 'wahdat')) {
+                        $area = 'Wahdat Road';
+                    } elseif (str_contains($searchString, 'wapda town')) {
+                        $area = 'Wapda Town';
+                    } elseif (str_contains($searchString, 'zaman park')) {
+                        $area = 'Zaman Park';
+                    } else {
+                        $area = 'Other Area';
+                    }
+                } elseif (str_contains($searchString, 'faisalabad')) {
+                    $city = 'Faisalabad';
+                    $area = 'Canal Road';
+                } elseif (str_contains($searchString, 'multan')) {
+                    $city = 'Multan';
+                    $area = 'Cantt';
+                } elseif (str_contains($searchString, 'peshawar')) {
+                    $city = 'Peshawar';
+                    $area = 'Hayatabad';
                 }
             } else {
                 $city = $countryNames[$tutor->country] ?? $tutor->country;
@@ -198,31 +345,65 @@ class PageController extends Controller
                       ->orWhere('bio', 'LIKE', '%karachi%')
                       ->orWhere('teaching_experience', 'LIKE', '%karachi%');
                 });
-            } elseif (in_array($cityVal, ['islamabad', 'rawalpindi'])) {
+            } elseif ($cityVal === 'rawalpindi') {
+                $query->where(function($q) {
+                    $q->where('university', 'LIKE', '%rawalpindi%')
+                      ->orWhere('bio', 'LIKE', '%rawalpindi%')
+                      ->orWhere('teaching_experience', 'LIKE', '%rawalpindi%');
+                });
+            } elseif ($cityVal === 'islamabad') {
                 $query->where(function($q) {
                     $q->where('university', 'LIKE', '%islamabad%')
                       ->orWhere('bio', 'LIKE', '%islamabad%')
-                      ->orWhere('teaching_experience', 'LIKE', '%islamabad%')
-                      ->orWhere('university', 'LIKE', '%rawalpindi%')
-                      ->orWhere('bio', 'LIKE', '%rawalpindi%')
-                      ->orWhere('teaching_experience', 'LIKE', '%rawalpindi%');
+                      ->orWhere('teaching_experience', 'LIKE', '%islamabad%');
                 });
             } elseif ($cityVal === 'lahore') {
                 $query->where(function($q) {
                     $q->where('university', 'LIKE', '%lahore%')
                       ->orWhere('bio', 'LIKE', '%lahore%')
-                      ->orWhere('teaching_experience', 'LIKE', '%lahore%')
-                      ->orWhere(function($sq) {
-                          $sq->where('university', 'NOT LIKE', '%karachi%')
-                            ->where('university', 'NOT LIKE', '%islamabad%')
-                            ->where('university', 'NOT LIKE', '%rawalpindi%')
-                            ->where('bio', 'NOT LIKE', '%karachi%')
-                            ->where('bio', 'NOT LIKE', '%islamabad%')
-                            ->where('bio', 'NOT LIKE', '%rawalpindi%')
-                            ->where('teaching_experience', 'NOT LIKE', '%karachi%')
-                            ->where('teaching_experience', 'NOT LIKE', '%islamabad%')
-                            ->where('teaching_experience', 'NOT LIKE', '%rawalpindi%');
-                      });
+                      ->orWhere('teaching_experience', 'LIKE', '%lahore%');
+                });
+            } elseif ($cityVal === 'faisalabad') {
+                $query->where(function($q) {
+                    $q->where('university', 'LIKE', '%faisalabad%')
+                      ->orWhere('bio', 'LIKE', '%faisalabad%')
+                      ->orWhere('teaching_experience', 'LIKE', '%faisalabad%');
+                });
+            } elseif ($cityVal === 'multan') {
+                $query->where(function($q) {
+                    $q->where('university', 'LIKE', '%multan%')
+                      ->orWhere('bio', 'LIKE', '%multan%')
+                      ->orWhere('teaching_experience', 'LIKE', '%multan%');
+                });
+            } elseif ($cityVal === 'peshawar') {
+                $query->where(function($q) {
+                    $q->where('university', 'LIKE', '%peshawar%')
+                      ->orWhere('bio', 'LIKE', '%peshawar%')
+                      ->orWhere('teaching_experience', 'LIKE', '%peshawar%');
+                });
+            } elseif ($cityVal === 'others') {
+                $query->where(function($q) {
+                    $q->where('university', 'NOT LIKE', '%lahore%')
+                      ->where('university', 'NOT LIKE', '%karachi%')
+                      ->where('university', 'NOT LIKE', '%islamabad%')
+                      ->where('university', 'NOT LIKE', '%rawalpindi%')
+                      ->where('university', 'NOT LIKE', '%faisalabad%')
+                      ->where('university', 'NOT LIKE', '%multan%')
+                      ->where('university', 'NOT LIKE', '%peshawar%')
+                      ->where('bio', 'NOT LIKE', '%lahore%')
+                      ->where('bio', 'NOT LIKE', '%karachi%')
+                      ->where('bio', 'NOT LIKE', '%islamabad%')
+                      ->where('bio', 'NOT LIKE', '%rawalpindi%')
+                      ->where('bio', 'NOT LIKE', '%faisalabad%')
+                      ->where('bio', 'NOT LIKE', '%multan%')
+                      ->where('bio', 'NOT LIKE', '%peshawar%')
+                      ->where('teaching_experience', 'NOT LIKE', '%lahore%')
+                      ->where('teaching_experience', 'NOT LIKE', '%karachi%')
+                      ->where('teaching_experience', 'NOT LIKE', '%islamabad%')
+                      ->where('teaching_experience', 'NOT LIKE', '%rawalpindi%')
+                      ->where('teaching_experience', 'NOT LIKE', '%faisalabad%')
+                      ->where('teaching_experience', 'NOT LIKE', '%multan%')
+                      ->where('teaching_experience', 'NOT LIKE', '%peshawar%');
                 });
             } else {
                 $query->where(function($q) use ($cityVal) {
@@ -278,17 +459,164 @@ class PageController extends Controller
 
         $tutors = [];
         foreach ($dbTutors as $tutor) {
-            $city = 'Lahore';
-            $area = 'Johar Town';
+            $city = 'Others';
+            $area = 'Others';
 
             if (strtolower($tutor->country) === 'pk') {
                 $searchString = strtolower($tutor->university . ' ' . $tutor->bio . ' ' . $tutor->teaching_experience);
                 if (str_contains($searchString, 'karachi')) {
                     $city = 'Karachi';
                     $area = 'DHA Karachi';
-                } elseif (str_contains($searchString, 'islamabad') || str_contains($searchString, 'rawalpindi')) {
+                } elseif (str_contains($searchString, 'rawalpindi')) {
+                    $city = 'Rawalpindi';
+                    $area = 'Satellite Town';
+                } elseif (str_contains($searchString, 'islamabad')) {
                     $city = 'Islamabad';
                     $area = 'F-7';
+                } elseif (str_contains($searchString, 'lahore')) {
+                    $city = 'Lahore';
+                    if (str_contains($searchString, 'askari')) {
+                        $area = 'Askari';
+                    } elseif (str_contains($searchString, 'iqbal town')) {
+                        $area = 'Allama Iqbal Town';
+                    } elseif (str_contains($searchString, 'rehman garden')) {
+                        $area = 'Al-Rehman Gardens';
+                    } elseif (str_contains($searchString, 'architect')) {
+                        $area = 'Architect Society';
+                    } elseif (str_contains($searchString, 'audits')) {
+                        $area = 'Audits and Accounts Society';
+                    } elseif (str_contains($searchString, 'abdalian')) {
+                        $area = 'Abdalian Society';
+                    } elseif (str_contains($searchString, 'bahria')) {
+                        if (str_contains($searchString, 'orchard')) {
+                            $area = 'Bahria Orchard';
+                        } else {
+                            $area = 'Bahria Town';
+                        }
+                    } elseif (str_contains($searchString, 'cantt')) {
+                        if (str_contains($searchString, 'walton')) {
+                            $area = 'Walton Cantt';
+                        } else {
+                            $area = 'Cantt';
+                        }
+                    } elseif (str_contains($searchString, 'cavalry')) {
+                        $area = 'Cavalry Ground';
+                    } elseif (str_contains($searchString, 'dha')) {
+                        if (str_contains($searchString, 'rahbar')) {
+                            $area = 'DHA Rahbar';
+                        } elseif (str_contains($searchString, 'phase 5') || str_contains($searchString, 'phase 6')) {
+                            $area = 'DHA Phase 5,6';
+                        } elseif (str_contains($searchString, 'phase 7') || str_contains($searchString, 'phase 8') || str_contains($searchString, 'phase 9')) {
+                            $area = 'DHA Phase 7,8,9';
+                        } else {
+                            $area = 'DHA Phase 1,2,3,4';
+                        }
+                    } elseif (str_contains($searchString, 'divine')) {
+                        $area = 'Divine Gardens';
+                    } elseif (str_contains($searchString, 'eden')) {
+                        $area = 'Eden Society';
+                    } elseif (str_contains($searchString, 'eme')) {
+                        $area = 'EME Society';
+                    } elseif (str_contains($searchString, 'ferozpur')) {
+                        $area = 'Ferozpur Road';
+                    } elseif (str_contains($searchString, 'faisal town')) {
+                        $area = 'Faisal Town';
+                    } elseif (str_contains($searchString, 'fazaia')) {
+                        $area = 'Fazaia Housing Scheme';
+                    } elseif (str_contains($searchString, 'formanite')) {
+                        $area = 'Formanites Housing Scheme';
+                    } elseif (str_contains($searchString, 'gulberg')) {
+                        if (str_contains($searchString, 'gulberg 1') || str_contains($searchString, 'gulberg i')) {
+                            $area = 'Gulberg 1';
+                        } elseif (str_contains($searchString, 'gulberg 2') || str_contains($searchString, 'gulberg ii')) {
+                            $area = 'Gulberg 2';
+                        } elseif (str_contains($searchString, 'gulberg 3') || str_contains($searchString, 'gulberg iii')) {
+                            $area = 'Gulberg 3';
+                        } else {
+                            $area = 'Gulberg 1';
+                        }
+                    } elseif (str_contains($searchString, 'garden town')) {
+                        if (str_contains($searchString, 'new garden')) {
+                            $area = 'New Garden Town';
+                        } else {
+                            $area = 'Garden Town';
+                        }
+                    } elseif (str_contains($searchString, 'gulshan ravi')) {
+                        $area = 'Gulshan Ravi';
+                    } elseif (str_contains($searchString, 'green town')) {
+                        $area = 'Green Town';
+                    } elseif (str_contains($searchString, 'gor')) {
+                        $area = 'GOR';
+                    } elseif (str_contains($searchString, 'harbanspura')) {
+                        $area = 'Harbanspura';
+                    } elseif (str_contains($searchString, 'izmir')) {
+                        $area = 'Izmir Town';
+                    } elseif (str_contains($searchString, 'ichra')) {
+                        $area = 'Ichra';
+                    } elseif (str_contains($searchString, 'iep') || str_contains($searchString, 'engineers town')) {
+                        $area = 'IEP Engineers Town';
+                    } elseif (str_contains($searchString, 'johar town')) {
+                        $area = 'Johar Town';
+                    } elseif (str_contains($searchString, 'jubilee')) {
+                        $area = 'Jubilee Town';
+                    } elseif (str_contains($searchString, 'kot lakhpat')) {
+                        $area = 'Kot Lakhpat';
+                    } elseif (str_contains($searchString, 'lake city')) {
+                        $area = 'Lake City';
+                    } elseif (str_contains($searchString, 'model town')) {
+                        $area = 'Model Town';
+                    } elseif (str_contains($searchString, 'mughalpura') || str_contains($searchString, 'mughal pura')) {
+                        $area = 'Mughalpura';
+                    } elseif (str_contains($searchString, 'muslim town')) {
+                        $area = 'Muslim Town';
+                    } elseif (str_contains($searchString, 'mustafa town')) {
+                        $area = 'Mustafa Town';
+                    } elseif (str_contains($searchString, 'peco')) {
+                        $area = 'Peco Road';
+                    } elseif (str_contains($searchString, 'raiwind')) {
+                        $area = 'Raiwind Road';
+                    } elseif (str_contains($searchString, 'revenue')) {
+                        $area = 'Revenue Society';
+                    } elseif (str_contains($searchString, 'state life')) {
+                        $area = 'State Life Housing Society';
+                    } elseif (str_contains($searchString, 'samanabad')) {
+                        $area = 'Samanabad';
+                    } elseif (str_contains($searchString, 'sabzazar')) {
+                        $area = 'Sabzazar';
+                    } elseif (str_contains($searchString, 'sui gas')) {
+                        $area = 'Sui Gas Society';
+                    } elseif (str_contains($searchString, 'shadab')) {
+                        $area = 'Shadab Gardens';
+                    } elseif (str_contains($searchString, 'tajpura')) {
+                        $area = 'Tajpura';
+                    } elseif (str_contains($searchString, 'thokar')) {
+                        $area = 'Thokar Niaz Baig';
+                    } elseif (str_contains($searchString, 'township') || str_contains($searchString, 'town ship')) {
+                        $area = 'Town Ship';
+                    } elseif (str_contains($searchString, 'uet')) {
+                        $area = 'UET Housing Society';
+                    } elseif (str_contains($searchString, 'valencia')) {
+                        $area = 'Valencia Housing Society';
+                    } elseif (str_contains($searchString, 'vital')) {
+                        $area = 'Vital Homes Housing Society';
+                    } elseif (str_contains($searchString, 'wahdat')) {
+                        $area = 'Wahdat Road';
+                    } elseif (str_contains($searchString, 'wapda town')) {
+                        $area = 'Wapda Town';
+                    } elseif (str_contains($searchString, 'zaman park')) {
+                        $area = 'Zaman Park';
+                    } else {
+                        $area = 'Other Area';
+                    }
+                } elseif (str_contains($searchString, 'faisalabad')) {
+                    $city = 'Faisalabad';
+                    $area = 'Canal Road';
+                } elseif (str_contains($searchString, 'multan')) {
+                    $city = 'Multan';
+                    $area = 'Cantt';
+                } elseif (str_contains($searchString, 'peshawar')) {
+                    $city = 'Peshawar';
+                    $area = 'Hayatabad';
                 }
             } else {
                 $city = $countryNames[$tutor->country] ?? $tutor->country;
