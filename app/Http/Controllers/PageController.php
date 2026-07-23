@@ -309,29 +309,52 @@ class PageController extends Controller
             ->withCount('reviews')
             ->withAvg('reviews', 'rating');
 
+        // Sanitize request inputs to be strings to avoid any TypeErrors when arrays are passed
+        $qVal = $request->input('q');
+        $qVal = is_string($qVal) ? $qVal : (is_array($qVal) ? implode(' ', $qVal) : '');
+
+        $nameVal = $request->input('name');
+        $nameVal = is_string($nameVal) ? $nameVal : '';
+
+        $subjectVal = $request->input('subject');
+        $subjectVal = is_string($subjectVal) ? $subjectVal : '';
+
+        $cityVal = $request->input('city');
+        $cityVal = is_string($cityVal) ? $cityVal : '';
+
+        $countryVal = $request->input('country');
+        $countryVal = is_string($countryVal) ? $countryVal : '';
+
+        $genderVal = $request->input('gender');
+        $genderVal = is_string($genderVal) ? $genderVal : '';
+
+        $preferenceVal = $request->input('tutoring_preference');
+        $preferenceVal = is_string($preferenceVal) ? $preferenceVal : '';
+
+        $typeVal = $request->input('tutoring_type');
+        $typeVal = is_string($typeVal) ? $typeVal : '';
+
         // Search query q
-        if ($request->filled('q')) {
-            $search = $request->q;
-            $query->where(function($q) use ($search) {
-                $q->where('name', 'LIKE', '%' . $search . '%')
-                  ->orWhere('bio', 'LIKE', '%' . $search . '%')
-                  ->orWhere('university', 'LIKE', '%' . $search . '%')
-                  ->orWhere('program', 'LIKE', '%' . $search . '%')
-                  ->orWhere('major', 'LIKE', '%' . $search . '%')
-                  ->orWhere('teaching_experience', 'LIKE', '%' . $search . '%')
-                  ->orWhereHas('subjects', function($sub) use ($search) {
-                      $sub->where('subjects.name', 'LIKE', '%' . $search . '%');
+        if ($qVal !== '') {
+            $query->where(function($q) use ($qVal) {
+                $q->where('name', 'LIKE', '%' . $qVal . '%')
+                  ->orWhere('bio', 'LIKE', '%' . $qVal . '%')
+                  ->orWhere('university', 'LIKE', '%' . $qVal . '%')
+                  ->orWhere('program', 'LIKE', '%' . $qVal . '%')
+                  ->orWhere('major', 'LIKE', '%' . $qVal . '%')
+                  ->orWhere('teaching_experience', 'LIKE', '%' . $qVal . '%')
+                  ->orWhereHas('subjects', function($sub) use ($qVal) {
+                      $sub->where('subjects.name', 'LIKE', '%' . $qVal . '%');
                   });
             });
         }
 
-        if ($request->filled('name')) {
-            $query->where('name', 'LIKE', '%' . $request->name . '%');
+        if ($nameVal !== '') {
+            $query->where('name', 'LIKE', '%' . $nameVal . '%');
         }
 
         // Subject filter
-        if ($request->filled('subject')) {
-            $subjectVal = $request->subject;
+        if ($subjectVal !== '') {
             $query->whereHas('subjects', function($q) use ($subjectVal) {
                 $q->where('subjects.name', 'LIKE', '%' . $subjectVal . '%')
                   ->orWhere('subjects.id', $subjectVal);
@@ -339,51 +362,51 @@ class PageController extends Controller
         }
 
         // City filter (derived city logic)
-        if ($request->filled('city')) {
-            $cityVal = strtolower($request->city);
-            if ($cityVal === 'karachi') {
+        if ($cityVal !== '') {
+            $cityValLower = strtolower($cityVal);
+            if ($cityValLower === 'karachi') {
                 $query->where(function($q) {
                     $q->where('university', 'LIKE', '%karachi%')
                       ->orWhere('bio', 'LIKE', '%karachi%')
                       ->orWhere('teaching_experience', 'LIKE', '%karachi%');
                 });
-            } elseif ($cityVal === 'rawalpindi') {
+            } elseif ($cityValLower === 'rawalpindi') {
                 $query->where(function($q) {
                     $q->where('university', 'LIKE', '%rawalpindi%')
                       ->orWhere('bio', 'LIKE', '%rawalpindi%')
                       ->orWhere('teaching_experience', 'LIKE', '%rawalpindi%');
                 });
-            } elseif ($cityVal === 'islamabad') {
+            } elseif ($cityValLower === 'islamabad') {
                 $query->where(function($q) {
                     $q->where('university', 'LIKE', '%islamabad%')
                       ->orWhere('bio', 'LIKE', '%islamabad%')
                       ->orWhere('teaching_experience', 'LIKE', '%islamabad%');
                 });
-            } elseif ($cityVal === 'lahore') {
+            } elseif ($cityValLower === 'lahore') {
                 $query->where(function($q) {
                     $q->where('university', 'LIKE', '%lahore%')
                       ->orWhere('bio', 'LIKE', '%lahore%')
                       ->orWhere('teaching_experience', 'LIKE', '%lahore%');
                 });
-            } elseif ($cityVal === 'faisalabad') {
+            } elseif ($cityValLower === 'faisalabad') {
                 $query->where(function($q) {
                     $q->where('university', 'LIKE', '%faisalabad%')
                       ->orWhere('bio', 'LIKE', '%faisalabad%')
                       ->orWhere('teaching_experience', 'LIKE', '%faisalabad%');
                 });
-            } elseif ($cityVal === 'multan') {
+            } elseif ($cityValLower === 'multan') {
                 $query->where(function($q) {
                     $q->where('university', 'LIKE', '%multan%')
                       ->orWhere('bio', 'LIKE', '%multan%')
                       ->orWhere('teaching_experience', 'LIKE', '%multan%');
                 });
-            } elseif ($cityVal === 'peshawar') {
+            } elseif ($cityValLower === 'peshawar') {
                 $query->where(function($q) {
                     $q->where('university', 'LIKE', '%peshawar%')
                       ->orWhere('bio', 'LIKE', '%peshawar%')
                       ->orWhere('teaching_experience', 'LIKE', '%peshawar%');
                 });
-            } elseif ($cityVal === 'others') {
+            } elseif ($cityValLower === 'others') {
                 $query->where(function($q) {
                     $q->where('university', 'NOT LIKE', '%lahore%')
                       ->where('university', 'NOT LIKE', '%karachi%')
@@ -416,26 +439,26 @@ class PageController extends Controller
             }
         }
 
-        if ($request->filled('country')) {
-            $query->where('country', 'LIKE', '%' . $request->country . '%');
+        if ($countryVal !== '') {
+            $query->where('country', 'LIKE', '%' . $countryVal . '%');
         }
 
         // Gender filter
-        if ($request->filled('gender') && $request->gender !== 'both' && $request->gender !== 'all') {
-            $query->where('gender', $request->gender);
+        if ($genderVal !== '' && $genderVal !== 'both' && $genderVal !== 'all') {
+            $query->where('gender', $genderVal);
         }
 
         // Tutoring preference/type
-        if ($request->filled('tutoring_preference') && $request->tutoring_preference !== 'both') {
-            if ($request->tutoring_preference === 'online') {
+        if ($preferenceVal !== '' && $preferenceVal !== 'both') {
+            if ($preferenceVal === 'online') {
                 $query->where('is_online', true);
-            } elseif ($request->tutoring_preference === 'home') {
+            } elseif ($preferenceVal === 'home') {
                 $query->where('is_home', true);
             }
-        } elseif ($request->filled('tutoring_type') && $request->tutoring_type !== 'both') {
-            if ($request->tutoring_type === 'online') {
+        } elseif ($typeVal !== '' && $typeVal !== 'both') {
+            if ($typeVal === 'online') {
                 $query->where('is_online', true);
-            } elseif ($request->tutoring_type === 'home') {
+            } elseif ($typeVal === 'home') {
                 $query->where('is_home', true);
             }
         } else {

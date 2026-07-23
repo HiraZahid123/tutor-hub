@@ -3,18 +3,23 @@
 @section('title')
     @php
         $selectedSubject = request('subject');
+        $selectedSubject = is_string($selectedSubject) ? $selectedSubject : '';
+        
         $selectedCity = request('city');
+        $selectedCity = is_string($selectedCity) ? $selectedCity : '';
+        
         $selectedType = request('tutoring_preference') ?: request('tutoring_type') ?: (request('is_online') && !request('is_home') ? 'online' : (!request('is_online') && request('is_home') ? 'home' : ''));
+        $selectedType = is_string($selectedType) ? $selectedType : '';
         
         $titleParts = [];
-        if ($selectedSubject) {
+        if ($selectedSubject !== '') {
             $titleParts[] = ucfirst($selectedSubject);
         }
-        if ($selectedType) {
+        if ($selectedType !== '') {
             $titleParts[] = ucfirst($selectedType);
         }
         $titleParts[] = 'Tutors';
-        if ($selectedCity) {
+        if ($selectedCity !== '') {
             $titleParts[] = 'in ' . ucfirst($selectedCity);
         } else {
             $titleParts[] = 'in Pakistan';
@@ -243,7 +248,7 @@
                     {{-- Keyword Search --}}
                     <div>
                         <label class="filter-section-title" style="margin-top: 0">Keyword Search</label>
-                        <input type="text" name="q" value="{{ request('q') }}" placeholder="e.g. Algebra, Leslie..." class="sidebar-input-field">
+                        <input type="text" name="q" value="{{ is_string(request('q')) ? request('q') : '' }}" placeholder="e.g. Algebra, Leslie..." class="sidebar-input-field">
                     </div>
 
                     {{-- Subject selector --}}
@@ -341,7 +346,7 @@
                                 </div>
                                 
                                 {{-- Center Column: Info details --}}
-                                {{$tutor = $tutor}} {{-- shadow PHP assignment to satisfy lines count match --}}
+                                @php $tutor = $tutor; @endphp {{-- shadow PHP assignment to satisfy lines count match --}}
                                 <div class="flex-1 min-w-0 flex flex-col justify-between">
                                     <div>
                                         <div class="flex flex-col md:flex-row md:items-baseline gap-1.5 md:gap-3">
