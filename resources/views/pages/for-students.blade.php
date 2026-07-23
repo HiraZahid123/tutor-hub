@@ -946,8 +946,209 @@ const locationData = {
         'Multan':     ['Cantt', 'Qasimpur', 'Shah Rukn-e-Alam', 'Gulgasht'],
         'Peshawar':   ['Hayatabad', 'University Town', 'Cantt', 'Phase 5'],
         'Others':     []
+    },
+    'UAE': {
+        'Dubai': ['Downtown', 'Dubai Marina', 'Jumeirah', 'Palm Jumeirah', 'Al Barsha', 'Business Bay', 'Deira', 'Bur Dubai', 'Silicon Oasis', 'Other Area'],
+        'Abu Dhabi': ['Yas Island', 'Al Reem Island', 'Khalifa City', 'Corniche', 'Al Khalidiyah', 'Other Area'],
+        'Sharjah': ['Al Majaz', 'Al Nahda', 'Muwaileh', 'Other Area'],
+        'Ajman': ['Al Nuaimia', 'Al Rashidiya', 'Other Area'],
+        'Ras Al Khaimah': ['Al Hamra', 'Al Marjan Island', 'Other Area'],
+        'Fujairah': ['Fujairah City', 'Dibba', 'Other Area'],
+        'Umm Al Quwain': ['Umm Al Quwain City', 'Other Area']
+    },
+    'Saudi Arabia': {
+        'Riyadh': ['Olaya', 'Al Malaz', 'Al Yasmin', 'Al Sahafa', 'Al Muhammadiyah', 'Other Area'],
+        'Jeddah': ['Al Hamra', 'Al Naeem', 'Al Safa', 'Obhur', 'Other Area'],
+        'Mecca': ['Al Haram', 'Aziziyah', 'Other Area'],
+        'Medina': ['Al Haram', 'Al Aqeeq', 'Other Area'],
+        'Dammam': ['Al Shatea', 'Al Faisaliyah', 'Other Area'],
+        'Khobar': ['Al Hizam', 'Al Thuqbah', 'Other Area']
+    },
+    'United Kingdom': {
+        'London': ['Westminster', 'Kensington & Chelsea', 'Camden', 'Greenwich', 'Croydon', 'Ealing', 'Other Area'],
+        'Birmingham': ['City Centre', 'Edgbaston', 'Selly Oak', 'Solihull', 'Other Area'],
+        'Manchester': ['City Centre', 'Didsbury', 'Salford', 'Fallowfield', 'Other Area'],
+        'Glasgow': ['West End', 'City Centre', 'Southside', 'Other Area'],
+        'Edinburgh': ['Old Town', 'New Town', 'Leith', 'Other Area'],
+        'Liverpool': ['City Centre', 'Anfield', 'Allerton', 'Other Area'],
+        'Leeds': ['City Centre', 'Headingley', 'Chapel Allerton', 'Other Area']
+    },
+    'United States': {
+        'New York': ['Manhattan', 'Brooklyn', 'Queens', 'Bronx', 'Staten Island', 'Other Area'],
+        'Los Angeles': ['Hollywood', 'Downtown LA', 'Santa Monica', 'Pasadena', 'Other Area'],
+        'Chicago': ['Loop', 'Lincoln Park', 'Hyde Park', 'Other Area'],
+        'Houston': ['Downtown', 'Galleria', 'The Woodlands', 'Other Area'],
+        'Phoenix': ['Downtown', 'Scottsdale', 'Tempe', 'Other Area'],
+        'Philadelphia': ['Center City', 'University City', 'Other Area'],
+        'San Antonio': ['Downtown', 'Alamo Heights', 'Other Area'],
+        'San Diego': ['Downtown', 'La Jolla', 'Gaslamp Quarter', 'Other Area'],
+        'Dallas': ['Downtown', 'Uptown', 'Plano', 'Other Area'],
+        'San Jose': ['Downtown', 'Silicon Valley', 'Other Area']
+    },
+    'Qatar': {
+        'Doha': ['West Bay', 'The Pearl', 'Al Sadd', 'Madinat Khalifa', 'Other Area'],
+        'Al Wakrah': ['Al Wakrah City', 'Other Area'],
+        'Al Rayyan': ['Al Rayyan City', 'Other Area'],
+        'Al Khor': ['Al Khor City', 'Other Area']
+    },
+    'Kuwait': {
+        'Kuwait City': ['Sharq', 'Mirgab', 'Qibla', 'Other Area'],
+        'Salmiya': ['Salmiya City', 'Other Area'],
+        'Hawally': ['Hawally City', 'Other Area'],
+        'Farwaniya': ['Farwaniya City', 'Other Area']
+    },
+    'Bahrain': {
+        'Manama': ['Juffair', 'Seef', 'Adliya', 'Other Area'],
+        'Riffa': ['East Riffa', 'West Riffa', 'Other Area'],
+        'Muharraq': ['Amwaj Islands', 'Other Area']
+    },
+    'Oman': {
+        'Muscat': ['Ruwi', 'Al Khuwair', 'Muttrah', 'Other Area'],
+        'Salalah': ['Salalah City', 'Other Area'],
+        'Sohar': ['Sohar City', 'Other Area']
+    },
+    'Jordan': {
+        'Amman': ['Jabal Amman', 'Abdoun', 'Sweifieh', 'Other Area'],
+        'Zarqa': ['Zarqa City', 'Other Area'],
+        'Irbid': ['Irbid City', 'Other Area']
+    },
+    'Egypt': {
+        'Cairo': ['Maadi', 'Zamalek', 'Nasr City', 'Heliopolis', 'Other Area'],
+        'Alexandria': ['Sidi Gaber', 'Smouha', 'Stanley', 'Other Area'],
+        'Giza': ['Dokki', 'Mohandessin', '6th of October', 'Other Area']
+    },
+    'Turkey': {
+        'Istanbul': ['Fatih', 'Beyoglu', 'Kadikoy', 'Besiktas', 'Other Area'],
+        'Ankara': ['Cankaya', 'Kizilay', 'Other Area'],
+        'Izmir': ['Alsancak', 'Karsiyaka', 'Other Area']
+    },
+    'India': {
+        'Mumbai': ['Colaba', 'Bandra', 'Andheri', 'Worli', 'Other Area'],
+        'Delhi': ['Connaught Place', 'South Delhi', 'Dwarka', 'Other Area'],
+        'Bangalore': ['Indiranagar', 'Koramangala', 'Whitefield', 'Other Area'],
+        'Hyderabad': ['Gachibowli', 'Banjara Hills', 'Jubilee Hills', 'Other Area'],
+        'Chennai': ['Adyar', 'T. Nagar', 'Velachery', 'Other Area']
+    },
+    'Bangladesh': {
+        'Dhaka': ['Gulshan', 'Banani', 'Dhanmondi', 'Uttara', 'Other Area'],
+        'Chittagong': ['Panchlaish', 'Halishahar', 'Other Area']
+    },
+    'Sri Lanka': {
+        'Colombo': ['Colombo 03 (Colpetty)', 'Colombo 07 (Cinnamon Gardens)', 'Colombo 04 (Bambalapitiya)', 'Other Area'],
+        'Kandy': ['Kandy City', 'Other Area']
+    },
+    'Malaysia': {
+        'Kuala Lumpur': ['KLCC', 'Bukit Bintang', 'Mont Kiara', 'Bangsar', 'Other Area'],
+        'Penang': ['George Town', 'Bayan Lepas', 'Other Area'],
+        'Johor Bahru': ['Tebrau', 'Bukit Indah', 'Other Area']
+    },
+    'Singapore': {
+        'Singapore': ['Orchard Road', 'Marina Bay', 'Sentosa', 'Jurong', 'Tampines', 'Other Area']
+    },
+    'Indonesia': {
+        'Jakarta': ['Menteng', 'Sudirman', 'Kemang', 'Other Area'],
+        'Surabaya': ['Dharmahusada', 'Gubeng', 'Other Area'],
+        'Bali': ['Seminyak', 'Kuta', 'Ubud', 'Other Area']
+    },
+    'Philippines': {
+        'Manila': ['Makati', 'Taguig (BGC)', 'Quezon City', 'Other Area'],
+        'Cebu': ['Cebu IT Park', 'Lahug', 'Other Area']
+    },
+    'Afghanistan': {
+        'Kabul': ['Karta Parwan', 'Wazir Akbar Khan', 'Other Area'],
+        'Herat': ['Herat City', 'Other Area']
+    },
+    'Iran': {
+        'Tehran': ['Tajrish', 'Valiasr', 'Other Area'],
+        'Isfahan': ['Isfahan City', 'Other Area']
+    },
+    'Iraq': {
+        'Baghdad': ['Karrada', 'Mansour', 'Other Area'],
+        'Erbil': ['Ainkawa', 'Other Area']
+    },
+    'Yemen': {
+        'Sanaa': ['Sanaa City', 'Other Area'],
+        'Aden': ['Aden City', 'Other Area']
+    },
+    'Nigeria': {
+        'Lagos': ['Ikeja', 'Victoria Island', 'Lekki', 'Other Area'],
+        'Abuja': ['Garki', 'Wuse', 'Other Area']
+    },
+    'Kenya': {
+        'Nairobi': ['Westlands', 'Kilimani', 'Karen', 'Other Area'],
+        'Mombasa': ['Nyali', 'Other Area']
+    },
+    'South Africa': {
+        'Johannesburg': ['Sandton', 'Rosebank', 'Soweto', 'Other Area'],
+        'Cape Town': ['Green Point', 'Sea Point', 'Camps Bay', 'Other Area'],
+        'Durban': ['Umhlanga', 'Other Area']
+    },
+    'Ghana': {
+        'Accra': ['East Legon', 'Cantonments', 'Other Area'],
+        'Kumasi': ['Kumasi City', 'Other Area']
+    },
+    'Tanzania': {
+        'Dar es Salaam': ['Masaki', 'Mikocheni', 'Other Area'],
+        'Arusha': ['Arusha City', 'Other Area']
+    },
+    'Canada': {
+        'Toronto': ['Downtown Toronto', 'North York', 'Scarborough', 'Mississauga', 'Other Area'],
+        'Vancouver': ['Downtown Vancouver', 'Kitsilano', 'Richmond', 'Other Area'],
+        'Montreal': ['Downtown Montreal', 'Plateau Mont-Royal', 'Other Area'],
+        'Calgary': ['Downtown Calgary', 'Beltline', 'Other Area']
+    },
+    'Australia': {
+        'Sydney': ['Sydney CBD', 'Surry Hills', 'Parramatta', 'Other Area'],
+        'Melbourne': ['Melbourne CBD', 'Fitzroy', 'St Kilda', 'Other Area'],
+        'Brisbane': ['Brisbane CBD', 'Fortitude Valley', 'Other Area']
+    },
+    'New Zealand': {
+        'Auckland': ['Auckland CBD', 'Ponsonby', 'Newmarket', 'Other Area'],
+        'Wellington': ['Wellington CBD', 'Te Aro', 'Other Area']
+    },
+    'Germany': {
+        'Berlin': ['Mitte', 'Kreuzberg', 'Prenzlauer Berg', 'Other Area'],
+        'Munich': ['Altstadt-Lehel', 'Schwabing', 'Other Area'],
+        'Frankfurt': ['Innenstadt', 'Sachsenhausen', 'Other Area']
+    },
+    'France': {
+        'Paris': ['1st Arrondissement', 'Marais', 'Montmartre', 'Latin Quarter', 'Other Area'],
+        'Lyon': ['Presqu\'ile', 'Vieux Lyon', 'Other Area']
+    },
+    'Netherlands': {
+        'Amsterdam': ['Centrum', 'Jordaan', 'De Pijp', 'Other Area'],
+        'Rotterdam': ['Centrum', 'Kop van Zuid', 'Other Area'],
+        'The Hague': ['Centrum', 'Scheveningen', 'Other Area']
     }
 };
+
+// Function to dynamically merge tutor data locations into locationData
+function mergeTutorsIntoLocationData() {
+    if (typeof tutorsData !== 'undefined' && Array.isArray(tutorsData)) {
+        tutorsData.forEach(tutor => {
+            const country = tutor.country;
+            const city = tutor.city;
+            const area = tutor.area;
+
+            if (country) {
+                if (!locationData[country]) {
+                    locationData[country] = {};
+                }
+                if (city) {
+                    if (!locationData[country][city]) {
+                        locationData[country][city] = [];
+                    }
+                    if (area && !locationData[country][city].includes(area)) {
+                        locationData[country][city].push(area);
+                    }
+                }
+            }
+        });
+    }
+}
+
+// Merge tutor locations at script load time
+mergeTutorsIntoLocationData();
 
 function onCountryChange() {
     const country = document.getElementById('filter-country').value;
