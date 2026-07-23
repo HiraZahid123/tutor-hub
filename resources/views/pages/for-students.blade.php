@@ -535,6 +535,67 @@
                     <li><a href="javascript:void(0)" onclick="applyQuickFilter('montessori', 'Lahore')" class="hover:text-blue-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-gray-300 mt-1.5"></i><span class="leading-normal">Grade VI Home Tutor in Lahore</span></a></li>
                 </ul>
             </div>
+
+            {{-- Online Tutors Divider --}}
+            <div class="col-span-full mt-6 mb-2">
+                <div class="flex items-center gap-3">
+                    <div class="w-7 h-7 rounded-lg bg-green-100 text-green-600 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-laptop text-xs"></i>
+                    </div>
+                    <span class="text-[13px] font-bold text-gray-900 uppercase tracking-widest">Online Tutors in Lahore</span>
+                    <div class="flex-1 h-px bg-gray-200"></div>
+                </div>
+            </div>
+
+            {{-- O Level Online Column --}}
+            <div>
+                <h3 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-200 pb-2.5">O Level Online Tutors in Lahore</h3>
+                <ul class="space-y-2.5 text-[13px] text-gray-600">
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('chemistry', 'Lahore')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Chemistry Online Tutor in Lahore</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('mathematics', 'Lahore')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Math Online Tutor in Lahore</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('physics', 'Lahore')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Physics Online Tutor in Lahore</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('accounting', 'Lahore')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Accounting Online Tutor in Lahore</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('business', 'Lahore')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Business Online Tutor in Lahore</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('economics', 'Lahore')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Economics Online Tutor in Lahore</span></a></li>
+                </ul>
+            </div>
+
+            {{-- A Level Online Column --}}
+            <div>
+                <h3 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-200 pb-2.5">A Level Online Tutors in Lahore</h3>
+                <ul class="space-y-2.5 text-[13px] text-gray-600">
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('chemistry', 'Lahore')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Chemistry Online Tutor in Lahore</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('mathematics', 'Lahore')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Math Online Tutor in Lahore</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('physics', 'Lahore')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Physics Online Tutor in Lahore</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('accounting', 'Lahore')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Accounting Online Tutor in Lahore</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('business', 'Lahore')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Business Online Tutor in Lahore</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('economics', 'Lahore')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Economics Online Tutor in Lahore</span></a></li>
+                </ul>
+            </div>
+
+            {{-- IB Online Column --}}
+            <div>
+                <h3 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-200 pb-2.5">IB Online Tutors in Lahore</h3>
+                <ul class="space-y-2.5 text-[13px] text-gray-600">
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('chemistry', 'Lahore')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Chemistry Online Tutor in Lahore</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('mathematics', 'Lahore')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Math Online Tutor in Lahore</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('physics', 'Lahore')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Physics Online Tutor in Lahore</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('business', 'Lahore')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Business Online Tutor in Lahore</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('economics', 'Lahore')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Economics Online Tutor in Lahore</span></a></li>
+                </ul>
+            </div>
+
+            {{-- Grade 1-8 Online Column --}}
+            <div>
+                <h3 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-200 pb-2.5">Grade 1-8 Online Tutors in Lahore</h3>
+                <ul class="space-y-2.5 text-[13px] text-gray-600">
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('montessori', 'Lahore')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Montessori Online Tutor in Lahore</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('child', 'Lahore')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Primary Grade Online Tutor in Lahore</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('english', 'Lahore')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Grade 5 Online Tutor in Lahore</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('mathematics', 'Lahore')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Grade 8 Online Tutor in Lahore</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('quran', 'Lahore')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Quran Online Tutor in Lahore</span></a></li>
+                </ul>
+            </div>
         </div>
 
         {{-- Karachi Panel --}}
@@ -589,6 +650,67 @@
                     <li><a href="javascript:void(0)" onclick="applyQuickFilter('montessori', 'Karachi')" class="hover:text-blue-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-gray-300 mt-1.5"></i><span class="leading-normal">Grade VI Home Tutor in Karachi</span></a></li>
                 </ul>
             </div>
+
+            {{-- Online Tutors Divider --}}
+            <div class="col-span-full mt-6 mb-2">
+                <div class="flex items-center gap-3">
+                    <div class="w-7 h-7 rounded-lg bg-green-100 text-green-600 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-laptop text-xs"></i>
+                    </div>
+                    <span class="text-[13px] font-bold text-gray-900 uppercase tracking-widest">Online Tutors in Karachi</span>
+                    <div class="flex-1 h-px bg-gray-200"></div>
+                </div>
+            </div>
+
+            {{-- O Level Online Column --}}
+            <div>
+                <h3 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-200 pb-2.5">O Level Online Tutors in Karachi</h3>
+                <ul class="space-y-2.5 text-[13px] text-gray-600">
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('chemistry', 'Karachi')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Chemistry Online Tutor in Karachi</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('mathematics', 'Karachi')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Math Online Tutor in Karachi</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('physics', 'Karachi')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Physics Online Tutor in Karachi</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('accounting', 'Karachi')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Accounting Online Tutor in Karachi</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('business', 'Karachi')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Business Online Tutor in Karachi</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('economics', 'Karachi')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Economics Online Tutor in Karachi</span></a></li>
+                </ul>
+            </div>
+
+            {{-- A Level Online Column --}}
+            <div>
+                <h3 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-200 pb-2.5">A Level Online Tutors in Karachi</h3>
+                <ul class="space-y-2.5 text-[13px] text-gray-600">
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('chemistry', 'Karachi')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Chemistry Online Tutor in Karachi</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('mathematics', 'Karachi')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Math Online Tutor in Karachi</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('physics', 'Karachi')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Physics Online Tutor in Karachi</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('accounting', 'Karachi')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Accounting Online Tutor in Karachi</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('business', 'Karachi')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Business Online Tutor in Karachi</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('economics', 'Karachi')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Economics Online Tutor in Karachi</span></a></li>
+                </ul>
+            </div>
+
+            {{-- IB Online Column --}}
+            <div>
+                <h3 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-200 pb-2.5">IB Online Tutors in Karachi</h3>
+                <ul class="space-y-2.5 text-[13px] text-gray-600">
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('chemistry', 'Karachi')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Chemistry Online Tutor in Karachi</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('mathematics', 'Karachi')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Math Online Tutor in Karachi</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('physics', 'Karachi')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Physics Online Tutor in Karachi</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('business', 'Karachi')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Business Online Tutor in Karachi</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('economics', 'Karachi')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Economics Online Tutor in Karachi</span></a></li>
+                </ul>
+            </div>
+
+            {{-- Grade 1-8 Online Column --}}
+            <div>
+                <h3 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-200 pb-2.5">Grade 1-8 Online Tutors in Karachi</h3>
+                <ul class="space-y-2.5 text-[13px] text-gray-600">
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('montessori', 'Karachi')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Montessori Online Tutor in Karachi</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('child', 'Karachi')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Primary Grade Online Tutor in Karachi</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('english', 'Karachi')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Grade 5 Online Tutor in Karachi</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('mathematics', 'Karachi')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Grade 8 Online Tutor in Karachi</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('quran', 'Karachi')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Quran Online Tutor in Karachi</span></a></li>
+                </ul>
+            </div>
         </div>
 
         {{-- Islamabad Panel --}}
@@ -641,6 +763,67 @@
                     <li><a href="javascript:void(0)" onclick="applyQuickFilter('montessori', 'Islamabad')" class="hover:text-blue-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-gray-300 mt-1.5"></i><span class="leading-normal">Grade IV Home Tutor in Islamabad</span></a></li>
                     <li><a href="javascript:void(0)" onclick="applyQuickFilter('montessori', 'Islamabad')" class="hover:text-blue-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-gray-300 mt-1.5"></i><span class="leading-normal">Grade V Home Tutor in Islamabad</span></a></li>
                     <li><a href="javascript:void(0)" onclick="applyQuickFilter('montessori', 'Islamabad')" class="hover:text-blue-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-gray-300 mt-1.5"></i><span class="leading-normal">Grade VI Home Tutor in Islamabad</span></a></li>
+                </ul>
+            </div>
+
+            {{-- Online Tutors Divider --}}
+            <div class="col-span-full mt-6 mb-2">
+                <div class="flex items-center gap-3">
+                    <div class="w-7 h-7 rounded-lg bg-green-100 text-green-600 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-laptop text-xs"></i>
+                    </div>
+                    <span class="text-[13px] font-bold text-gray-900 uppercase tracking-widest">Online Tutors in Islamabad</span>
+                    <div class="flex-1 h-px bg-gray-200"></div>
+                </div>
+            </div>
+
+            {{-- O Level Online Column --}}
+            <div>
+                <h3 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-200 pb-2.5">O Level Online Tutors in Islamabad</h3>
+                <ul class="space-y-2.5 text-[13px] text-gray-600">
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('chemistry', 'Islamabad')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Chemistry Online Tutor in Islamabad</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('mathematics', 'Islamabad')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Math Online Tutor in Islamabad</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('physics', 'Islamabad')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Physics Online Tutor in Islamabad</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('accounting', 'Islamabad')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Accounting Online Tutor in Islamabad</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('business', 'Islamabad')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Business Online Tutor in Islamabad</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('economics', 'Islamabad')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">O Level Economics Online Tutor in Islamabad</span></a></li>
+                </ul>
+            </div>
+
+            {{-- A Level Online Column --}}
+            <div>
+                <h3 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-200 pb-2.5">A Level Online Tutors in Islamabad</h3>
+                <ul class="space-y-2.5 text-[13px] text-gray-600">
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('chemistry', 'Islamabad')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Chemistry Online Tutor in Islamabad</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('mathematics', 'Islamabad')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Math Online Tutor in Islamabad</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('physics', 'Islamabad')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Physics Online Tutor in Islamabad</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('accounting', 'Islamabad')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Accounting Online Tutor in Islamabad</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('business', 'Islamabad')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Business Online Tutor in Islamabad</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('economics', 'Islamabad')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">A Level Economics Online Tutor in Islamabad</span></a></li>
+                </ul>
+            </div>
+
+            {{-- IB Online Column --}}
+            <div>
+                <h3 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-200 pb-2.5">IB Online Tutors in Islamabad</h3>
+                <ul class="space-y-2.5 text-[13px] text-gray-600">
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('chemistry', 'Islamabad')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Chemistry Online Tutor in Islamabad</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('mathematics', 'Islamabad')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Math Online Tutor in Islamabad</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('physics', 'Islamabad')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Physics Online Tutor in Islamabad</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('business', 'Islamabad')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Business Online Tutor in Islamabad</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('economics', 'Islamabad')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">IB Economics Online Tutor in Islamabad</span></a></li>
+                </ul>
+            </div>
+
+            {{-- Grade 1-8 Online Column --}}
+            <div>
+                <h3 class="text-[13.5px] font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-200 pb-2.5">Grade 1-8 Online Tutors in Islamabad</h3>
+                <ul class="space-y-2.5 text-[13px] text-gray-600">
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('montessori', 'Islamabad')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Montessori Online Tutor in Islamabad</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('child', 'Islamabad')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Primary Grade Online Tutor in Islamabad</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('english', 'Islamabad')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Grade 5 Online Tutor in Islamabad</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('mathematics', 'Islamabad')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Grade 8 Online Tutor in Islamabad</span></a></li>
+                    <li><a href="javascript:void(0)" onclick="applyQuickFilter('quran', 'Islamabad')" class="hover:text-green-600 hover:underline flex items-start gap-2.5"><i class="fas fa-chevron-right text-[9px] text-green-300 mt-1.5 flex-shrink-0"></i><span class="leading-normal">Quran Online Tutor in Islamabad</span></a></li>
                 </ul>
             </div>
         </div>

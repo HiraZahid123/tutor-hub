@@ -23,30 +23,59 @@
             <!-- About Us Dropdown -->
             <li class="relative" id="about-wrapper">
                 <span onclick="toggleAboutDropdown(event)"
-                      class="text-base font-medium cursor-pointer text-gray-700 hover:text-blue-600 select-none flex items-center gap-1 transition-all">
+                      class="text-base font-medium cursor-pointer text-gray-700 hover:text-blue-600 select-none flex items-center gap-1.5 transition-all">
                     About Us
-                    <i class="fas fa-chevron-down text-xs text-gray-400 transition-transform duration-200" id="about-chevron"></i>
+                    <i class="fas fa-chevron-down text-[10px] text-gray-400 transition-transform duration-300" id="about-chevron"></i>
                 </span>
-                <ul id="about-dropdown"
-                    class="hidden absolute top-10 left-0 w-52 bg-white border border-gray-200 shadow-xl rounded-md z-50"
-                    style="animation:batFadeIn 0.18s ease;">
-                    <li>
-                        <a href="{{ route('about') }}" class="block px-5 py-3 hover:bg-gray-100 text-gray-700 hover:text-blue-600 font-medium">
-                            About
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('home') }}#faq" class="block px-5 py-3 hover:bg-gray-100 text-gray-700 hover:text-blue-600 font-medium">
-                            FAQ
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('about') }}#team" class="block px-5 py-3 hover:bg-gray-100 text-gray-700 hover:text-blue-600 font-medium">
-                            Our Team
-                        </a>
-                    </li>
-                </ul>
+
+                <div id="about-dropdown"
+                     class="hidden absolute top-[calc(100%+12px)] left-0 w-64 bg-white rounded-2xl z-50"
+                     style="box-shadow: 0 20px 60px rgba(0,0,0,0.12), 0 4px 16px rgba(37,99,235,0.08); animation: aboutDropIn 0.22s cubic-bezier(0.16,1,0.3,1);">
+                    {{-- Blue top accent --}}
+                    <div class="h-1 w-full bg-gradient-to-r from-blue-600 to-blue-400 rounded-t-2xl"></div>
+
+                    <div class="px-3 pt-3 pb-1">
+                        <span class="text-[10px] font-bold text-blue-500 uppercase tracking-[0.18em] px-2">Company</span>
+                    </div>
+
+                    <ul class="px-2 pb-3 space-y-0.5">
+                        <li>
+                            <a href="{{ route('about') }}"
+                               class="group flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13.5px] font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-all duration-150">
+                                <span class="w-7 h-7 flex items-center justify-center rounded-lg bg-blue-100 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all duration-150 flex-shrink-0">
+                                    <i class="fas fa-info-circle text-xs"></i>
+                                </span>
+                                <span>About Us</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('home') }}#faq"
+                               class="group flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13.5px] font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-all duration-150">
+                                <span class="w-7 h-7 flex items-center justify-center rounded-lg bg-orange-100 text-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-all duration-150 flex-shrink-0">
+                                    <i class="fas fa-question-circle text-xs"></i>
+                                </span>
+                                <span>FAQ</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('about') }}#team"
+                               class="group flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13.5px] font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-all duration-150">
+                                <span class="w-7 h-7 flex items-center justify-center rounded-lg bg-green-100 text-green-600 group-hover:bg-green-600 group-hover:text-white transition-all duration-150 flex-shrink-0">
+                                    <i class="fas fa-users text-xs"></i>
+                                </span>
+                                <span>Our Team</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </li>
+
+            <style>
+            @keyframes aboutDropIn {
+                from { opacity: 0; transform: translateY(-8px) scale(0.97); }
+                to   { opacity: 1; transform: translateY(0)   scale(1); }
+            }
+            </style>
 
             <li>
                 <a href="{{ route('contact') }}"
@@ -72,36 +101,60 @@
             <!-- Become a Tutor Dropdown -->
             <li class="relative" id="bat-wrapper">
                 <span onclick="toggleBatDropdown(event)"
-                      class="text-base font-medium cursor-pointer text-gray-700 hover:text-blue-600 select-none flex items-center gap-1">
+                      class="text-base font-medium cursor-pointer text-gray-700 hover:text-blue-600 select-none flex items-center gap-1.5 transition-all">
                     Become a Tutor
-                    <i class="fas fa-chevron-down text-xs text-gray-400 transition-transform duration-200" id="bat-chevron"></i>
+                    <i class="fas fa-chevron-down text-[10px] text-gray-400 transition-transform duration-300" id="bat-chevron"></i>
                 </span>
-                <ul id="bat-dropdown"
-                    class="hidden absolute top-10 left-0 w-60 bg-white border border-gray-200 shadow-xl rounded-md z-50"
-                    style="animation:batFadeIn 0.18s ease;">
-                    <li>
-                        <a href="{{ route('tutor-policy') }}" class="block px-5 py-3 hover:bg-gray-100 text-gray-700 hover:text-blue-600">
-                            Tutor Policy
+
+                <div id="bat-dropdown"
+                     class="hidden absolute top-[calc(100%+12px)] left-0 w-64 bg-white rounded-2xl z-50"
+                     style="box-shadow: 0 20px 60px rgba(0,0,0,0.12), 0 4px 16px rgba(234,88,12,0.08); animation: batDropIn 0.22s cubic-bezier(0.16,1,0.3,1);">
+                    {{-- Orange top accent --}}
+                    <div class="h-1 w-full bg-gradient-to-r from-orange-500 to-orange-400 rounded-t-2xl"></div>
+
+                    <div class="px-3 pt-3 pb-1">
+                        <span class="text-[10px] font-bold text-orange-500 uppercase tracking-[0.18em] px-2">For Tutors</span>
+                    </div>
+
+                    <ul class="px-2 pb-2 space-y-0.5">
+                        <li>
+                            <a href="{{ route('tutor-policy') }}"
+                               class="group flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13.5px] font-medium text-gray-700 hover:bg-orange-50 hover:text-orange-700 transition-all duration-150">
+                                <span class="w-7 h-7 flex items-center justify-center rounded-lg bg-orange-100 text-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-all duration-150 flex-shrink-0">
+                                    <i class="fas fa-shield-alt text-xs"></i>
+                                </span>
+                                <span>Tutor Policy</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('tutoring-process') }}"
+                               class="group flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13.5px] font-medium text-gray-700 hover:bg-orange-50 hover:text-orange-700 transition-all duration-150">
+                                <span class="w-7 h-7 flex items-center justify-center rounded-lg bg-blue-100 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all duration-150 flex-shrink-0">
+                                    <i class="fas fa-route text-xs"></i>
+                                </span>
+                                <span>Tutoring Flow</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    {{-- Register CTA --}}
+                    <div class="px-3 pb-3">
+                        <a href="{{ route('register', ['role' => 'tutor']) }}"
+                           class="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-[13.5px] font-bold text-white transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
+                           style="background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); box-shadow: 0 4px 14px rgba(234,88,12,0.35);">
+                            <i class="fas fa-chalkboard-teacher text-xs"></i>
+                            Register as Tutor
                         </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('tutoring-process') }}" class="block px-5 py-3 hover:bg-gray-100 text-gray-700 hover:text-blue-600">
-                            Tutoring Flow
-                        </a>
-                    </li>
-                    <li class="px-5 py-3">
-                        <a href="{{ route('register', ['role' => 'tutor']) }}" class="block text-center w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition-all">
-                            Register
-                        </a>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </li>
             <style>
-                @keyframes batFadeIn {
-                    from { opacity:0; transform:translateY(-6px); }
-                    to   { opacity:1; transform:translateY(0); }
+                @keyframes batDropIn {
+                    from { opacity: 0; transform: translateY(-8px) scale(0.97); }
+                    to   { opacity: 1; transform: translateY(0)   scale(1); }
                 }
             </style>
+
             <script>
                 function toggleBatDropdown(e) {
                     e.stopPropagation();
