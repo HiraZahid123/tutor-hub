@@ -3,6 +3,22 @@
 
 @section('content')
 <style>
+@keyframes activeTabPulse {
+    0%   { transform: scale(1);     box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4); }
+    25%  { transform: scale(1.03);  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6); }
+    50%  { transform: scale(1.015); box-shadow: 0 5px 16px rgba(37, 99, 235, 0.5); }
+    75%  { transform: scale(1.03);  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6); }
+    100% { transform: scale(1);     box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4); }
+}
+.active-tab-pulse {
+    animation: activeTabPulse 1.8s ease-in-out infinite !important;
+}
+.active-tab-pulse:hover {
+    animation: none !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.5) !important;
+}
+
 @keyframes blink-glow {
     0%, 100% { box-shadow: 0 0 0 0 rgba(234,88,12,0.55); opacity: 1; }
     50%       { box-shadow: 0 0 0 8px rgba(234,88,12,0); opacity: 0.75; }
@@ -454,7 +470,7 @@
         {{-- Directory Tabs --}}
         <div class="flex justify-center gap-3 mb-10" data-aos="fade-up">
             <button onclick="switchDirectoryTab('Lahore')" id="tab-btn-lahore"
-                    class="directory-tab-btn px-7 py-3.5 rounded-xl text-sm font-bold uppercase tracking-wider transition-all bg-blue-600 text-white shadow-md">
+                    class="directory-tab-btn px-7 py-3.5 rounded-xl text-sm font-bold uppercase tracking-wider transition-all bg-blue-600 text-white shadow-md active-tab-pulse">
                 <i class="fas fa-map-marker-alt mr-2 text-yellow-300"></i> Tutors in Lahore
             </button>
             <button onclick="switchDirectoryTab('Karachi')" id="tab-btn-karachi"
@@ -1351,13 +1367,13 @@ function switchDirectoryTab(city) {
     if (panel) panel.classList.remove('hidden');
 
     document.querySelectorAll('.directory-tab-btn').forEach(btn => {
-        btn.classList.remove('bg-blue-600', 'text-white', 'shadow-md');
+        btn.classList.remove('bg-blue-600', 'text-white', 'shadow-md', 'active-tab-pulse');
         btn.classList.add('bg-white', 'text-gray-600', 'hover:bg-gray-100', 'border', 'border-gray-200');
     });
 
     const activeBtn = document.getElementById(`tab-btn-${city.toLowerCase()}`);
     if (activeBtn) {
-        activeBtn.classList.add('bg-blue-600', 'text-white', 'shadow-md');
+        activeBtn.classList.add('bg-blue-600', 'text-white', 'shadow-md', 'active-tab-pulse');
         activeBtn.classList.remove('bg-white', 'text-gray-600', 'hover:bg-gray-100', 'border', 'border-gray-200');
     }
 }
