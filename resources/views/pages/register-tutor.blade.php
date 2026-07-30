@@ -724,6 +724,11 @@
             </div>
         @endif
 
+        <div class="error-box" id="jsErrorBox" style="display:none;">
+            <p style="font-weight:800;margin-bottom:0.5rem;"><i class="fas fa-exclamation-circle mr-1"></i> Please correct the following errors:</p>
+            <ul id="jsErrorList" style="margin:0;padding-left:1.25rem;"></ul>
+        </div>
+
         <form id="applyForm" action="{{ route('register-tutor.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
@@ -1089,6 +1094,15 @@
 let currentStep = 1;
 const totalSteps = 4;
 
+// Cache files in memory to prevent ERR_UPLOAD_FILE_CHANGED on slow/mobile browsers
+let resumeBlob = null;
+let resumeFileName = '';
+let resumeFileType = '';
+
+let profileImageBlob = null;
+let profileImageFileName = '';
+let profileImageFileType = '';
+
 /* ===== SHOW STEP ===== */
 function showStep(step) {
     currentStep = step;
@@ -1251,23 +1265,45 @@ document.getElementById('country').addEventListener('change', function () {
     if (data.tz.length === 1) tzSelect.value = data.tz[0];
 });
 
-/* ===== FILE PREVIEWS ===== */
+/* ===== FILE PREVIEWS & IN-MEMORY CACHING ===== */
 document.getElementById('resume').addEventListener('change', function () {
     if (this.files.length) {
-        document.getElementById('resumeFileName').textContent = this.files[0].name;
+        const file = this.files[0];
+        resumeFileName = file.name;
+        resumeFileType = file.type;
+        document.getElementById('resumeFileName').textContent = file.name;
         document.getElementById('resumePreview').style.display = 'flex';
         document.getElementById('resumeContent').style.display = 'none';
+
+        // Read file immediately into an ArrayBuffer to freeze its data in RAM
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            resumeBlob = new Blob([e.target.result], { type: resumeFileType });
+        };
+        reader.readAsArrayBuffer(file);
     }
 });
 
 document.getElementById('profile_image').addEventListener('change', function () {
     if (this.files && this.files[0]) {
+        const file = this.files[0];
+        profileImageFileName = file.name;
+        profileImageFileType = file.type;
+
+        // Render preview
         const reader = new FileReader();
         reader.onload = e => {
             document.getElementById('photoPreviewCircle').innerHTML =
                 `<img src="${e.target.result}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
         };
-        reader.readAsDataURL(this.files[0]);
+        reader.readAsDataURL(file);
+
+        // Read file immediately into an ArrayBuffer to freeze its data in RAM
+        const reader2 = new FileReader();
+        reader2.onload = function (e) {
+            profileImageBlob = new Blob([e.target.result], { type: profileImageFileType });
+        };
+        reader2.readAsArrayBuffer(file);
     }
 });
 
@@ -1276,6 +1312,108 @@ function removeFile(id) {
     if (id === 'resume') {
         document.getElementById('resumePreview').style.display = 'none';
         document.getElementById('resumeContent').style.display = 'block';
+        resumeBlob = null;
+        resumeFileName = '';
+        resumeFileType = '';
+    }
+}
+
+/* ===== AJAX FORM SUBMISSION (BYPASSING ERR_UPLOAD_FILE_CHANGED) ===== */
+document.getElementById('applyForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    // Final validation check for the last step (subjects)
+    if (!validateStep(4)) {
+        shake('step-4');
+        return;
+    }
+
+    const submitBtn = document.getElementById('submitBtn');
+    const originalBtnHTML = submitBtn.innerHTML;
+
+    // Show loading spinner and disable submit button to prevent double submits
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = 'Submitting... <i class="fas fa-spinner fa-spin"></i>';
+
+    // Hide any previous errors
+    const jsErrorBox = document.getElementById('jsErrorBox');
+    if (jsErrorBox) jsErrorBox.style.display = 'none';
+
+    // Build FormData from form fields
+    const formData = new FormData(this);
+
+    // Delete direct volatile filesystem file references to prevent ERR_UPLOAD_FILE_CHANGED
+    formData.delete('resume');
+    formData.delete('profile_image');
+
+    // Append our cached in-memory Blobs as File objects (if they exist)
+    if (resumeBlob) {
+        formData.append('resume', new File([resumeBlob], resumeFileName, { type: resumeFileType }));
+    }
+    if (profileImageBlob) {
+        formData.append('profile_image', new File([profileImageBlob], profileImageFileName, { type: profileImageFileType }));
+    }
+
+    // Submit form via AJAX fetch
+    fetch(this.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+    })
+    .then(async response => {
+        if (response.ok) {
+            // Success: redirect user to the tutor dashboard
+            window.location.href = '/tutor/dashboard';
+        } else if (response.status === 422) {
+            // Validation errors from Laravel
+            const errorsData = await response.json();
+            showErrors(errorsData.errors || {});
+            
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnHTML;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            // Server error
+            showErrors({ server: ['An unexpected server error occurred. Please try again.'] });
+            
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnHTML;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    })
+    .catch(error => {
+        console.error('Submission error:', error);
+        showErrors({ network: ['Network error: Please check your internet connection and try again.'] });
+        
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHTML;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+});
+
+function showErrors(errors) {
+    const jsErrorBox = document.getElementById('jsErrorBox');
+    const jsErrorList = document.getElementById('jsErrorList');
+    if (!jsErrorBox || !jsErrorList) return;
+
+    jsErrorList.innerHTML = '';
+    
+    // Flatten and render validation errors
+    for (const key in errors) {
+        if (errors.hasOwnProperty(key)) {
+            errors[key].forEach(errText => {
+                const li = document.createElement('li');
+                li.textContent = errText;
+                jsErrorList.appendChild(li);
+            });
+        }
+    }
+    
+    if (jsErrorList.childElementCount > 0) {
+        jsErrorBox.style.display = 'block';
     }
 }
 
