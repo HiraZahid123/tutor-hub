@@ -50,6 +50,19 @@ class TutorRegistrationController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
+        // Check if application already exists to prevent duplicate profiles
+        $existing = TutorRegistration::where('user_id', $user->id)->first();
+        if ($existing) {
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'errors' => [
+                        'user_id' => ['You have already submitted a tutor registration application.']
+                    ]
+                ], 422);
+            }
+            return redirect('/tutor/dashboard')->with('info', 'You have already submitted an application.');
+        }
+
         $validated = $request->validate([
             // Step 1: Basic Info
             'country' => 'required|string|max:255',
