@@ -1423,18 +1423,21 @@ document.getElementById('applyForm').addEventListener('submit', function (e) {
     // Build FormData from form fields
     const formData = new FormData(this);
 
-    // Prepend country prefix to the phone number
+    // Prepend country prefix to the phone number (WAF-friendly, no symbol characters like '+')
     const countryVal = document.getElementById('country').value;
     const prefixData = countryData[countryVal] || countryData['OTHER'];
     if (prefixData && prefixData.prefix) {
         let phoneVal = formData.get('phone') ? formData.get('phone').trim() : '';
         if (phoneVal) {
-            if (!phoneVal.startsWith('+')) {
-                // Strip leading zero if typed (e.g. 0300... -> 300...)
-                if (phoneVal.startsWith('0')) {
-                    phoneVal = phoneVal.substring(1);
-                }
-                phoneVal = prefixData.prefix + phoneVal;
+            // Strip any existing '+' sign, spaces, dashes or parentheses
+            phoneVal = phoneVal.replace(/[\s\+\-\(\)]/g, '');
+            // Strip leading zero if typed (e.g. 0300... -> 300...)
+            if (phoneVal.startsWith('0')) {
+                phoneVal = phoneVal.substring(1);
+            }
+            const cleanPrefix = prefixData.prefix.replace('+', '');
+            if (cleanPrefix && !phoneVal.startsWith(cleanPrefix)) {
+                phoneVal = cleanPrefix + phoneVal;
             }
             formData.set('phone', phoneVal);
         }
