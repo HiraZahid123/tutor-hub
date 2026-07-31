@@ -1148,34 +1148,109 @@ function goToStep(target) {
 function validateStep(step) {
     const el = document.getElementById('step-' + step);
     let valid = true;
+    let errors = [];
 
     el.querySelectorAll('[required]').forEach(input => {
+        let label = '';
+        const group = input.closest('.form-group');
+        if (group) {
+            const labelEl = group.querySelector('.field-label');
+            if (labelEl) {
+                label = labelEl.textContent.replace('*', '').trim();
+            }
+        }
+        if (!label) {
+            label = input.name ? input.name.replace('_', ' ') : 'field';
+        }
+
         if (input.type === 'radio') {
             const radios = el.querySelectorAll(`input[name="${input.name}"]`);
-            if (!Array.from(radios).some(r => r.checked)) valid = false;
+            if (!Array.from(radios).some(r => r.checked)) {
+                valid = false;
+                const errText = `Please select your ${label.toLowerCase()}.`;
+                if (!errors.includes(errText)) {
+                    errors.push(errText);
+                }
+            }
         } else if (input.type === 'file') {
-            // File inputs: check files array
-            if (!input.files || input.files.length === 0) valid = false;
+            // Check if file is already loaded/cached or present in input
+            const isResume = input.id === 'resume';
+            const isPhoto = input.id === 'profile_image';
+            const hasFile = (isResume && resumeBlob) || (isPhoto && profileImageBlob) || (input.files && input.files.length > 0);
+            
+            if (!hasFile) {
+                valid = false;
+                errors.push(`Please upload your ${label.toLowerCase()}.`);
+            }
         } else if (input.tagName === 'TEXTAREA' || input.type === 'text' || input.type === 'number') {
-            if (!input.value.trim()) valid = false;
-            // Enforce minlength if set
-            const minLen = parseInt(input.getAttribute('minlength') || '0');
-            if (minLen > 0 && input.value.trim().length < minLen) valid = false;
+            if (!input.value.trim()) {
+                valid = false;
+                errors.push(`The ${label} field is required.`);
+            } else {
+                const minLen = parseInt(input.getAttribute('minlength') || '0');
+                if (minLen > 0 && input.value.trim().length < minLen) {
+                    valid = false;
+                    errors.push(`The ${label} must be at least ${minLen} characters.`);
+                }
+            }
         } else {
-            if (!input.value.trim()) valid = false;
+            if (!input.value.trim()) {
+                valid = false;
+                errors.push(`Please select a ${label.toLowerCase()}.`);
+            }
         }
     });
 
-    // Also validate textareas (they may not always be caught by querySelectorAll('[required]') in some browsers)
+    // Also validate textareas explicitly
     el.querySelectorAll('textarea[required]').forEach(ta => {
-        if (!ta.value.trim()) valid = false;
-        const minLen = parseInt(ta.getAttribute('minlength') || '0');
-        if (minLen > 0 && ta.value.trim().length < minLen) valid = false;
+        let label = '';
+        const group = ta.closest('.form-group');
+        if (group) {
+            const labelEl = group.querySelector('.field-label');
+            if (labelEl) label = labelEl.textContent.replace('*', '').trim();
+        }
+        if (!label) label = 'Bio / Experience';
+
+        if (!ta.value.trim()) {
+            valid = false;
+            if (!errors.includes(`The ${label} field is required.`)) {
+                errors.push(`The ${label} field is required.`);
+            }
+        } else {
+            const minLen = parseInt(ta.getAttribute('minlength') || '0');
+            if (minLen > 0 && ta.value.trim().length < minLen) {
+                valid = false;
+                const errText = `The ${label} must be at least ${minLen} characters.`;
+                if (!errors.includes(errText)) {
+                    errors.push(errText);
+                }
+            }
+        }
     });
 
     if (step === 4) {
-        if (!document.querySelectorAll('input[name="subjects[]"]:checked').length) valid = false;
+        if (!document.querySelectorAll('input[name="subjects[]"]:checked').length) {
+            valid = false;
+            errors.push('Please select at least one teaching subject.');
+        }
     }
+
+    const jsErrorBox = document.getElementById('jsErrorBox');
+    const jsErrorList = document.getElementById('jsErrorList');
+    if (!valid) {
+        if (jsErrorBox && jsErrorList) {
+            jsErrorList.innerHTML = '';
+            errors.forEach(err => {
+                const li = document.createElement('li');
+                li.textContent = err;
+                jsErrorList.appendChild(li);
+            });
+            jsErrorBox.style.display = 'block';
+        }
+    } else {
+        if (jsErrorBox) jsErrorBox.style.display = 'none';
+    }
+
     return valid;
 }
 
@@ -1262,7 +1337,7 @@ document.getElementById('country').addEventListener('change', function () {
         opt.value = opt.textContent = z;
         tzSelect.appendChild(opt);
     });
-    if (data.tz.length === 1) tzSelect.value = data.tz[0];
+    if (data.tz.length >= 1) tzSelect.value = data.tz[0];
 });
 
 /* ===== FILE PREVIEWS & IN-MEMORY CACHING ===== */
@@ -1322,11 +1397,17 @@ function removeFile(id) {
 document.getElementById('applyForm').addEventListener('submit', function (e) {
     e.preventDefault();
 
-    // Final validation check for the last step (subjects)
-    if (!validateStep(4)) {
-        shake('step-4');
-        return;
+    // Final validation check for all steps to ensure no empty fields are bypassed
+    let allValid = true;
+    for (let s = 1; s <= 4; s++) {
+        if (!validateStep(s)) {
+            allValid = false;
+            showStep(s);
+            shake('step-' + s);
+            break;
+        }
     }
+    if (!allValid) return;
 
     const submitBtn = document.getElementById('submitBtn');
     const originalBtnHTML = submitBtn.innerHTML;
@@ -1341,6 +1422,23 @@ document.getElementById('applyForm').addEventListener('submit', function (e) {
 
     // Build FormData from form fields
     const formData = new FormData(this);
+
+    // Prepend country prefix to the phone number
+    const countryVal = document.getElementById('country').value;
+    const prefixData = countryData[countryVal] || countryData['OTHER'];
+    if (prefixData && prefixData.prefix) {
+        let phoneVal = formData.get('phone') ? formData.get('phone').trim() : '';
+        if (phoneVal) {
+            if (!phoneVal.startsWith('+')) {
+                // Strip leading zero if typed (e.g. 0300... -> 300...)
+                if (phoneVal.startsWith('0')) {
+                    phoneVal = phoneVal.substring(1);
+                }
+                phoneVal = prefixData.prefix + phoneVal;
+            }
+            formData.set('phone', phoneVal);
+        }
+    }
 
     // Delete direct volatile filesystem file references to prevent ERR_UPLOAD_FILE_CHANGED
     formData.delete('resume');

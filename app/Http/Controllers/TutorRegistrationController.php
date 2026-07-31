@@ -131,8 +131,9 @@ class TutorRegistrationController extends Controller
         // Alert admin
         try {
             Mail::to(config('mail.from.address', 'admin@tutorhub.com'))->send(new NewTutorApplicationAlert($tutor));
-        } catch (\Exception $e) {
-            // Log or ignore mail errors to not disrupt user experience
+        } catch (\Throwable $e) {
+            // Log the error but don't crash the user session
+            \Illuminate\Support\Facades\Log::error('Admin tutor registration alert mail failed: ' . $e->getMessage());
         }
 
         return redirect('/tutor/dashboard')->with('success', 'Your application as a tutor has been submitted successfully!');
