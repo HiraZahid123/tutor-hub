@@ -10,7 +10,6 @@
     <li><strong>Subject(s):</strong> {{ is_array($studentRequest->subject) ? implode(', ', $studentRequest->subject) : $studentRequest->subject }}</li>
     <li><strong>Grade:</strong> {{ $studentRequest->grade }}</li>
     <li><strong>City:</strong> {{ $studentRequest->city }}</li>
-    <li><strong>Contact Method:</strong> {{ $studentRequest->contact_method }}</li>
     @if($studentRequest->notes)
     <li><strong>Notes:</strong> {{ $studentRequest->notes }}</li>
     @endif
