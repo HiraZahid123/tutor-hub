@@ -294,6 +294,26 @@ class AdminController extends Controller
 
         return view('admin.matches', compact('directMatches', 'adminMatches'));
     }
+    public function approvePayment($id)
+    {
+        $booking = \App\Models\Booking::findOrFail($id);
+        $booking->update([
+            'payment_status' => \App\Models\Booking::STATUS_PAID
+        ]);
+
+        return back()->with('success', 'Payment approved successfully!');
+    }
+
+    public function rejectPayment($id)
+    {
+        $booking = \App\Models\Booking::findOrFail($id);
+        $booking->update([
+            'payment_status' => \App\Models\Booking::STATUS_FAILED
+        ]);
+
+        return back()->with('success', 'Payment marked as failed/rejected.');
+    }
+
     public function apiCounts()
     {
         return response()->json([

@@ -15,7 +15,7 @@
             </div>
             <h3 class="text-lg font-black text-gray-900 mb-2">No requests sent yet</h3>
             <p class="text-gray-400 text-sm font-medium">Browse our tutor list and find your perfect match today!</p>
-            <a href="{{ url('/') }}" class="inline-block mt-8 bg-blue-600 text-white px-8 py-3 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/20">Find a Tutor</a>
+            <a href="{{ route('tutors.directory') }}" class="inline-block mt-8 bg-blue-600 text-white px-8 py-3 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/20">Find a Tutor</a>
         </div>
     @else
         <div class="grid gap-6">

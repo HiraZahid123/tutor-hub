@@ -17,6 +17,7 @@ use App\Http\Controllers\TutorReviewController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\JazzCashController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Middleware\AdminMiddleware;
 
 // Public Pages
@@ -90,6 +91,10 @@ Route::middleware(['auth'])->group(function () {
     // Direct Tutor Inquiry/Hire
     Route::post('/tutor/inquiry', [InquiryController::class, 'store'])->name('tutor.inquiry.store');
 
+    // Unified Payment Routes
+    Route::get('/payment/checkout/{id}', [PaymentController::class, 'checkout'])->name('payment.checkout');
+    Route::post('/payment/checkout/{id}/submit', [PaymentController::class, 'submit'])->name('payment.submit');
+
     // JazzCash Payment Routes
     Route::get('/payment/jazzcash/checkout/{id}', [JazzCashController::class, 'checkout'])->name('payment.jazzcash.checkout');
     Route::get('/payment/jazzcash/mock-success/{id}', [JazzCashController::class, 'mockSuccess'])->name('payment.jazzcash.mock-success');
@@ -118,6 +123,8 @@ Route::middleware([AdminMiddleware::class])->prefix('admin')->group(function () 
     Route::get('/matches', [AdminController::class, 'matches'])->name('admin.matches');
     Route::get('/bookings', [AdminController::class, 'bookings'])->name('admin.bookings');
     Route::get('/payments', [AdminController::class, 'payments'])->name('admin.payments');
+    Route::post('/payments/{id}/approve', [AdminController::class, 'approvePayment'])->name('admin.payments.approve');
+    Route::post('/payments/{id}/reject', [AdminController::class, 'rejectPayment'])->name('admin.payments.reject');
     Route::post('/tutors/{id}/approve', [AdminController::class, 'approveTutor'])->name('admin.tutors.approve');
     Route::patch('/students/{id}/status', [AdminController::class, 'updateStudentStatus'])->name('admin.students.status');
     Route::delete('/tutors/{id}', [AdminController::class, 'destroyTutor'])->name('admin.tutors.destroy');

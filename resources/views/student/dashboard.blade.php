@@ -63,6 +63,18 @@
                     @endforeach
                 </div>
             </div>
+            @else
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 text-center py-12">
+                <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-graduation-cap text-2xl"></i>
+                </div>
+                <h3 class="text-sm font-bold text-slate-800 mb-1">No Tutors Assigned Yet</h3>
+                <p class="text-xs text-slate-400 mb-6 leading-relaxed max-w-sm mx-auto">Explore our approved directory or submit a tutoring request to find the perfect matched tutor.</p>
+                <div class="flex justify-center gap-3">
+                    <a href="{{ route('tutors.directory') }}" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold uppercase tracking-wider transition-colors shadow-md shadow-blue-600/10">Find a Tutor</a>
+                    <a href="{{ route('find-a-tutor') }}" class="px-5 py-2.5 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors">Request a Tutor</a>
+                </div>
+            </div>
             @endif
 
             <!-- Scheduled Sessions -->
@@ -151,7 +163,7 @@
                             </div>
                             <div class="text-right">
                                 <p class="text-xs font-bold text-blue-400">PKR {{ number_format($ub->price_at_booking) }}</p>
-                                <a href="{{ route('payment.jazzcash.checkout', $ub->id) }}" class="text-[8px] font-bold text-white bg-blue-600 px-2.5 py-1 rounded uppercase tracking-wider mt-1 inline-block hover:bg-blue-700 transition-colors">Pay</a>
+                                <a href="{{ route('payment.checkout', $ub->id) }}" class="text-[8px] font-bold text-white bg-blue-600 px-2.5 py-1 rounded uppercase tracking-wider mt-1 inline-block hover:bg-blue-700 transition-colors">Pay</a>
                             </div>
                         </div>
                         @endforeach

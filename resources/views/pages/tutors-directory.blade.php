@@ -119,18 +119,20 @@
         background: #ffffff;
         border: 1px solid #e5e7eb;
         border-radius: 1.25rem;
-        padding: 1.5rem;
+        padding: 1.75rem;
         transition: all 0.3s ease;
         display: flex;
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 1.25rem;
         width: 100%;
         box-sizing: border-box;
+        overflow: hidden;
     }
     @media (min-width: 768px) {
         .tutor-horizontal-card {
             flex-direction: row;
-            align-items: stretch;
+            align-items: flex-start;
+            gap: 1.5rem;
         }
     }
     .tutor-horizontal-card:hover {
@@ -138,26 +140,30 @@
         border-color: #bfdbfe;
         transform: translateY(-2px);
     }
-    
+
     /* Tutor Photo */
+    .tutor-photo-column {
+        flex-shrink: 0;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+    }
     .tutor-photo-circle {
-        width: 100px;
-        height: 100px;
+        width: 90px;
+        height: 90px;
         border-radius: 9999px;
         overflow: hidden;
         background-color: #f3f4f6;
-        border: 2px solid #e5e7eb;
+        border: 3px solid #e5e7eb;
         flex-shrink: 0;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 auto;
     }
     @media (min-width: 768px) {
         .tutor-photo-circle {
-            width: 110px;
-            height: 110px;
-            margin: 0;
+            width: 100px;
+            height: 100px;
         }
     }
     .tutor-photo-circle img {
@@ -167,21 +173,191 @@
         object-position: center top;
     }
 
-    /* Action Circle Buttons */
-    .action-circle-btn {
-        width: 2.75rem;
-        height: 2.75rem;
-        border-radius: 9999px;
+    /* Center Info Column */
+    .tutor-info-column {
+        flex: 1;
+        min-width: 0;
         display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+    .tutor-name-row {
+        display: flex;
+        align-items: baseline;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+    }
+    .tutor-name-link {
+        font-size: 1.15rem;
+        font-weight: 900;
+        color: #111827;
+        text-decoration: none;
+        transition: color 0.2s;
+        white-space: nowrap;
+    }
+    .tutor-name-link:hover {
+        color: #2563eb;
+    }
+    .tutor-qualification {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #9ca3af;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 220px;
+    }
+    .tutor-affiliation {
+        font-size: 0.7rem;
+        font-weight: 800;
+        color: #2563eb;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-top: 0.15rem;
+    }
+    .tutor-bio {
+        font-size: 0.85rem;
+        color: #6b7280;
+        line-height: 1.6;
+        margin-top: 0.5rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    .tutor-tags-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        margin-top: 0.75rem;
+    }
+    .tutor-tag {
+        font-size: 0.625rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        padding: 0.3rem 0.65rem;
+        background: #eff6ff;
+        border: 1px solid #dbeafe;
+        color: #1d4ed8;
+        border-radius: 9999px;
+        white-space: nowrap;
+    }
+
+    /* Right Actions Column */
+    .tutor-actions-column {
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        border-top: 1px solid #f3f4f6;
+        padding-top: 1rem;
+    }
+    @media (min-width: 768px) {
+        .tutor-actions-column {
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: flex-start;
+            width: 170px;
+            border-top: none;
+            border-left: 1px solid #f3f4f6;
+            padding-top: 0;
+            padding-left: 1.5rem;
+            gap: 0.75rem;
+        }
+    }
+
+    /* Rating */
+    .tutor-rating-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    @media (min-width: 768px) {
+        .tutor-rating-block {
+            align-items: flex-end;
+        }
+    }
+    .tutor-rating-label {
+        font-size: 0.6rem;
+        font-weight: 700;
+        color: #9ca3af;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 0.25rem;
+    }
+    .tutor-stars {
+        display: flex;
+        gap: 0.15rem;
+        color: #f59e0b;
+    }
+    .tutor-stars i {
+        font-size: 0.75rem;
+    }
+    .tutor-stars .empty-star {
+        color: #d1d5db;
+    }
+
+    /* Book Button */
+    .tutor-book-btn {
+        display: inline-flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.125rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        gap: 0.4rem;
+        padding: 0.6rem 1.25rem;
+        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        color: #ffffff;
+        border-radius: 0.75rem;
+        font-size: 0.7rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        text-decoration: none;
+        transition: all 0.25s ease;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+        white-space: nowrap;
+        width: auto;
+    }
+    @media (min-width: 768px) {
+        .tutor-book-btn {
+            width: 100%;
+        }
+    }
+    .tutor-book-btn:hover {
+        background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+        box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+        transform: translateY(-1px);
+    }
+
+    /* Action Circle Buttons */
+    .tutor-secondary-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        justify-content: center;
+    }
+    @media (min-width: 768px) {
+        .tutor-secondary-actions {
+            justify-content: flex-end;
+        }
+    }
+    .action-circle-btn {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 9999px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
         transition: all 0.2s;
+        text-decoration: none;
     }
     .action-circle-btn:hover {
-        transform: scale(1.08);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transform: scale(1.1);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
     }
 </style>
 
@@ -333,89 +509,95 @@
                             <div class="tutor-horizontal-card">
                                 
                                 {{-- Left Column: Avatar Photo --}}
-                                <div class="flex-shrink-0">
+                                <div class="tutor-photo-column">
                                     @if(!empty($tutor['photo']))
                                         <div class="tutor-photo-circle">
                                             <img src="{{ asset($tutor['photo']) }}" alt="{{ $tutor['name'] }}">
                                         </div>
                                     @else
-                                        <div class="tutor-photo-circle text-white font-extrabold text-3xl shadow-inner" style="background-color: {{ $tutor['bg'] }};">
+                                        <div class="tutor-photo-circle text-white font-extrabold text-2xl" style="background-color: {{ $tutor['bg'] }};">
                                             {{ $tutor['initials'] }}
                                         </div>
                                     @endif
                                 </div>
                                 
                                 {{-- Center Column: Info details --}}
-                                @php $tutor = $tutor; @endphp {{-- shadow PHP assignment to satisfy lines count match --}}
-                                <div class="flex-1 min-w-0 flex flex-col justify-between">
-                                    <div>
-                                        <div class="flex flex-col md:flex-row md:items-baseline gap-1.5 md:gap-3">
-                                            <a href="{{ route('tutors.show', $tutor['id']) }}" class="text-xl font-black text-gray-900 hover:text-blue-600 transition-colors">
-                                                {{ $tutor['name'] }}
-                                            </a>
-                                            <span class="text-xs font-semibold text-gray-400">
-                                                {{ $tutor['qualification'] }}
-                                            </span>
-                                        </div>
-                                        
-                                        <p class="text-xs font-extrabold text-blue-600 uppercase tracking-widest mt-1 mb-3">
-                                            {{ $tutor['affiliation'] }}
-                                        </p>
-                                        
-                                        <p class="text-sm text-gray-500 leading-relaxed line-clamp-3">
-                                            {{ $tutor['bio'] }}
-                                        </p>
+                                <div class="tutor-info-column">
+                                    <div class="tutor-name-row">
+                                        <a href="{{ route('tutors.show', $tutor['id']) }}" class="tutor-name-link">
+                                            {{ $tutor['name'] }}
+                                        </a>
+                                        <span class="tutor-qualification" title="{{ $tutor['qualification'] }}">
+                                            {{ $tutor['qualification'] }}
+                                        </span>
                                     </div>
                                     
-                                    {{-- Subjects List tags --}}
-                                    <div class="mt-4 flex flex-wrap gap-1">
+                                    <p class="tutor-affiliation">
+                                        {{ $tutor['affiliation'] }}
+                                    </p>
+                                    
+                                    @if(!empty($tutor['bio']))
+                                        <p class="tutor-bio">
+                                            {{ $tutor['bio'] }}
+                                        </p>
+                                    @endif
+                                    
+                                    {{-- Subjects tags --}}
+                                    <div class="tutor-tags-row">
                                         @foreach($tutor['subject_tags'] as $tag)
-                                            <span class="text-[9px] font-black uppercase tracking-wider px-2.5 py-1 bg-blue-50 border border-blue-100 text-blue-700 rounded-full">
-                                                {{ $tag }}
-                                            </span>
+                                            <span class="tutor-tag">{{ $tag }}</span>
                                         @endforeach
                                     </div>
                                 </div>
                                 
-                                {{-- Right Column: Ratings and Circular Action Buttons --}}
-                                <div class="w-full md:w-[160px] shrink-0 flex flex-row md:flex-col justify-between items-center md:items-end border-t md:border-t-0 md:border-l border-gray-100 pt-4 md:pt-0 md:pl-6">
+                                {{-- Right Column: Rating + Actions --}}
+                                <div class="tutor-actions-column">
                                     
                                     {{-- Star Rating --}}
-                                    <div class="flex flex-col items-center md:items-end">
-                                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">TUTOR'S RATING:</span>
-                                        <div class="flex items-center gap-1.5">
-                                            <div class="flex text-orange-500 gap-0.5">
-                                                @php
-                                                    $rVal = $tutor['rating'] ?? 5.0;
-                                                    $fullStars = floor($rVal);
-                                                    $hasHalf = ($rVal - $fullStars) >= 0.3;
-                                                @endphp
-                                                @for($j = 1; $j <= 5; $j++)
-                                                    @if($j <= $fullStars)
-                                                        <i class="fas fa-star text-xs"></i>
-                                                    @elseif($j == $fullStars + 1 && $hasHalf)
-                                                        <i class="fas fa-star-half-alt text-xs"></i>
-                                                    @else
-                                                        <i class="far fa-star text-xs text-gray-300"></i>
-                                                    @endif
-                                                @endfor
-                                            </div>
+                                    <div class="tutor-rating-block">
+                                        <span class="tutor-rating-label">Tutor's Rating</span>
+                                        <div class="tutor-stars">
+                                            @php
+                                                $rVal = $tutor['rating'] ?? 5.0;
+                                                $fullStars = floor($rVal);
+                                                $hasHalf = ($rVal - $fullStars) >= 0.3;
+                                            @endphp
+                                            @for($j = 1; $j <= 5; $j++)
+                                                @if($j <= $fullStars)
+                                                    <i class="fas fa-star"></i>
+                                                @elseif($j == $fullStars + 1 && $hasHalf)
+                                                    <i class="fas fa-star-half-alt"></i>
+                                                @else
+                                                    <i class="far fa-star empty-star"></i>
+                                                @endif
+                                            @endfor
                                         </div>
                                     </div>
-                                    
-                                    {{-- Action Buttons side-by-side circular --}}
-                                    <div class="flex flex-col items-center md:items-end mt-0 md:mt-8">
-                                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2 hidden md:block">SEND MESSAGE:</span>
-                                        <div class="flex items-center gap-3">
-                                            {{-- Profile/Detail Page Circular Button --}}
-                                            <a href="{{ route('tutors.show', $tutor['id']) }}" class="action-circle-btn bg-blue-600 text-white hover:bg-blue-700" title="View Detail Profile">
-                                                <i class="fas fa-paper-plane text-xs"></i>
-                                            </a>
-                                            {{-- WhatsApp Booking Circular Button --}}
-                                            <a href="https://wa.me/923414133395?text=Hi%2C%20I%20am%20interested%20in%20hiring%20tutor%20{{ urlencode($tutor['name']) }}%20via%20TutorHub" target="_blank" class="action-circle-btn bg-green-500 text-white hover:bg-green-600" title="WhatsApp Book Class">
-                                                <i class="fab fa-whatsapp text-lg"></i>
-                                            </a>
-                                        </div>
+
+                                    {{-- Book / Hire Button --}}
+                                    @auth
+                                        <a href="{{ route('student.book', $tutor['id']) }}" class="tutor-book-btn">
+                                            <i class="fas fa-calendar-plus"></i> Book Session
+                                        </a>
+                                    @else
+                                        <a href="{{ route('login') }}?redirect={{ urlencode(route('student.book', $tutor['id'])) }}" class="tutor-book-btn">
+                                            <i class="fas fa-sign-in-alt"></i> Login to Hire
+                                        </a>
+                                    @endauth
+
+                                    {{-- View Profile + WhatsApp --}}
+                                    <div class="tutor-secondary-actions">
+                                        <a href="{{ route('tutors.show', $tutor['id']) }}"
+                                           class="action-circle-btn bg-gray-100 text-gray-600 hover:bg-gray-200"
+                                           title="View Full Profile">
+                                            <i class="fas fa-user" style="font-size: 0.75rem;"></i>
+                                        </a>
+                                        <a href="https://wa.me/923414133395?text=Hi%2C%20I%20am%20interested%20in%20hiring%20tutor%20{{ urlencode($tutor['name']) }}%20via%20TutorHub"
+                                           target="_blank"
+                                           class="action-circle-btn bg-green-500 text-white hover:bg-green-600"
+                                           title="WhatsApp Enquiry">
+                                            <i class="fab fa-whatsapp" style="font-size: 1.1rem;"></i>
+                                        </a>
                                     </div>
                                     
                                 </div>

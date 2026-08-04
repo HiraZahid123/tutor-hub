@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use App\Http\View\Composers\AdminSidebarComposer;
 use Illuminate\Support\Facades\Event;
@@ -24,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Schema::defaultStringLength(191);
+
         View::composer('layouts.admin', AdminSidebarComposer::class);
 
         Event::listen(function (SocialiteWasCalled $event) {

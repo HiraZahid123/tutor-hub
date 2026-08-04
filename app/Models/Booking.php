@@ -20,6 +20,7 @@ class Booking extends Model
         'payment_status',
         'payment_method',
         'transaction_id',
+        'payment_receipt',
         'is_trial',
         'price_at_booking',
         'duration_extension_minutes',

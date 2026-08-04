@@ -7,7 +7,7 @@
     <div class="mb-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
             <h2 class="text-4xl font-black text-gray-900 tracking-tight mb-2">Financial Oversight</h2>
-            <p class="text-gray-500 font-medium">Monitor every JazzCash transaction and platform settlement across the portal.</p>
+            <p class="text-gray-500 font-medium">Monitor every bank transfer, EasyPaisa, and JazzCash transaction across the portal.</p>
         </div>
         
         <div class="px-6 py-3 bg-white rounded-3xl border border-gray-100 shadow-sm flex items-center gap-4">
@@ -79,39 +79,67 @@
             <table class="w-full text-left border-collapse">
                 <thead>
                     <tr class="bg-gray-50/50 border-b border-gray-100">
-                        <th class="px-8 py-5 text-[10px] font-black text-gray-400 uppercase tracking-widest">Date / Time</th>
-                        <th class="px-8 py-5 text-[10px] font-black text-gray-400 uppercase tracking-widest">Student</th>
-                        <th class="px-8 py-5 text-[10px] font-black text-gray-400 uppercase tracking-widest">Tutor</th>
-                        <th class="px-8 py-5 text-[10px] font-black text-gray-400 uppercase tracking-widest">JazzCash Ref</th>
-                        <th class="px-8 py-5 text-[10px] font-black text-gray-400 uppercase tracking-widest">Amount</th>
-                        <th class="px-8 py-5 text-[10px] font-black text-gray-400 uppercase tracking-widest text-right">Status</th>
+                        <th class="px-6 py-5 text-[10px] font-black text-gray-400 uppercase tracking-widest">Date / Time</th>
+                        <th class="px-6 py-5 text-[10px] font-black text-gray-400 uppercase tracking-widest">Student</th>
+                        <th class="px-6 py-5 text-[10px] font-black text-gray-400 uppercase tracking-widest">Tutor</th>
+                        <th class="px-6 py-5 text-[10px] font-black text-gray-400 uppercase tracking-widest">Payment Info</th>
+                        <th class="px-6 py-5 text-[10px] font-black text-gray-400 uppercase tracking-widest">Receipt</th>
+                        <th class="px-6 py-5 text-[10px] font-black text-gray-400 uppercase tracking-widest">Amount</th>
+                        <th class="px-6 py-5 text-[10px] font-black text-gray-400 uppercase tracking-widest text-right">Status & Actions</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-50">
                     @forelse($transactions as $tx)
                         <tr class="hover:bg-gray-50/50 transition-colors group">
-                            <td class="px-8 py-6">
+                            <td class="px-6 py-6">
                                 <p class="text-sm font-black text-gray-900">{{ $tx->updated_at->format('M d, Y') }}</p>
                                 <p class="text-[9px] font-bold text-gray-400 uppercase">{{ $tx->updated_at->format('H:i A') }}</p>
                             </td>
-                            <td class="px-8 py-6">
+                            <td class="px-6 py-6">
                                 <p class="text-sm font-bold text-gray-800">{{ $tx->student->name }}</p>
                             </td>
-                            <td class="px-8 py-6">
+                            <td class="px-6 py-6">
                                 <p class="text-sm font-bold text-gray-800">{{ $tx->tutor->name }}</p>
                             </td>
-                            <td class="px-8 py-6">
-                                <p class="text-xs font-medium text-gray-500 font-mono tracking-tighter">{{ $tx->transaction_id ?: 'MANUAL/PENDING' }}</p>
+                            <td class="px-6 py-6">
+                                <p class="text-xs font-black text-slate-800">{{ $tx->payment_method ?: 'N/A' }}</p>
+                                <p class="text-xs font-mono text-gray-500 font-mono tracking-tighter">{{ $tx->transaction_id ?: 'No TID' }}</p>
                             </td>
-                            <td class="px-8 py-6">
+                            <td class="px-6 py-6">
+                                @if($tx->payment_receipt)
+                                    <a href="{{ asset($tx->payment_receipt) }}" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors border border-blue-100 rounded-xl text-[10px] font-black uppercase">
+                                        <i class="fas fa-receipt"></i> View Receipt
+                                    </a>
+                                @else
+                                    <span class="text-[9px] font-bold text-gray-400 uppercase">No Receipt</span>
+                                @endif
+                            </td>
+                            <td class="px-6 py-6">
                                 <p class="text-sm font-black text-gray-900">PKR {{ number_format($tx->price_at_booking) }}</p>
                             </td>
-                            <td class="px-8 py-6 text-right">
-                                <span class="inline-flex items-center px-3 py-1.5 rounded-xl text-[8px] font-black uppercase tracking-widest border
-                                    {{ $tx->payment_status == 'paid' ? 'bg-green-50 text-green-600 border-green-100' : 
-                                       ($tx->payment_status == 'failed' ? 'bg-red-50 text-red-600 border-red-100' : 'bg-amber-50 text-amber-600 border-amber-100') }}">
-                                    {{ $tx->payment_status }}
-                                </span>
+                            <td class="px-6 py-6 text-right">
+                                <div class="flex items-center justify-end gap-2">
+                                    <span class="inline-flex items-center px-3 py-1.5 rounded-xl text-[8px] font-black uppercase tracking-widest border
+                                        {{ $tx->payment_status == 'paid' ? 'bg-green-50 text-green-600 border-green-100' : 
+                                           ($tx->payment_status == 'failed' ? 'bg-red-50 text-red-600 border-red-100' : 'bg-amber-50 text-amber-600 border-amber-100') }}">
+                                        {{ $tx->payment_status }}
+                                    </span>
+
+                                    @if($tx->payment_status === 'unpaid' && ($tx->transaction_id || $tx->payment_method))
+                                        <form action="{{ route('admin.payments.approve', $tx->id) }}" method="POST" class="inline">
+                                            @csrf
+                                            <button type="submit" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-[8px] font-black uppercase tracking-wider transition-colors shadow-sm">
+                                                Approve
+                                            </button>
+                                        </form>
+                                        <form action="{{ route('admin.payments.reject', $tx->id) }}" method="POST" class="inline">
+                                            @csrf
+                                            <button type="submit" class="px-3 py-1.5 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-[8px] font-black uppercase tracking-wider transition-colors shadow-sm">
+                                                Reject
+                                            </button>
+                                        </form>
+                                    @endif
+                                </div>
                             </td>
                         </tr>
                     @empty
