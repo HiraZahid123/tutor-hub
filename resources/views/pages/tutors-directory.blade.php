@@ -421,9 +421,9 @@
                         </a>
                     </div>
 
-                    {{-- Keyword Search --}}
+                    {{-- Category Search --}}
                     <div>
-                        <label class="filter-section-title" style="margin-top: 0">Keyword Search</label>
+                        <label class="filter-section-title" style="margin-top: 0">Search by Category</label>
                         <input type="text" name="q" value="{{ is_string(request('q')) ? request('q') : '' }}" placeholder="e.g. Algebra, Leslie..." class="sidebar-input-field">
                     </div>
 
