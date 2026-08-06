@@ -377,7 +377,7 @@
                 if ($selectedCity) {
                     $titleText .= 'Across' . ucfirst($selectedCity);
                 } else {
-                    $titleText .= 'the Globe';
+                    $titleText .= 'Across the Globe';
                 }
                 echo $titleText;
             @endphp
