@@ -875,7 +875,7 @@
                                    placeholder="e.g. 2000"
                                    value="{{ old('hourly_rate') }}"
                                    required min="0">
-                            <div class="fee-suffix">PKR / hr</div>
+                            <div class="fee-suffix" id="feeSuffix">PKR / hr</div>
                         </div>
                     </div>
                 </div>
@@ -1285,50 +1285,56 @@ function updateSubjectCount(catId) {
 
 /* ===== COUNTRY → PREFIX & TIMEZONE ===== */
 const countryData = {
-    'PK': { prefix: '+92', tz: ['Asia/Karachi'] },
-    'AE': { prefix: '+971', tz: ['Asia/Dubai'] },
-    'SA': { prefix: '+966', tz: ['Asia/Riyadh'] },
-    'QA': { prefix: '+974', tz: ['Asia/Qatar'] },
-    'KW': { prefix: '+965', tz: ['Asia/Kuwait'] },
-    'BH': { prefix: '+973', tz: ['Asia/Bahrain'] },
-    'OM': { prefix: '+968', tz: ['Asia/Muscat'] },
-    'JO': { prefix: '+962', tz: ['Asia/Amman'] },
-    'EG': { prefix: '+20',  tz: ['Africa/Cairo'] },
-    'TR': { prefix: '+90',  tz: ['Europe/Istanbul'] },
-    'IR': { prefix: '+98',  tz: ['Asia/Tehran'] },
-    'IQ': { prefix: '+964', tz: ['Asia/Baghdad'] },
-    'YE': { prefix: '+967', tz: ['Asia/Aden'] },
-    'AF': { prefix: '+93',  tz: ['Asia/Kabul'] },
-    'IN': { prefix: '+91',  tz: ['Asia/Kolkata'] },
-    'BD': { prefix: '+880', tz: ['Asia/Dhaka'] },
-    'LK': { prefix: '+94',  tz: ['Asia/Colombo'] },
-    'MY': { prefix: '+60',  tz: ['Asia/Kuala_Lumpur'] },
-    'SG': { prefix: '+65',  tz: ['Asia/Singapore'] },
-    'ID': { prefix: '+62',  tz: ['Asia/Jakarta', 'Asia/Makassar', 'Asia/Jayapura'] },
-    'PH': { prefix: '+63',  tz: ['Asia/Manila'] },
-    'GB': { prefix: '+44',  tz: ['Europe/London'] },
-    'US': { prefix: '+1',   tz: ['America/New_York', 'America/Chicago', 'America/Denver', 'America/Los_Angeles'] },
-    'CA': { prefix: '+1',   tz: ['America/Toronto', 'America/Vancouver', 'America/Winnipeg'] },
-    'AU': { prefix: '+61',  tz: ['Australia/Sydney', 'Australia/Melbourne', 'Australia/Perth'] },
-    'NZ': { prefix: '+64',  tz: ['Pacific/Auckland'] },
-    'DE': { prefix: '+49',  tz: ['Europe/Berlin'] },
-    'FR': { prefix: '+33',  tz: ['Europe/Paris'] },
-    'NL': { prefix: '+31',  tz: ['Europe/Amsterdam'] },
-    'NG': { prefix: '+234', tz: ['Africa/Lagos'] },
-    'KE': { prefix: '+254', tz: ['Africa/Nairobi'] },
-    'ZA': { prefix: '+27',  tz: ['Africa/Johannesburg'] },
-    'GH': { prefix: '+233', tz: ['Africa/Accra'] },
-    'TZ': { prefix: '+255', tz: ['Africa/Dar_es_Salaam'] },
-    'OTHER': { prefix: '+', tz: ['UTC', 'Asia/Dubai', 'Asia/Karachi', 'Europe/London', 'America/New_York'] }
+    'PK': { prefix: '+92',  tz: ['Asia/Karachi'],                                                                    currency: 'PKR' },
+    'AE': { prefix: '+971', tz: ['Asia/Dubai'],                                                                      currency: 'AED' },
+    'SA': { prefix: '+966', tz: ['Asia/Riyadh'],                                                                     currency: 'SAR' },
+    'QA': { prefix: '+974', tz: ['Asia/Qatar'],                                                                      currency: 'QAR' },
+    'KW': { prefix: '+965', tz: ['Asia/Kuwait'],                                                                     currency: 'KWD' },
+    'BH': { prefix: '+973', tz: ['Asia/Bahrain'],                                                                    currency: 'BHD' },
+    'OM': { prefix: '+968', tz: ['Asia/Muscat'],                                                                     currency: 'OMR' },
+    'JO': { prefix: '+962', tz: ['Asia/Amman'],                                                                      currency: 'JOD' },
+    'EG': { prefix: '+20',  tz: ['Africa/Cairo'],                                                                    currency: 'EGP' },
+    'TR': { prefix: '+90',  tz: ['Europe/Istanbul'],                                                                 currency: 'TRY' },
+    'IR': { prefix: '+98',  tz: ['Asia/Tehran'],                                                                     currency: 'IRR' },
+    'IQ': { prefix: '+964', tz: ['Asia/Baghdad'],                                                                    currency: 'IQD' },
+    'YE': { prefix: '+967', tz: ['Asia/Aden'],                                                                       currency: 'YER' },
+    'AF': { prefix: '+93',  tz: ['Asia/Kabul'],                                                                      currency: 'AFN' },
+    'IN': { prefix: '+91',  tz: ['Asia/Kolkata'],                                                                    currency: 'INR' },
+    'BD': { prefix: '+880', tz: ['Asia/Dhaka'],                                                                      currency: 'BDT' },
+    'LK': { prefix: '+94',  tz: ['Asia/Colombo'],                                                                    currency: 'LKR' },
+    'MY': { prefix: '+60',  tz: ['Asia/Kuala_Lumpur'],                                                               currency: 'MYR' },
+    'SG': { prefix: '+65',  tz: ['Asia/Singapore'],                                                                  currency: 'SGD' },
+    'ID': { prefix: '+62',  tz: ['Asia/Jakarta', 'Asia/Makassar', 'Asia/Jayapura'],                                  currency: 'IDR' },
+    'PH': { prefix: '+63',  tz: ['Asia/Manila'],                                                                     currency: 'PHP' },
+    'GB': { prefix: '+44',  tz: ['Europe/London'],                                                                   currency: 'GBP' },
+    'US': { prefix: '+1',   tz: ['America/New_York', 'America/Chicago', 'America/Denver', 'America/Los_Angeles'],    currency: 'USD' },
+    'CA': { prefix: '+1',   tz: ['America/Toronto', 'America/Vancouver', 'America/Winnipeg'],                        currency: 'CAD' },
+    'AU': { prefix: '+61',  tz: ['Australia/Sydney', 'Australia/Melbourne', 'Australia/Perth'],                      currency: 'AUD' },
+    'NZ': { prefix: '+64',  tz: ['Pacific/Auckland'],                                                                currency: 'NZD' },
+    'DE': { prefix: '+49',  tz: ['Europe/Berlin'],                                                                   currency: 'EUR' },
+    'FR': { prefix: '+33',  tz: ['Europe/Paris'],                                                                    currency: 'EUR' },
+    'NL': { prefix: '+31',  tz: ['Europe/Amsterdam'],                                                                currency: 'EUR' },
+    'NG': { prefix: '+234', tz: ['Africa/Lagos'],                                                                    currency: 'NGN' },
+    'KE': { prefix: '+254', tz: ['Africa/Nairobi'],                                                                  currency: 'KES' },
+    'ZA': { prefix: '+27',  tz: ['Africa/Johannesburg'],                                                             currency: 'ZAR' },
+    'GH': { prefix: '+233', tz: ['Africa/Accra'],                                                                    currency: 'GHS' },
+    'TZ': { prefix: '+255', tz: ['Africa/Dar_es_Salaam'],                                                            currency: 'TZS' },
+    'OTHER': { prefix: '+', tz: ['UTC', 'Asia/Dubai', 'Asia/Karachi', 'Europe/London', 'America/New_York'],          currency: 'USD' }
 };
 
 document.getElementById('country').addEventListener('change', function () {
     const data = countryData[this.value] || countryData['OTHER'];
     const tzSelect = document.getElementById('timezone');
     const prefixEl = document.getElementById('phonePrefix');
+    const feeSuffix = document.getElementById('feeSuffix');
 
     // Update phone prefix
     prefixEl.innerHTML = `<i class="fas fa-phone mr-1 text-xs"></i> ${data.prefix}`;
+
+    // Update currency suffix on hourly rate
+    if (feeSuffix) {
+        feeSuffix.textContent = (data.currency || 'USD') + ' / hr';
+    }
 
     // Update timezone
     tzSelect.innerHTML = '<option value="" disabled selected>Select Timezone</option>';
