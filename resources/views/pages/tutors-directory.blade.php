@@ -387,7 +387,7 @@
         <div class="flex items-center justify-center gap-2 text-xs font-semibold text-gray-300 uppercase tracking-widest mt-4">
             <a href="{{ route('home') }}" class="hover:text-white transition-colors">Home</a>
             <i class="fas fa-chevron-right text-[8px] text-gray-400"></i>
-            <a href="{{ route('tutors.directory') }}" class="hover:text-white transition-colors">Tutors in Pakistan</a>
+            <a href="{{ route('tutors.directory') }}" class="hover:text-white transition-colors">Tutors Across the Globe</a>
             @if($selectedSubject)
                 <i class="fas fa-chevron-right text-[8px] text-gray-400"></i>
                 <span class="text-orange-400">{{ ucfirst($selectedSubject) }}</span>
