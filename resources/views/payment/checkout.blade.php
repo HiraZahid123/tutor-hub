@@ -202,12 +202,11 @@
                             </div>
                         </div>
 
-                        <!-- JazzCash QR Code Placeholder -->
+                        <!-- JazzCash QR Code -->
                         <div class="flex flex-col items-center justify-center border-l border-slate-100 pl-6 text-center">
-                            <div class="w-48 h-48 bg-slate-50 border border-dashed border-slate-200 rounded-2xl flex flex-col items-center justify-center text-slate-400 p-4">
-                                <i class="fas fa-qrcode text-3xl mb-2"></i>
-                                <p class="text-[10px] font-black uppercase tracking-wider text-slate-500">QR Code Coming Soon</p>
-                                <p class="text-[9px] leading-relaxed text-slate-400 mt-1">Please use direct mobile transfer to the number shown.</p>
+                            <div class="flex flex-col items-center gap-2">
+                                <img src="{{ asset('images/jazzcash.jpeg') }}" alt="JazzCash QR Code - Hafiz Aftab Alam 3395" class="w-48 h-auto rounded-2xl shadow-md border border-slate-100">
+                                <p class="text-[9px] font-black uppercase tracking-wider text-slate-500">Scan to Pay via JazzCash</p>
                             </div>
                         </div>
                     </div>

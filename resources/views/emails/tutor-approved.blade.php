@@ -4,8 +4,8 @@
 
 <p>Your profile is now visible to students searching for tutors. Here's a summary of your listing:</p>
 <ul>
-    <li><strong>Subject:</strong> {{ $tutor->subject }}</li>
-    <li><strong>City:</strong> {{ $tutor->city }}</li>
+    <li><strong>Subject(s):</strong> {{ $tutor->subjects->pluck('name')->join(', ') ?: ($tutor->subject ?: 'N/A') }}</li>
+    <li><strong>Country:</strong> {{ $tutor->country ?: 'N/A' }}</li>
 </ul>
 
 <p>You can manage your profile and view assigned students from your <a href="{{ url('/tutor/dashboard') }}">Tutor Dashboard</a>.</p>

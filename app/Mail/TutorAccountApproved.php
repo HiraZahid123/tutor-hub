@@ -22,6 +22,11 @@ class TutorAccountApproved extends Mailable
 
     public function content(): Content
     {
-        return new Content(view: 'emails.tutor-approved');
+        return new Content(
+            view: 'emails.tutor-approved',
+            with: [
+                'tutor' => $this->tutor->load('subjects'),
+            ]
+        );
     }
 }
