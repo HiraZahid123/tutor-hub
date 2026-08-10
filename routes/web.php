@@ -78,6 +78,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/api/messages/{conversation}/read', [ChatController::class, 'markAsRead'])->name('chat.read');
         Route::get('/api/unread-count', [ChatController::class, 'unreadCount'])->name('chat.unread-count');
         Route::get('/api/pending-inquiries-count', [InquiryController::class, 'pendingCount'])->name('tutor.inquiries.count');
+        Route::get('/api/payment-notifications', [TutorController::class, 'paymentNotifications'])->name('tutor.payment-notifications');
+        Route::post('/api/payment-notifications/{booking}/ack', [TutorController::class, 'ackPaymentNotification'])->name('tutor.payment-notifications.ack');
         Route::get('/tutor/appointments', [TutorController::class, 'appointments'])->name('tutor.appointments');
         Route::get('/tutor/payments', [TutorController::class, 'payments'])->name('tutor.payments');
         Route::get('/tutor/inquiries', [TutorController::class, 'inquiries'])->name('tutor.inquiries');

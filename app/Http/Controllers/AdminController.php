@@ -298,7 +298,8 @@ class AdminController extends Controller
     {
         $booking = \App\Models\Booking::findOrFail($id);
         $booking->update([
-            'payment_status' => \App\Models\Booking::STATUS_PAID
+            'payment_status' => \App\Models\Booking::STATUS_PAID,
+            'tutor_payment_notified_at' => null,
         ]);
 
         return back()->with('success', 'Payment approved successfully!');

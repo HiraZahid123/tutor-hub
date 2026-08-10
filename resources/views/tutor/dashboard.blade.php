@@ -8,6 +8,34 @@
         <p class="text-xs font-semibold text-slate-500">Here's what's happening with your tutoring portal today.</p>
     </div>
 
+    @if(isset($paymentAlerts) && $paymentAlerts->isNotEmpty())
+        @php $alert = $paymentAlerts->first(); @endphp
+        <div class="mb-8" id="payment-alerts-container">
+            <div class="payment-alert-banner flex items-center justify-between gap-4 p-5 rounded-2xl bg-emerald-50/40 border border-emerald-100 animate-in fade-in slide-in-from-top-2" data-booking-id="{{ $alert->id }}">
+                <div class="flex items-start gap-4 flex-1 min-w-0">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-emerald-100 text-emerald-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                    <div class="min-w-0">
+                        <h4 class="text-xs font-bold text-emerald-900">Payment Received Successfully!</h4>
+                        <p class="text-[11px] text-emerald-700 font-semibold leading-relaxed mt-1">
+                            You have received a payment of <strong class="font-extrabold">Rs. {{ number_format($alert->price_at_booking) }}</strong> from <strong class="font-extrabold">{{ $alert->student_name ?: ($alert->student->name ?? 'Student') }}</strong>.
+                        </p>
+                        <p class="text-[10px] text-emerald-600/90 font-bold mt-2 flex items-center gap-1.5">
+                            <i class="fas fa-calendar-check text-[9px]"></i>
+                            Session: {{ $alert->start_time->format('l, M d, Y') }} &bull; {{ $alert->start_time->format('g:i A') }} - {{ $alert->end_time->format('g:i A') }}
+                        </p>
+                    </div>
+                </div>
+                <button type="button" class="payment-alert-check-btn shrink-0 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] font-black uppercase tracking-widest rounded-xl transition-all shadow-sm shadow-emerald-600/20">
+                    Check
+                </button>
+            </div>
+        </div>
+    @else
+        <div class="mb-8 hidden" id="payment-alerts-container"></div>
+    @endif
+
     <!-- Stats Grid -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
         <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-5 group hover:-translate-y-1 hover:shadow-md transition-all duration-300">
@@ -154,4 +182,93 @@
         </div>
     </div>
 </div></div>
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const ackUrlTemplate = @json(route('tutor.payment-notifications.ack', ['booking' => '__ID__']));
+    const notificationsUrl = @json(route('tutor.payment-notifications'));
+    const container = document.getElementById('payment-alerts-container');
+
+    function buildPaymentBanner(notification) {
+        return `
+            <div class="payment-alert-banner flex items-center justify-between gap-4 p-5 rounded-2xl bg-emerald-50/40 border border-emerald-100 animate-in fade-in slide-in-from-top-2" data-booking-id="${notification.id}">
+                <div class="flex items-start gap-4 flex-1 min-w-0">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-emerald-100 text-emerald-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                    <div class="min-w-0">
+                        <h4 class="text-xs font-bold text-emerald-900">Payment Received Successfully!</h4>
+                        <p class="text-[11px] text-emerald-700 font-semibold leading-relaxed mt-1">
+                            You have received a payment of <strong class="font-extrabold">Rs. ${notification.amount_formatted}</strong> from <strong class="font-extrabold">${notification.student_name}</strong>.
+                        </p>
+                        <p class="text-[10px] text-emerald-600/90 font-bold mt-2 flex items-center gap-1.5">
+                            <i class="fas fa-calendar-check text-[9px]"></i>
+                            Session: ${notification.session_date} &bull; ${notification.session_time}
+                        </p>
+                    </div>
+                </div>
+                <button type="button" class="payment-alert-check-btn shrink-0 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] font-black uppercase tracking-widest rounded-xl transition-all shadow-sm shadow-emerald-600/20">
+                    Check
+                </button>
+            </div>
+        `;
+    }
+
+    function loadNextPaymentAlert() {
+        fetch(notificationsUrl, { headers: { 'Accept': 'application/json' } })
+            .then(res => res.json())
+            .then(data => {
+                const next = (data.notifications || [])[0];
+                if (!next || !container) return;
+
+                container.classList.remove('hidden');
+                container.innerHTML = buildPaymentBanner(next);
+                bindPaymentCheckButton(container.querySelector('.payment-alert-banner'));
+            })
+            .catch(() => {});
+    }
+
+    function dismissPaymentAlert(banner) {
+        const bookingId = banner?.dataset.bookingId;
+        if (!bookingId) return;
+
+        banner.style.opacity = '0';
+        banner.style.transform = 'translateY(-8px)';
+        banner.style.transition = 'all 0.3s ease';
+
+        fetch(ackUrlTemplate.replace('__ID__', bookingId), {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                'Accept': 'application/json',
+            },
+        }).finally(function () {
+            setTimeout(function () {
+                if (container) {
+                    container.innerHTML = '';
+                    container.classList.add('hidden');
+                }
+                loadNextPaymentAlert();
+            }, 300);
+        });
+    }
+
+    function bindPaymentCheckButton(banner) {
+        if (!banner) return;
+        const btn = banner.querySelector('.payment-alert-check-btn');
+        if (btn) {
+            btn.addEventListener('click', function () {
+                dismissPaymentAlert(banner);
+            });
+        }
+    }
+
+    bindPaymentCheckButton(document.querySelector('.payment-alert-banner'));
+    window.dismissPaymentAlert = dismissPaymentAlert;
+    window.loadNextPaymentAlert = loadNextPaymentAlert;
+    window.buildPaymentBanner = buildPaymentBanner;
+});
+</script>
+@endpush
 @endsection

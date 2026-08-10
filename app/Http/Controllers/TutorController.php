@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use App\Models\TutorRegistration;
 use App\Models\TutorInquiry;
 use App\Models\Subject;
@@ -43,7 +44,60 @@ class TutorController extends Controller
         } else {
             $stats = ['total' => 0, 'pending' => 0, 'acceptance_rate' => 0];
         }
-        return view('tutor.dashboard', compact('registration', 'assignedStudents', 'upcomingBookings', 'stats'));
+
+        $paymentAlerts = $registration
+            ? $this->unnotifiedPaymentBookings($registration->id)
+            : collect();
+
+        return view('tutor.dashboard', compact('registration', 'assignedStudents', 'upcomingBookings', 'stats', 'paymentAlerts'));
+    }
+
+    public function paymentNotifications()
+    {
+        $registration = TutorRegistration::where('user_id', Auth::id())->first();
+        if (!$registration) {
+            return response()->json(['notifications' => []]);
+        }
+
+        $notifications = $this->unnotifiedPaymentBookings($registration->id)
+            ->map(fn (Booking $booking) => [
+                'id' => $booking->id,
+                'amount' => (float) $booking->price_at_booking,
+                'amount_formatted' => number_format($booking->price_at_booking),
+                'student_name' => $booking->student_name ?: ($booking->student->name ?? 'Student'),
+                'session_date' => $booking->start_time->format('l, M d, Y'),
+                'session_time' => $booking->start_time->format('g:i A') . ' - ' . $booking->end_time->format('g:i A'),
+            ])
+            ->values();
+
+        return response()->json(['notifications' => $notifications]);
+    }
+
+    public function ackPaymentNotification(Booking $booking)
+    {
+        $registration = TutorRegistration::where('user_id', Auth::id())->first();
+        if (!$registration || $booking->tutor_id !== $registration->id) {
+            return response()->json(['success' => false], 403);
+        }
+
+        if ($booking->payment_status !== Booking::STATUS_PAID) {
+            return response()->json(['success' => false], 422);
+        }
+
+        $booking->update(['tutor_payment_notified_at' => now()]);
+
+        return response()->json(['success' => true]);
+    }
+
+    private function unnotifiedPaymentBookings(int $tutorId)
+    {
+        return Booking::with('student')
+            ->where('tutor_id', $tutorId)
+            ->where('payment_status', Booking::STATUS_PAID)
+            ->whereNull('tutor_payment_notified_at')
+            ->where('is_trial', false)
+            ->orderByDesc('updated_at')
+            ->get();
     }
 
     public function appointments()

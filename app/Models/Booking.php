@@ -21,6 +21,7 @@ class Booking extends Model
         'payment_method',
         'transaction_id',
         'payment_receipt',
+        'tutor_payment_notified_at',
         'is_trial',
         'price_at_booking',
         'duration_extension_minutes',
@@ -30,6 +31,7 @@ class Booking extends Model
     protected $casts = [
         'start_time' => 'datetime',
         'end_time' => 'datetime',
+        'tutor_payment_notified_at' => 'datetime',
         'is_trial' => 'boolean',
         'tutor_id' => 'integer',
         'student_id' => 'integer',

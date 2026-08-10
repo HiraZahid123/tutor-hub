@@ -190,7 +190,6 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const sound = document.getElementById('notification-sound');
-        const sound = document.getElementById('notification-sound');
         const badge = document.getElementById('sidebar-unread-count');
         const toastContainer = document.getElementById('toast-container');
 
@@ -299,6 +298,64 @@
         }, 10000);
 
         window.showInquiryToast = window.showChatToast;
+
+        // Payment alerts — dashboard only
+        @if($isTutor)
+        const seenPaymentNotificationIds = new Set();
+        const paymentAckUrlTemplate = @json(route('tutor.payment-notifications.ack', ['booking' => '__ID__']));
+        const isTutorDashboard = window.location.pathname.includes('/tutor/dashboard');
+
+        function ackPaymentNotification(bookingId) {
+            return fetch(paymentAckUrlTemplate.replace('__ID__', bookingId), {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    'Accept': 'application/json',
+                },
+            }).catch(() => {});
+        }
+
+        function showDashboardPaymentAlert(notification) {
+            const container = document.getElementById('payment-alerts-container');
+            if (!container || container.querySelector('.payment-alert-banner')) return;
+
+            container.classList.remove('hidden');
+            if (typeof window.buildPaymentBanner === 'function') {
+                container.innerHTML = window.buildPaymentBanner(notification);
+                const banner = container.querySelector('.payment-alert-banner');
+                const btn = banner?.querySelector('.payment-alert-check-btn');
+                if (btn && banner && typeof window.dismissPaymentAlert === 'function') {
+                    btn.addEventListener('click', () => window.dismissPaymentAlert(banner));
+                }
+            }
+        }
+
+        function handlePaymentNotifications(notifications) {
+            if (!isTutorDashboard) return;
+
+            (notifications || []).forEach(notification => {
+                if (seenPaymentNotificationIds.has(notification.id)) return;
+
+                seenPaymentNotificationIds.add(notification.id);
+                showDashboardPaymentAlert(notification);
+            });
+        }
+
+        if (isTutorDashboard) {
+            fetch("{{ route('tutor.payment-notifications') }}")
+                .then(res => res.json())
+                .then(data => handlePaymentNotifications(data.notifications))
+                .catch(err => console.error('Error fetching payment notifications:', err));
+
+            setInterval(() => {
+                fetch("{{ route('tutor.payment-notifications') }}")
+                    .then(res => res.json())
+                    .then(data => handlePaymentNotifications(data.notifications))
+                    .catch(err => console.error('Error fetching payment notifications:', err));
+            }, 15000);
+        }
+        @endif
     });
 </script>
+@stack('scripts')
 @endsection
