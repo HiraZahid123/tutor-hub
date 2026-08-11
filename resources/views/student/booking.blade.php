@@ -3,34 +3,37 @@
 @section('title', 'Book a Session - ' . $tutor->name)
 
 @section('content')
-<section class="min-h-screen py-20 bg-gray-50">
-    <div class="container mx-auto px-4 text-center">
+<section class="min-h-screen py-16 md:py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
         <div class="max-w-4xl mx-auto">
-            <div class="mb-12">
-                <a href="{{ route('student.dashboard') }}" class="inline-flex items-center gap-2 text-[10px] font-black text-gray-400 hover:text-blue-600 transition-colors uppercase tracking-widest mb-6">
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            <div class="text-center mb-10">
+                <a href="{{ route('student.dashboard') }}" class="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-blue-600 transition-colors mb-6">
+                    <i class="fas fa-arrow-left text-[10px]"></i>
                     Back to Dashboard
                 </a>
-                <h1 class="text-4xl font-black text-gray-900 mb-2">Book Your Session</h1>
-                <p class="text-gray-500 font-medium">Scheduling time with <span class="text-blue-600 font-bold">{{ $tutor->name }}</span></p>
+                <h1 class="text-3xl md:text-4xl font-black text-slate-900 mb-2">Book Your Session</h1>
+                <p class="text-slate-500 font-medium">
+                    Scheduling with <span class="text-blue-600 font-bold">{{ $tutor->name }}</span>
+                </p>
             </div>
 
-            <div class="bg-white rounded-[2.5rem] p-4 shadow-2xl shadow-blue-500/5 mb-12">
-                <x-booking-calendar :tutorId="$tutor->id" />
-            </div>
+            <x-booking-calendar :tutorId="$tutor->id" />
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-                <div class="bg-blue-50/50 p-6 rounded-3xl border border-blue-100">
-                    <h4 class="text-[10px] font-black text-blue-600 uppercase tracking-widest mb-3">1. Select Date</h4>
-                    <p class="text-[11px] text-gray-600 font-medium leading-relaxed">Today's date is selected by default. Click the date on the left to open the calendar and pick another day.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 text-left">
+                <div class="bg-white p-5 rounded-2xl border border-sky-100 shadow-sm">
+                    <div class="w-9 h-9 rounded-xl flex items-center justify-center mb-3 text-sm font-black shadow-sm" style="background-color: #0284c7; color: #ffffff;">1</div>
+                    <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wide mb-2">Select Date</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Today is pre-selected. Tap the date box to open the calendar.</p>
                 </div>
-                <div class="bg-blue-50/50 p-6 rounded-3xl border border-blue-100">
-                    <h4 class="text-[10px] font-black text-blue-600 uppercase tracking-widest mb-3">2. Pick Time</h4>
-                    <p class="text-[11px] text-gray-600 font-medium leading-relaxed">Choose start and end time from the dropdown list in 5-minute intervals (e.g. 3:59 PM).</p>
+                <div class="bg-white p-5 rounded-2xl border border-sky-100 shadow-sm">
+                    <div class="w-9 h-9 rounded-xl bg-blue-600 text-white flex items-center justify-center mb-3 text-sm font-black shadow-sm shadow-blue-200">2</div>
+                    <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wide mb-2">Pick Time</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Choose start & end from dropdowns in 5-minute steps.</p>
                 </div>
-                <div class="bg-blue-50/50 p-6 rounded-3xl border border-blue-100">
-                    <h4 class="text-[10px] font-black text-blue-600 uppercase tracking-widest mb-3">3. Confirm</h4>
-                    <p class="text-[11px] text-gray-600 font-medium leading-relaxed">Add any specific notes for the tutor and confirm your request!</p>
+                <div class="bg-white p-5 rounded-2xl border border-sky-100 shadow-sm">
+                    <div class="w-9 h-9 rounded-xl bg-emerald-500 text-white flex items-center justify-center mb-3 text-sm font-black shadow-sm shadow-emerald-200">3</div>
+                    <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wide mb-2">Confirm</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Add notes if needed and confirm your session request.</p>
                 </div>
             </div>
         </div>

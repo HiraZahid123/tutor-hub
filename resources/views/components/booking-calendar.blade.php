@@ -1,144 +1,173 @@
-<div class="schedule-container bg-white rounded-3xl p-6 border border-gray-100 shadow-sm max-w-3xl mx-auto relative">
-    <div id="schedule-loading" class="absolute inset-0 bg-white/90 backdrop-blur-sm z-50 flex items-center justify-center hidden">
-        <div class="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+<div class="schedule-container max-w-4xl mx-auto relative">
+    <div id="schedule-loading" class="absolute inset-0 bg-white/80 backdrop-blur-sm z-50 flex items-center justify-center hidden rounded-3xl">
+        <div class="flex flex-col items-center gap-3">
+            <div class="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+            <p class="text-xs font-semibold text-slate-500">Loading availability...</p>
+        </div>
     </div>
 
-    <div class="calendar-flex-container" style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: flex-start;">
-        <!-- Calendar (Left Part) -->
-        <div class="calendar-part relative" style="flex: 0 0 300px; width: 300px;">
-            <!-- Clickable date display -->
-            <button type="button" id="date-picker-toggle" onclick="toggleCalendar()" class="w-full p-3 rounded-xl border border-gray-200 bg-white text-left hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all">
-                <span class="text-[8px] font-black uppercase text-gray-400 block mb-1">Date</span>
-                <div class="flex items-center gap-2">
-                    <i class="fas fa-calendar text-gray-400 text-xs"></i>
-                    <span id="selected-date-formatted" class="text-sm font-bold text-gray-800">—</span>
-                </div>
-            </button>
+    <div class="rounded-[2rem] p-5 md:p-8 shadow-xl shadow-sky-200/40 border border-sky-100" style="background-color: #e1f5fe;">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
 
-            <!-- Calendar dropdown (hidden until date clicked) -->
-            <div id="calendar-dropdown" class="hidden absolute top-full left-0 right-0 mt-2 z-40 border border-gray-100 rounded-2xl p-4 bg-white shadow-xl">
-                <div class="flex items-center justify-between mb-4">
-                    <h3 id="current-month" class="text-xs font-black text-gray-900 uppercase tracking-widest italic">March 2026</h3>
-                    <div class="flex gap-1">
-                        <button type="button" onclick="changeMonth(-1)" class="p-1.5 hover:bg-gray-100 rounded-lg transition-all border border-gray-50">
-                            <svg class="w-3 h-3 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                        </button>
-                        <button type="button" onclick="changeMonth(1)" class="p-1.5 hover:bg-gray-100 rounded-lg transition-all border border-gray-50">
-                            <svg class="w-3 h-3 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                        </button>
+            <!-- Left: Date -->
+            <div class="calendar-part relative bg-white rounded-2xl p-5 shadow-sm border border-sky-50">
+                <div class="flex items-center gap-2 mb-4">
+                    <div class="w-8 h-8 rounded-lg bg-sky-100 text-sky-600 flex items-center justify-center">
+                        <i class="fas fa-calendar-day text-sm"></i>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Step 1</p>
+                        <h3 class="text-sm font-bold text-slate-800">Choose Date</h3>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-7 gap-1 mb-1 text-center" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px;">
-                    @foreach(['S', 'M', 'T', 'W', 'T', 'F', 'S'] as $day)
-                        <div class="text-[8px] font-black text-gray-300 uppercase py-1">{{ $day }}</div>
-                    @endforeach
+                <button type="button" id="date-picker-toggle" onclick="toggleCalendar()"
+                    class="w-full p-4 rounded-xl border-2 border-sky-100 bg-sky-50/50 text-left hover:border-sky-300 hover:bg-sky-50 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all group">
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-sky-600 block mb-1">Date</span>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-calendar text-sky-500 text-base"></i>
+                            <span id="selected-date-formatted" class="text-base font-bold text-slate-800">—</span>
+                        </div>
+                        <i class="fas fa-chevron-down text-slate-400 text-xs group-hover:text-blue-500 transition-colors" id="calendar-chevron"></i>
+                    </div>
+                </button>
+
+                <div id="calendar-dropdown" class="hidden mt-3 p-4 rounded-xl border border-sky-100 bg-white shadow-inner">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 id="current-month" class="text-sm font-bold text-slate-800">March 2026</h3>
+                        <div class="flex gap-1">
+                            <button type="button" onclick="changeMonth(-1)" class="w-8 h-8 flex items-center justify-center hover:bg-sky-50 rounded-lg transition-all text-slate-500 hover:text-blue-600">
+                                <i class="fas fa-chevron-left text-xs"></i>
+                            </button>
+                            <button type="button" onclick="changeMonth(1)" class="w-8 h-8 flex items-center justify-center hover:bg-sky-50 rounded-lg transition-all text-slate-500 hover:text-blue-600">
+                                <i class="fas fa-chevron-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-7 gap-1 mb-2 text-center">
+                        @foreach(['Su','Mo','Tu','We','Th','Fr','Sa'] as $day)
+                            <div class="text-[10px] font-bold text-slate-400 uppercase py-1">{{ $day }}</div>
+                        @endforeach
+                    </div>
+
+                    <div id="calendar-days" class="grid grid-cols-7 gap-1 text-center"></div>
+                </div>
+            </div>
+
+            <!-- Right: Time -->
+            <div class="slots-part bg-white rounded-2xl p-5 shadow-sm border border-sky-50">
+                <div class="flex items-center gap-2 mb-4">
+                    <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center">
+                        <i class="fas fa-clock text-sm"></i>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Step 2</p>
+                        <h3 class="text-sm font-bold text-slate-800">Pick Your Time</h3>
+                    </div>
                 </div>
 
-                <div id="calendar-days" class="grid grid-cols-7 gap-1 text-center" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px;">
-                    <!-- Days will be injected here -->
+                <p class="text-[11px] font-semibold text-sky-600 uppercase tracking-wide mb-2">Available Slots</p>
+                <div id="slots-container" class="space-y-2 max-h-28 overflow-y-auto pr-1 custom-scrollbar mb-5">
+                    <div class="py-6 text-center rounded-xl border border-dashed border-sky-200 bg-sky-50/30">
+                        <i class="fas fa-spinner fa-spin text-sky-300 mb-2"></i>
+                        <p class="text-[10px] text-slate-400 font-semibold">Loading slots...</p>
+                    </div>
+                </div>
+
+                <div id="booking-actions" class="hidden">
+                    @auth
+                        <div class="space-y-4 p-4 rounded-xl bg-slate-50/80 border border-slate-100">
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="p-3 rounded-xl border border-white bg-white shadow-sm">
+                                    <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-2">Start Time</span>
+                                    <div class="relative">
+                                        <i class="fas fa-clock absolute left-0 top-1/2 -translate-y-1/2 text-sky-400 text-sm"></i>
+                                        <select id="booking-start" onchange="onStartTimeChange()"
+                                            class="time-select w-full pl-6 pr-6 py-1 bg-transparent border-0 text-sm font-bold text-slate-800 focus:ring-0 cursor-pointer appearance-none">
+                                            <option value="">Select time</option>
+                                        </select>
+                                        <i class="fas fa-chevron-down absolute right-0 top-1/2 -translate-y-1/2 text-slate-300 text-[10px] pointer-events-none"></i>
+                                    </div>
+                                </div>
+                                <div class="p-3 rounded-xl border border-white bg-white shadow-sm">
+                                    <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-2">End Time</span>
+                                    <div class="relative">
+                                        <i class="fas fa-clock absolute left-0 top-1/2 -translate-y-1/2 text-sky-400 text-sm"></i>
+                                        <select id="booking-end" onchange="calculatePrice()"
+                                            class="time-select w-full pl-6 pr-6 py-1 bg-transparent border-0 text-sm font-bold text-slate-800 focus:ring-0 cursor-pointer appearance-none">
+                                            <option value="">Select time</option>
+                                        </select>
+                                        <i class="fas fa-chevron-down absolute right-0 top-1/2 -translate-y-1/2 text-slate-300 text-[10px] pointer-events-none"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between pt-3 border-t border-slate-200/80">
+                                <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Estimated Amount</span>
+                                <span id="booking-price" class="text-xl font-black text-blue-600">0 PKR</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3 mt-4">
+                            <textarea id="booking-notes" placeholder="Add notes for your tutor (optional)..." rows="3"
+                                class="w-full bg-white p-3 rounded-xl border border-slate-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-100 text-sm text-slate-700 placeholder:text-slate-400 transition-all resize-none"></textarea>
+                            <button onclick="confirmBooking()"
+                                class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3.5 rounded-xl font-bold text-xs uppercase tracking-widest shadow-lg shadow-blue-500/25 transition-all flex items-center justify-center gap-2 active:scale-[0.98]">
+                                <i class="fas fa-bolt text-amber-300"></i>
+                                Confirm Session
+                            </button>
+                        </div>
+                    @endauth
                 </div>
             </div>
         </div>
 
-        <!-- Slots (Right Part) -->
-        <div class="slots-part" style="flex: 1; min-width: 250px; border-left: 1px solid #F3F4F6; padding-left: 2rem;">
-            <div class="mb-4">
-                <h4 class="text-[10px] font-black text-blue-500 uppercase tracking-widest mb-1 italic">Available Time</h4>
+        <!-- Working Hours -->
+        <div class="mt-6 pt-6 border-t border-sky-200/60">
+            <div class="flex items-center justify-center gap-2 mb-4">
+                <i class="fas fa-business-time text-sky-500 text-sm"></i>
+                <h5 class="text-[11px] font-bold text-slate-500 uppercase tracking-[0.15em]">Tutor Weekly Schedule</h5>
             </div>
-
-            <div id="slots-container" class="space-y-1.5 max-h-[80px] overflow-y-auto pr-2 custom-scrollbar mb-4">
-                <div class="py-4 text-center border border-dashed border-gray-100 rounded-2xl">
-                    <p class="text-[8px] text-gray-300 font-black uppercase tracking-widest">Select Date</p>
-                </div>
-            </div>
-
-            <div id="booking-actions" class="hidden animate-in fade-in slide-in-from-bottom-2 duration-300">
-                @auth
-                    <div class="space-y-4 p-4 bg-gray-50/50 rounded-2xl border border-gray-100 mb-4">
-                        <!-- Start / End time dropdowns (5-min intervals, 12h format) -->
-                        <div class="flex gap-3">
-                            <div class="flex-1 p-3 rounded-xl border border-gray-200 bg-white">
-                                <span class="text-[8px] font-black uppercase text-gray-400 block mb-1">Start Time</span>
-                                <div class="relative">
-                                    <i class="fas fa-clock absolute left-0 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
-                                    <select id="booking-start" onchange="onStartTimeChange()" class="w-full pl-5 bg-transparent border-0 p-0 text-sm font-bold text-gray-800 focus:ring-0 cursor-pointer appearance-none">
-                                        <option value="">Select time</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="flex-1 p-3 rounded-xl border border-gray-200 bg-white">
-                                <span class="text-[8px] font-black uppercase text-gray-400 block mb-1">End Time</span>
-                                <div class="relative">
-                                    <i class="fas fa-clock absolute left-0 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
-                                    <select id="booking-end" onchange="calculatePrice()" class="w-full pl-5 bg-transparent border-0 p-0 text-sm font-bold text-gray-800 focus:ring-0 cursor-pointer appearance-none">
-                                        <option value="">Select time</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="text-right border-t border-gray-200 pt-2 mt-2">
-                            <span class="text-[9px] font-black uppercase tracking-widest text-gray-400">Est. Amount: </span>
-                            <span id="booking-price" class="text-lg font-black text-blue-600">0 PKR</span>
-                        </div>
-                    </div>
-
-                    <div class="space-y-3">
-                        <textarea id="booking-notes" placeholder="Notes (Optional)..." rows="2"
-                                  class="w-full bg-gray-50/50 p-2.5 rounded-xl border-gray-100 focus:border-blue-500 focus:ring-0 text-[10px] font-medium transition-all"></textarea>
-                        <button onclick="confirmBooking()" 
-                                class="w-full bg-blue-600 text-white py-2.5 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-blue-700 shadow-lg shadow-blue-500/10 transition-all flex items-center justify-center gap-2">
-                            Confirm Custom Time
-                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                        </button>
-                    </div>
-                @endauth
-            </div>
-        </div>
-    </div>
-
-    <!-- Tutor Weekly Reference (New) -->
-    <div class="mt-8 pt-6 border-t border-gray-50">
-        <h5 class="text-[9px] font-black text-gray-300 uppercase tracking-[0.2em] mb-4 text-center">Tutor Working Hours Reference</h5>
-        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-2">
-            @php
-                $refDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
-                $tutorAvails = \App\Models\TutorAvailability::where('tutor_id', $tutorId)->get();
-            @endphp
-            @foreach($refDays as $day)
+            <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2">
                 @php
-                    $dayAvail = $tutorAvails->where('day_of_week', $day)->first();
+                    $refDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+                    $tutorAvails = \App\Models\TutorAvailability::where('tutor_id', $tutorId)->get();
                 @endphp
-                <div class="p-2 rounded-xl border border-gray-50 bg-gray-50/30 text-center {{ !$dayAvail ? 'opacity-30' : '' }}">
-                    <p class="text-[8px] font-black text-blue-600 uppercase mb-1">{{ substr($day, 0, 3) }}</p>
-                    @if($dayAvail)
-                        <p class="text-[9px] font-bold text-gray-700 whitespace-nowrap">{{ \Carbon\Carbon::parse($dayAvail->start_time)->format('g:ia') }} - {{ \Carbon\Carbon::parse($dayAvail->end_time)->format('g:ia') }}</p>
-                    @else
-                        <p class="text-[9px] font-bold text-gray-400">Off</p>
-                    @endif
-                </div>
-            @endforeach
+                @foreach($refDays as $day)
+                    @php $dayAvail = $tutorAvails->where('day_of_week', $day)->first(); @endphp
+                    <div class="p-3 rounded-xl text-center transition-all {{ $dayAvail ? 'bg-white border border-sky-100 shadow-sm' : 'bg-white/40 border border-transparent opacity-50' }}">
+                        <p class="text-[10px] font-black text-blue-600 uppercase mb-1">{{ substr($day, 0, 3) }}</p>
+                        @if($dayAvail)
+                            <p class="text-[10px] font-semibold text-slate-600 leading-tight">{{ \Carbon\Carbon::parse($dayAvail->start_time)->format('g:i A') }}<br><span class="text-slate-300">–</span><br>{{ \Carbon\Carbon::parse($dayAvail->end_time)->format('g:i A') }}</p>
+                        @else
+                            <p class="text-[10px] font-bold text-slate-400">Off</p>
+                        @endif
+                    </div>
+                @endforeach
+            </div>
         </div>
-    </div>
     </div>
 
     <!-- Success Overlay -->
-    <div id="booking-success" class="absolute inset-0 bg-white/95 backdrop-blur-sm hidden flex flex-col items-center justify-center p-6 text-center animate-in zoom-in duration-300" style="z-index: 60;">
-        <div class="w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+    <div id="booking-success" class="absolute inset-0 rounded-[2rem] bg-white/95 backdrop-blur-md hidden flex flex-col items-center justify-center p-8 text-center z-[60]">
+        <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-5 shadow-lg shadow-emerald-100">
+            <i class="fas fa-check text-2xl"></i>
         </div>
-        <h3 class="text-sm font-black text-gray-900 uppercase tracking-widest mb-1">Requested!</h3>
-        <p class="text-gray-500 text-[10px] mb-6 font-medium">Check your dashboard for updates.</p>
-        <button onclick="location.reload()" class="text-[9px] font-black text-blue-600 border-b border-blue-100 hover:border-blue-600 py-1 transition-all uppercase tracking-widest">Close</button>
+        <h3 class="text-lg font-bold text-slate-900 mb-2">Session Requested!</h3>
+        <p class="text-sm text-slate-500 mb-8 max-w-xs">Your booking request has been sent. Check your dashboard for updates.</p>
+        <button onclick="location.reload()" class="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold uppercase tracking-widest rounded-xl transition-all shadow-md">
+            Done
+        </button>
     </div>
 </div>
 
 <style>
-    .custom-scrollbar::-webkit-scrollbar { width: 3px; }
+    .custom-scrollbar::-webkit-scrollbar { width: 4px; }
     .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-    .custom-scrollbar::-webkit-scrollbar-thumb { background: #F3F4F6; border-radius: 10px; }
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #E5E7EB; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #bae6fd; border-radius: 10px; }
+    .time-select option { font-weight: 600; padding: 8px; }
 </style>
 
 <script>
@@ -151,13 +180,17 @@
 
     function toggleCalendar() {
         const dropdown = document.getElementById('calendar-dropdown');
+        const chevron = document.getElementById('calendar-chevron');
         calendarOpen = !calendarOpen;
         dropdown.classList.toggle('hidden', !calendarOpen);
+        if (chevron) chevron.classList.toggle('rotate-180', calendarOpen);
     }
 
     function closeCalendar() {
         calendarOpen = false;
         document.getElementById('calendar-dropdown').classList.add('hidden');
+        const chevron = document.getElementById('calendar-chevron');
+        if (chevron) chevron.classList.remove('rotate-180');
     }
 
     function updateDateDisplay(date) {
@@ -202,7 +235,6 @@
     function populateStartTimeOptions() {
         const startSelect = document.getElementById('booking-start');
         startSelect.innerHTML = '<option value="">Select time</option>';
-
         const seen = new Set();
         availableBlocks.forEach(block => {
             generateFiveMinSlots(block.start, block.end).forEach(slot => {
@@ -220,20 +252,14 @@
         const start = document.getElementById('booking-start').value;
         const endSelect = document.getElementById('booking-end');
         endSelect.innerHTML = '<option value="">Select time</option>';
-
-        if (!start) {
-            calculatePrice();
-            return;
-        }
+        if (!start) { calculatePrice(); return; }
 
         const startMins = timeToMinutes(start);
         const seen = new Set();
-
         availableBlocks.forEach(block => {
             const blockStart = timeToMinutes(block.start);
             const blockEnd = timeToMinutes(block.end);
             if (startMins < blockStart || startMins > blockEnd) return;
-
             generateFiveMinSlots(minutesToTime24(startMins + 5), block.end).forEach(slot => {
                 if (seen.has(slot.value)) return;
                 seen.add(slot.value);
@@ -243,7 +269,6 @@
                 endSelect.appendChild(opt);
             });
         });
-
         calculatePrice();
     }
 
@@ -260,7 +285,7 @@
 
         for (let i = 0; i < firstDay; i++) {
             const el = document.createElement('div');
-            el.className = 'p-2 text-[10px] font-bold text-gray-200';
+            el.className = 'py-2 text-xs font-medium text-slate-300';
             el.textContent = daysInPrevMonth - firstDay + i + 1;
             grid.appendChild(el);
         }
@@ -270,10 +295,13 @@
             const dateObj = new Date(year, month, day);
             const isPast = dateObj < today;
             const isSelected = selectedDate && dateObj.getTime() === selectedDate.getTime();
+            const isToday = dateObj.getTime() === today.getTime();
             const btn = document.createElement('button');
-            btn.className = `p-2 text-[10px] font-black rounded-lg transition-all border
-                ${isPast ? 'text-gray-100 border-transparent cursor-default' : 
-                (isSelected ? 'border-blue-600 bg-blue-600 text-white shadow-sm' : 'border-transparent text-gray-700 hover:bg-blue-50 hover:text-blue-600')}`;
+            btn.type = 'button';
+            btn.className = `py-2 text-xs font-bold rounded-full transition-all
+                ${isPast ? 'text-slate-200 cursor-default' :
+                (isSelected ? 'bg-blue-600 text-white shadow-md shadow-blue-300/50 scale-110' :
+                (isToday ? 'bg-sky-100 text-blue-600 ring-2 ring-blue-200' : 'text-slate-700 hover:bg-sky-50 hover:text-blue-600'))}`;
             btn.textContent = day;
             if (!isPast) btn.onclick = () => selectDate(dateObj);
             grid.appendChild(btn);
@@ -283,7 +311,7 @@
         const remaining = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
         for (let day = 1; day <= remaining; day++) {
             const el = document.createElement('div');
-            el.className = 'p-2 text-[10px] font-bold text-gray-200';
+            el.className = 'py-2 text-xs font-medium text-slate-300';
             el.textContent = day;
             grid.appendChild(el);
         }
@@ -334,26 +362,30 @@
             const response = await fetch(`/api/tutors/${tutorId}/slots?date=${dateStr}`);
             const data = await response.json();
             container.innerHTML = '';
-            
+
             if (data.blocks && data.blocks.length > 0) {
                 hourlyRate = data.hourly_rate || 0;
                 availableBlocks = data.blocks;
                 data.blocks.forEach(block => {
                     const el = document.createElement('div');
-                    el.className = 'w-full p-2.5 rounded-xl border border-blue-100 bg-blue-50 text-blue-700 text-center mb-1 font-bold text-xs';
-                    el.textContent = block.formatted;
+                    el.className = 'flex items-center gap-2 w-full px-4 py-2.5 rounded-xl bg-gradient-to-r from-sky-50 to-blue-50 border border-sky-100 text-blue-700 font-semibold text-sm';
+                    el.innerHTML = `<i class="fas fa-clock text-sky-400 text-xs"></i> ${block.formatted}`;
                     container.appendChild(el);
                 });
                 populateStartTimeOptions();
                 document.getElementById('booking-actions').classList.remove('hidden');
             } else {
                 availableBlocks = [];
-                container.innerHTML = '<p class="py-10 text-[8px] text-gray-300 font-black uppercase text-center italic tracking-widest">No availability</p>';
+                container.innerHTML = `
+                    <div class="py-8 text-center rounded-xl border border-dashed border-slate-200 bg-slate-50/50">
+                        <i class="fas fa-calendar-times text-slate-300 text-xl mb-2"></i>
+                        <p class="text-xs text-slate-400 font-semibold">No availability on this date</p>
+                    </div>`;
                 document.getElementById('booking-actions').classList.add('hidden');
             }
         } catch (error) {
             console.error('Error:', error);
-            container.innerHTML = '<p class="text-center text-red-500 text-[8px] font-black">ERROR LOADING</p>';
+            container.innerHTML = '<p class="text-center text-red-500 text-xs font-semibold py-4">Failed to load slots</p>';
         } finally { loader.classList.add('hidden'); }
     }
 
@@ -365,9 +397,9 @@
             const endD = new Date(`1970-01-01T${end}`);
             const mins = (endD - startD) / 60000;
             const price = (mins / 60) * hourlyRate;
-            document.getElementById('booking-price').textContent = `${Math.round(price)} PKR`;
+            document.getElementById('booking-price').textContent = `${Math.round(price).toLocaleString()} PKR`;
         } else {
-            document.getElementById('booking-price').textContent = `0 PKR`;
+            document.getElementById('booking-price').textContent = '0 PKR';
         }
     }
 

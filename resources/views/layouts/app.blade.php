@@ -45,6 +45,8 @@
         @yield('content')
     </main>
 
+    <hr class="border-0 h-px bg-gradient-to-r from-transparent via-sky-300 to-transparent my-0">
+
     @include('partials.footer')
     @include('partials.chatbot')
 
