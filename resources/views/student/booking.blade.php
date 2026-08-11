@@ -22,11 +22,11 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
                 <div class="bg-blue-50/50 p-6 rounded-3xl border border-blue-100">
                     <h4 class="text-[10px] font-black text-blue-600 uppercase tracking-widest mb-3">1. Select Date</h4>
-                    <p class="text-[11px] text-gray-600 font-medium leading-relaxed">Choose an available day from the interactive calendar on the left.</p>
+                    <p class="text-[11px] text-gray-600 font-medium leading-relaxed">Today's date is selected by default. Click the date on the left to open the calendar and pick another day.</p>
                 </div>
                 <div class="bg-blue-50/50 p-6 rounded-3xl border border-blue-100">
-                    <h4 class="text-[10px] font-black text-blue-600 uppercase tracking-widest mb-3">2. Pick time</h4>
-                    <p class="text-[11px] text-gray-600 font-medium leading-relaxed">Select a session slot that fits your schedule from the list.</p>
+                    <h4 class="text-[10px] font-black text-blue-600 uppercase tracking-widest mb-3">2. Pick Time</h4>
+                    <p class="text-[11px] text-gray-600 font-medium leading-relaxed">Choose start and end time from the dropdown list in 5-minute intervals (e.g. 3:59 PM).</p>
                 </div>
                 <div class="bg-blue-50/50 p-6 rounded-3xl border border-blue-100">
                     <h4 class="text-[10px] font-black text-blue-600 uppercase tracking-widest mb-3">3. Confirm</h4>

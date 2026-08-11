@@ -17,11 +17,10 @@
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
                     </div>
                     <div class="min-w-0">
-                        <h4 class="text-xs font-bold text-emerald-900">Payment Received Successfully!</h4>
-                        <p class="text-[11px] text-emerald-700 font-semibold leading-relaxed mt-1">
-                            You have received a payment of <strong class="font-extrabold">Rs. {{ number_format($alert->price_at_booking) }}</strong> from <strong class="font-extrabold">{{ $alert->student_name ?: ($alert->student->name ?? 'Student') }}</strong>.
+                        <p class="text-[14px] text-emerald-700 font-semibold leading-relaxed mt-1">
+                            Your academy, TutorHub, has received your payment from the client <strong class="font-extrabold">{{ $alert->student_name ?: ($alert->student->name ?? 'Student') }}</strong>. It will be transferred to your account within 24 hours.
                         </p>
-                        <p class="text-[10px] text-emerald-600/90 font-bold mt-2 flex items-center gap-1.5">
+                        <p class="text-[13px] text-emerald-600/90 font-bold mt-2 flex items-center gap-1.5">
                             <i class="fas fa-calendar-check text-[9px]"></i>
                             Session: {{ $alert->start_time->format('l, M d, Y') }} &bull; {{ $alert->start_time->format('g:i A') }} - {{ $alert->end_time->format('g:i A') }}
                         </p>
@@ -198,9 +197,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
                     </div>
                     <div class="min-w-0">
-                        <h4 class="text-xs font-bold text-emerald-900">Payment Received Successfully!</h4>
                         <p class="text-[11px] text-emerald-700 font-semibold leading-relaxed mt-1">
-                            You have received a payment of <strong class="font-extrabold">Rs. ${notification.amount_formatted}</strong> from <strong class="font-extrabold">${notification.student_name}</strong>.
+                            Your academy, TutorHub, has received your payment from the client <strong class="font-extrabold">${notification.student_name}</strong>. It will be transferred to your account within 24 hours.
                         </p>
                         <p class="text-[10px] text-emerald-600/90 font-bold mt-2 flex items-center gap-1.5">
                             <i class="fas fa-calendar-check text-[9px]"></i>
