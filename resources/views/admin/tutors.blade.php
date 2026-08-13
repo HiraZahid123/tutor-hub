@@ -165,7 +165,7 @@
                                 <div class="text-[10px] text-gray-400">{{ $tutor->major }}</div>
                             </td>
                             <td class="px-6 py-4 text-right font-black text-blue-600 whitespace-nowrap">
-                                <span class="text-[10px] text-gray-400 mr-1 font-normal">PKR</span>{{ number_format($tutor->hourly_rate) }}
+                                <span class="text-[10px] text-gray-400 mr-1 font-normal">{{ $tutor->display_currency }}</span>{{ number_format($tutor->hourly_rate) }}
                             </td>
                             <td class="px-6 py-4">
                                 @php

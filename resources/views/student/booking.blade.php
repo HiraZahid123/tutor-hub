@@ -17,7 +17,7 @@
                 </p>
             </div>
 
-            <x-booking-calendar :tutorId="$tutor->id" />
+            <x-booking-calendar :tutorId="$tutor->id" :currency="$tutor->display_currency" />
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 text-left">
                 <div class="bg-white p-5 rounded-2xl border border-sky-100 shadow-sm">

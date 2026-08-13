@@ -92,7 +92,13 @@ class BookingController extends Controller
                 }
             }
 
-            return response()->json(['blocks' => $slots, 'hourly_rate' => TutorRegistration::find($tutor_id)->hourly_rate]);
+            $tutor = TutorRegistration::findOrFail($tutor_id);
+
+            return response()->json([
+                'blocks' => $slots,
+                'hourly_rate' => $tutor->hourly_rate,
+                'currency' => $tutor->display_currency,
+            ]);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
@@ -155,6 +161,7 @@ class BookingController extends Controller
             'start_time' => $start,
             'end_time' => $end,
             'price_at_booking' => $price,
+            'currency' => $tutor->display_currency,
             'is_trial' => $isTrial,
             'duration_extension_minutes' => 0, // Removed the 10 min free extension
             'notes' => $request->notes,

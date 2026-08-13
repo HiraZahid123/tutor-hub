@@ -746,7 +746,7 @@
                         <div class="field-wrap">
                             <i class="fas fa-globe field-icon"></i>
                             <select id="country" name="country" required>
-                                <option value="" disabled selected>Select your country</option>
+                                <option value="" disabled {{ old('country') ? '' : 'selected' }}>Select your country</option>
                                 <optgroup label="🌟 Popular">
                                     <option value="PK" {{ old('country') == 'PK' ? 'selected' : '' }}>🇵🇰 Pakistan</option>
                                     <option value="AE" {{ old('country') == 'AE' ? 'selected' : '' }}>🇦🇪 UAE</option>
@@ -875,7 +875,7 @@
                                    placeholder="e.g. 2000"
                                    value="{{ old('hourly_rate') }}"
                                    required min="0">
-                            <div class="fee-suffix" id="feeSuffix">PKR / hr</div>
+                            <div class="fee-suffix" id="feeSuffix">— / hr</div>
                         </div>
                     </div>
                 </div>
@@ -1322,29 +1322,54 @@ const countryData = {
     'OTHER': { prefix: '+', tz: ['UTC', 'Asia/Dubai', 'Asia/Karachi', 'Europe/London', 'America/New_York'],          currency: 'USD' }
 };
 
-document.getElementById('country').addEventListener('change', function () {
-    const data = countryData[this.value] || countryData['OTHER'];
+function applyCountrySettings(countryCode, preferredTimezone = null) {
     const tzSelect = document.getElementById('timezone');
     const prefixEl = document.getElementById('phonePrefix');
     const feeSuffix = document.getElementById('feeSuffix');
 
-    // Update phone prefix
-    prefixEl.innerHTML = `<i class="fas fa-phone mr-1 text-xs"></i> ${data.prefix}`;
+    if (!countryCode) {
+        if (prefixEl) prefixEl.innerHTML = '<i class="fas fa-phone mr-1 text-xs"></i> +';
+        if (feeSuffix) feeSuffix.textContent = '— / hr';
+        if (tzSelect) {
+            tzSelect.innerHTML = '<option value="" disabled selected>Select country first</option>';
+        }
+        return;
+    }
 
-    // Update currency suffix on hourly rate
+    const data = countryData[countryCode] || countryData['OTHER'];
+
+    if (prefixEl) {
+        prefixEl.innerHTML = `<i class="fas fa-phone mr-1 text-xs"></i> ${data.prefix}`;
+    }
+
     if (feeSuffix) {
         feeSuffix.textContent = (data.currency || 'USD') + ' / hr';
     }
 
-    // Update timezone
-    tzSelect.innerHTML = '<option value="" disabled selected>Select Timezone</option>';
-    data.tz.forEach(z => {
-        const opt = document.createElement('option');
-        opt.value = opt.textContent = z;
-        tzSelect.appendChild(opt);
+    if (tzSelect) {
+        tzSelect.innerHTML = '<option value="" disabled>Select Timezone</option>';
+        data.tz.forEach(z => {
+            const opt = document.createElement('option');
+            opt.value = opt.textContent = z;
+            tzSelect.appendChild(opt);
+        });
+
+        if (preferredTimezone && data.tz.includes(preferredTimezone)) {
+            tzSelect.value = preferredTimezone;
+        } else if (data.tz.length >= 1) {
+            tzSelect.value = data.tz[0];
+        }
+    }
+}
+
+const countrySelect = document.getElementById('country');
+if (countrySelect) {
+    countrySelect.addEventListener('change', function () {
+        applyCountrySettings(this.value);
     });
-    if (data.tz.length >= 1) tzSelect.value = data.tz[0];
-});
+
+    applyCountrySettings(countrySelect.value, @json(old('timezone')));
+}
 
 /* ===== FILE PREVIEWS & IN-MEMORY CACHING ===== */
 document.getElementById('resume').addEventListener('change', function () {

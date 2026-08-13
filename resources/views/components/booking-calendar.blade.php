@@ -1,3 +1,5 @@
+@props(['tutorId', 'currency' => 'PKR'])
+
 <div class="schedule-container max-w-4xl mx-auto relative">
     <div id="schedule-loading" class="absolute inset-0 bg-white/80 backdrop-blur-sm z-50 flex items-center justify-center hidden rounded-3xl">
         <div class="flex flex-col items-center gap-3">
@@ -106,7 +108,7 @@
 
                             <div class="flex items-center justify-between pt-3 border-t border-slate-200/80">
                                 <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Estimated Amount</span>
-                                <span id="booking-price" class="text-xl font-black text-blue-600">0 PKR</span>
+                                <span id="booking-price" class="text-xl font-black text-blue-600">0 {{ $currency }}</span>
                             </div>
                         </div>
 
@@ -175,8 +177,13 @@
     let selectedDate = null;
     let calendarOpen = false;
     let hourlyRate = 0;
+    let tutorCurrency = @json($currency);
     let availableBlocks = [];
     const tutorId = {{ $tutorId }};
+
+    function formatPrice(amount) {
+        return `${Math.round(amount).toLocaleString()} ${tutorCurrency}`;
+    }
 
     function toggleCalendar() {
         const dropdown = document.getElementById('calendar-dropdown');
@@ -331,7 +338,7 @@
         document.getElementById('booking-actions').classList.add('hidden');
         document.getElementById('booking-start').innerHTML = '<option value="">Select time</option>';
         document.getElementById('booking-end').innerHTML = '<option value="">Select time</option>';
-        document.getElementById('booking-price').textContent = '0 PKR';
+        document.getElementById('booking-price').textContent = `0 ${tutorCurrency}`;
         availableBlocks = [];
         fetchSlots(date);
     }
@@ -365,6 +372,7 @@
 
             if (data.blocks && data.blocks.length > 0) {
                 hourlyRate = data.hourly_rate || 0;
+                if (data.currency) tutorCurrency = data.currency;
                 availableBlocks = data.blocks;
                 data.blocks.forEach(block => {
                     const el = document.createElement('div');
@@ -397,9 +405,9 @@
             const endD = new Date(`1970-01-01T${end}`);
             const mins = (endD - startD) / 60000;
             const price = (mins / 60) * hourlyRate;
-            document.getElementById('booking-price').textContent = `${Math.round(price).toLocaleString()} PKR`;
+            document.getElementById('booking-price').textContent = formatPrice(price);
         } else {
-            document.getElementById('booking-price').textContent = '0 PKR';
+            document.getElementById('booking-price').textContent = `0 ${tutorCurrency}`;
         }
     }
 

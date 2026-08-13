@@ -162,7 +162,7 @@
                                 <p class="text-xs font-bold mt-0.5">{{ $ub->start_time->format('M d, h:i A') }}</p>
                             </div>
                             <div class="text-right">
-                                <p class="text-xs font-bold text-blue-400">PKR {{ number_format($ub->price_at_booking) }}</p>
+                                <p class="text-xs font-bold text-blue-400">{{ $ub->display_currency }} {{ number_format($ub->price_at_booking) }}</p>
                                 <a href="{{ route('payment.checkout', $ub->id) }}" class="text-[8px] font-bold text-white bg-blue-600 px-2.5 py-1 rounded uppercase tracking-wider mt-1 inline-block hover:bg-blue-700 transition-colors">Pay</a>
                             </div>
                         </div>

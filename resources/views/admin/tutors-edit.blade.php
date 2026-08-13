@@ -90,7 +90,7 @@
                             </div>
 
                             <div class="space-y-1">
-                                <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Hourly Rate (PKR)</label>
+                                <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Hourly Rate ({{ $tutor->display_currency }})</label>
                                 <input type="number" name="hourly_rate" value="{{ $tutor->hourly_rate }}" class="w-full bg-gray-50/50 border border-gray-100 p-3 rounded-xl font-bold text-sm">
                             </div>
 

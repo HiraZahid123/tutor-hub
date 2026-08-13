@@ -30,7 +30,7 @@
                     </div>
                     <div class="flex justify-between items-center pt-6">
                         <span class="text-lg font-black text-gray-900">Total Amount</span>
-                        <span class="text-2xl font-black text-blue-600">PKR {{ number_format($booking->price_at_booking, 2) }}</span>
+                        <span class="text-2xl font-black text-blue-600">{{ $booking->display_currency }} {{ number_format($booking->price_at_booking, 2) }}</span>
                     </div>
                 </div>
             </div>

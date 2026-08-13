@@ -20,7 +20,7 @@
                     <h3 class="text-xs font-black uppercase tracking-[0.2em] opacity-80">Total Revenue</h3>
                 </div>
                 <div class="flex items-baseline gap-2">
-                    <span class="text-4xl font-black italic">PKR</span>
+                    <span class="text-4xl font-black italic">{{ $registration->display_currency }}</span>
                     <span class="text-5xl font-black">{{ number_format($totalEarned) }}</span>
                 </div>
                 <p class="mt-6 text-xs font-bold text-blue-100 flex items-center gap-2">
@@ -40,7 +40,7 @@
                     <h3 class="text-xs font-black uppercase tracking-[0.2em] text-gray-400">Awaiting Settlement</h3>
                 </div>
                 <div class="flex items-baseline gap-2">
-                    <span class="text-4xl font-black italic text-gray-500">PKR</span>
+                    <span class="text-4xl font-black italic text-gray-500">{{ $registration->display_currency }}</span>
                     <span class="text-5xl font-black text-blue-500">{{ number_format($pendingPayments) }}</span>
                 </div>
                 <p class="mt-6 text-xs font-bold text-gray-500 flex items-center gap-2">
@@ -90,7 +90,7 @@
                                     <p class="text-[9px] font-black text-blue-500 uppercase tracking-widest">{{ $booking->payment_method ?: 'JazzCash' }}</p>
                                 </td>
                                 <td class="py-6">
-                                    <p class="text-sm font-black text-gray-900">PKR {{ number_format($booking->price_at_booking) }}</p>
+                                    <p class="text-sm font-black text-gray-900">{{ $booking->display_currency }} {{ number_format($booking->price_at_booking) }}</p>
                                 </td>
                                 <td class="py-6 text-right">
                                     <span class="inline-flex items-center px-3 py-1.5 rounded-xl text-[8px] font-black uppercase tracking-widest border

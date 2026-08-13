@@ -88,7 +88,7 @@
                             <div class="grid grid-cols-2 gap-4">
                                 <div class="bg-gray-50/50 p-4 rounded-2xl border border-gray-100">
                                     <p class="text-[9px] text-gray-400 font-bold uppercase tracking-widest mb-1">Fee</p>
-                                    <p class="text-sm font-black text-gray-900">PKR {{ number_format($tutor->hourly_rate) }}</p>
+                                    <p class="text-sm font-black text-gray-900">{{ $tutor->display_currency }} {{ number_format($tutor->hourly_rate) }}</p>
                                 </div>
                                 <div class="bg-gray-50/50 p-4 rounded-2xl border border-gray-100">
                                     <p class="text-[9px] text-gray-400 font-bold uppercase tracking-widest mb-1">Timezone</p>
@@ -288,7 +288,7 @@
                 </div>
                 <div class="text-center md:text-right flex-shrink-0 bg-blue-50/50 px-4 py-2 rounded-2xl border border-blue-100/50">
                     <span class="block text-[7px] font-black text-gray-400 uppercase tracking-widest">Fee</span>
-                    <span class="text-lg font-black text-blue-600 tracking-tight leading-none">PKR {{ number_format($tutor->hourly_rate) }}</span>
+                    <span class="text-lg font-black text-blue-600 tracking-tight leading-none">{{ $tutor->display_currency }} {{ number_format($tutor->hourly_rate) }}</span>
                 </div>
             </div>
 

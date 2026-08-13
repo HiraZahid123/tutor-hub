@@ -13,7 +13,8 @@
         <div class="px-6 py-3 bg-white rounded-3xl border border-gray-100 shadow-sm flex items-center gap-4">
             <div class="text-center">
                 <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Total Revenue</p>
-                <p class="text-xl font-black text-blue-600 tracking-tight">PKR {{ number_format($totalRevenue) }}</p>
+                <p class="text-xl font-black text-blue-600 tracking-tight">{{ number_format($totalRevenue) }}</p>
+                <p class="text-[9px] font-bold text-gray-400 uppercase tracking-wider mt-1">Combined (all currencies)</p>
             </div>
         </div>
     </div>
@@ -29,9 +30,9 @@
                     <h3 class="text-xs font-black uppercase tracking-[0.2em] opacity-80">Total Platform Revenue</h3>
                 </div>
                 <div class="flex items-baseline gap-2">
-                    <span class="text-2xl font-black italic">PKR</span>
                     <span class="text-5xl font-black">{{ number_format($totalRevenue) }}</span>
                 </div>
+                <p class="mt-2 text-[9px] font-bold uppercase tracking-widest text-blue-100/80">Combined total across all currencies</p>
                 <p class="mt-6 text-[10px] font-black uppercase tracking-widest text-blue-100 italic">
                     Successfully received from {{ $totalTransactions }} sessions
                 </p>
@@ -48,9 +49,9 @@
                     <h3 class="text-xs font-black uppercase tracking-[0.2em] text-gray-400">Pending Settlements</h3>
                 </div>
                 <div class="flex items-baseline gap-2">
-                    <span class="text-2xl font-black italic text-gray-500">PKR</span>
                     <span class="text-5xl font-black text-blue-500">{{ number_format($pendingSettlements) }}</span>
                 </div>
+                <p class="mt-2 text-[9px] font-bold uppercase tracking-widest text-gray-500">Combined total across all currencies</p>
                 <p class="mt-6 text-[10px] font-black uppercase tracking-widest text-gray-500 italic">
                     Unpaid dues from confirmed sessions
                 </p>
@@ -115,7 +116,7 @@
                                 @endif
                             </td>
                             <td class="px-6 py-6">
-                                <p class="text-sm font-black text-gray-900">PKR {{ number_format($tx->price_at_booking) }}</p>
+                                <p class="text-sm font-black text-gray-900">{{ $tx->display_currency }} {{ number_format($tx->price_at_booking) }}</p>
                             </td>
                             <td class="px-6 py-6 text-right">
                                 <div class="flex items-center justify-end gap-2">

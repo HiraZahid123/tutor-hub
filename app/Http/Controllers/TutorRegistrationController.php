@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\NewTutorApplicationAlert;
 use App\Models\SubjectCategory;
 use App\Models\TutorRegistration;
+use App\Support\CountryCurrency;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -110,6 +111,7 @@ class TutorRegistrationController extends Controller
             'is_online' => in_array($validated['tutoring_preference'], ['online', 'both']),
             'is_home' => in_array($validated['tutoring_preference'], ['home', 'both']),
             'hourly_rate' => $validated['hourly_rate'],
+            'currency' => CountryCurrency::forCountry($validated['country']),
             'program' => $validated['program'],
             'major' => $validated['major'],
             'university' => $validated['university'],

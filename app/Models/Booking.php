@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Support\CountryCurrency;
 use Illuminate\Database\Eloquent\Model;
 
 class Booking extends Model
@@ -24,6 +25,7 @@ class Booking extends Model
         'tutor_payment_notified_at',
         'is_trial',
         'price_at_booking',
+        'currency',
         'duration_extension_minutes',
         'notes',
     ];
@@ -45,6 +47,24 @@ class Booking extends Model
     public function student()
     {
         return $this->belongsTo(User::class, 'student_id');
+    }
+
+    public function getDisplayCurrencyAttribute(): string
+    {
+        if ($this->currency) {
+            return $this->currency;
+        }
+
+        if ($this->relationLoaded('tutor') && $this->tutor) {
+            return $this->tutor->display_currency;
+        }
+
+        $tutor = $this->tutor;
+        if ($tutor) {
+            return $tutor->display_currency;
+        }
+
+        return 'PKR';
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Support\CountryCurrency;
 use Illuminate\Database\Eloquent\Model;
 
 class TutorRegistration extends Model
@@ -18,6 +19,7 @@ class TutorRegistration extends Model
         'is_online',
         'is_home',
         'hourly_rate',
+        'currency',
         'program',
         'major',
         'university',
@@ -75,6 +77,11 @@ class TutorRegistration extends Model
         'is_online' => 'boolean',
         'is_home' => 'boolean',
     ];
+
+    public function getDisplayCurrencyAttribute(): string
+    {
+        return $this->currency ?: CountryCurrency::forCountry($this->country);
+    }
 
     public function getCountryNameAttribute()
     {
