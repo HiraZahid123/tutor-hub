@@ -338,56 +338,8 @@
                 transform: translateY(-50%) scale(0.92);
             }
 
-            /* Custom profile photo hover animation */
-            .tutor-photo-wrap-interactive {
-                transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
-            }
-            .tutor-photo-wrap-interactive:hover {
-                transform: translateY(-8px) scale(1.03);
-                box-shadow: 0 16px 32px rgba(0,0,0,0.18);
-            }
-            
-            /* Custom subject tags hover animation */
-            .subject-tag-interactive {
-                transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s, border-color 0.2s, box-shadow 0.3s;
-                cursor: pointer;
-            }
-            .subject-tag-interactive:hover {
-                transform: translateY(-4px) scale(1.05);
-                box-shadow: 0 6px 12px rgba(37,99,235,0.15);
-                background-color: #dbeafe !important;
-                border-color: #3b82f6 !important;
-                color: #1d4ed8 !important;
-            }
-
-            /* Custom text interactive hover animation */
-            .text-interactive-hover {
-                display: block;
-                width: fit-content;
-                transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
-            }
-            .text-interactive-hover:hover {
-                transform: translateY(-4px);
-            }
-
-            /* Custom button interactive hover animation */
-            .button-interactive-hover {
-                transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
-            }
-            .button-interactive-hover:hover {
-                transform: translateY(-3px) scale(1.01);
-                box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-            }
-
-            /* Custom badge interactive hover animation */
-            .badge-interactive-hover {
-                transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
-                cursor: pointer;
-            }
-            .badge-interactive-hover:hover {
-                transform: translateY(-4px) scale(1.02);
-                box-shadow: 0 4px 10px rgba(234, 88, 12, 0.15);
-            }
+            /* Tutor card interactive hovers (shared with Best Tutors page) */
+            @include('partials.tutor-card-interactive-styles')
         </style>
 
         @php

@@ -55,21 +55,10 @@
     transform: translateX(4px);
 }
 
-/* Card lift + image zoom on hover — same as Leadership Team */
-.tutor-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.tutor-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 24px 44px rgba(0,0,0,0.14);
-}
+/* Tutor card interactive hovers — same as Meet Our Best Tutors (home) */
+@include('partials.tutor-card-interactive-styles')
+
 .tutor-photo-wrap { overflow: hidden; }
-.tutor-photo-wrap img {
-    transition: transform 0.5s ease;
-}
-.tutor-card:hover .tutor-photo-wrap img {
-    transform: scale(1.08);
-}
 
 /* CSS sharpening for soft-focus photos */
 .img-sharpen {
@@ -275,7 +264,8 @@
     <div class="container">
         <div id="tutors-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @forelse($tutors as $tutor)
-            <div class="tutor-card group bg-white rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 hover:scale-[1.01] transition-all duration-300 overflow-hidden flex flex-col"
+            <div class="tutor-card group bg-white rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1.5 hover:scale-[1.01] transition-all duration-300 overflow-hidden h-full flex flex-col"
+                 style="border: 1px solid #f3f4f6;"
                  data-country="{{ $tutor['country'] }}"
                  data-city="{{ $tutor['city'] }}"
                  data-area="{{ $tutor['area'] }}"
@@ -289,7 +279,7 @@
                         {{-- Avatar / Photo --}}
                         <div class="flex-shrink-0">
                             @if(!empty($tutor['photo']))
-                                <div class="tutor-photo-wrap rounded-2xl shadow-lg border-2 border-gray-100 overflow-hidden"
+                                <div class="tutor-photo-wrap tutor-photo-wrap-interactive rounded-2xl shadow-lg border-2 border-gray-100 overflow-hidden"
                                      style="width:118px;height:118px;flex-shrink:0;background:#ffffff;">
                                     <img src="{{ asset($tutor['photo']) }}"
                                          alt="{{ $tutor['name'] }}"
@@ -305,9 +295,9 @@
                         </div>
                         {{-- Name & Qualification --}}
                         <div class="flex-1 min-w-0 pt-1">
-                            <h3 class="text-[20px] font-black text-gray-900 leading-tight mb-1.5">{{ $tutor['name'] }}</h3>
-                            <p class="text-[11px] text-blue-600 font-bold leading-snug mb-3">{{ $tutor['qualification'] }}</p>
-                            <span class="inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider px-3 py-1.5 rounded-full"
+                            <h3 class="text-[20px] font-black text-gray-900 leading-tight mb-1.5 text-interactive-hover">{{ $tutor['name'] }}</h3>
+                            <p class="text-[11px] text-blue-600 font-bold leading-snug mb-3 text-interactive-hover">{{ $tutor['qualification'] }}</p>
+                            <span class="inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider px-3 py-1.5 rounded-full badge-interactive-hover"
                                   style="background:#fff7ed;color:#ea580c;border:1px solid #fed7aa;">
                                 <i class="fas fa-star text-[9px]"></i> {{ $tutor['experience'] }}+ Yrs Exp
                             </span>
@@ -318,7 +308,7 @@
                 {{-- Subject Tags --}}
                 <div class="px-7 pb-4 flex flex-wrap gap-2">
                     @foreach($tutor['subject_tags'] as $tag)
-                    <span class="text-[10px] font-black px-3 py-1.5 rounded-full uppercase tracking-wider"
+                    <span class="subject-tag-interactive text-[10px] font-black px-3 py-1.5 rounded-full uppercase tracking-wider"
                           style="background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;">
                         {{ $tag }}
                     </span>
@@ -359,12 +349,12 @@
                 <div class="px-7 pb-6 pt-1 flex gap-3">
                     <a href="https://wa.me/923414133395?text=Hi%2C%20I%20am%20interested%20in%20{{ urlencode($tutor['name']) }}"
                        target="_blank"
-                       class="flex-1 text-center text-[10px] font-black uppercase tracking-widest py-3.5 rounded-xl transition-all active:scale-95 hover:bg-blue-700 hover:shadow-lg duration-300"
+                       class="flex-1 text-center text-[10px] font-black uppercase tracking-widest py-3.5 rounded-xl transition-all active:scale-95 hover:bg-blue-700 hover:shadow-lg duration-300 button-interactive-hover"
                        style="background:#2563EB;color:#fff;">
                         Book Session
                     </a>
                     <button onclick="openTutorModal({{ $tutor['id'] }})"
-                            class="view-more-btn px-4 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center gap-1.5 cursor-pointer hover:bg-orange-500 hover:text-white hover:border-orange-500 transition-all duration-300"
+                            class="view-more-btn px-4 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center gap-1.5 cursor-pointer hover:bg-orange-500 hover:text-white hover:border-orange-500 transition-all duration-300 button-interactive-hover"
                             style="background:#fff7ed;color:#ea580c;border:2px solid #ea580c;">
                         <i class="fas fa-eye text-[9px]"></i> View More
                     </button>
