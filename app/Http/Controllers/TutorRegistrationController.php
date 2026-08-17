@@ -9,6 +9,7 @@ use App\Support\CountryCurrency;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Schema;
 
 class TutorRegistrationController extends Controller
 {
@@ -67,6 +68,8 @@ class TutorRegistrationController extends Controller
         $validated = $request->validate([
             // Step 1: Basic Info
             'country' => 'required|string|max:255',
+            'city'    => 'nullable|string|max:255',
+            'area'    => 'nullable|string|max:255',
             'timezone' => 'required|string|max:255',
             'phone' => 'required|string|max:255',
             'gender' => 'required|in:male,female',
@@ -105,13 +108,14 @@ class TutorRegistrationController extends Controller
             'email' => $user->email, // Taken from logged-in user
             'phone' => $validated['phone'],
             'country' => $validated['country'],
+            'city'    => $validated['city'] ?? null,
+            'area'    => $validated['area'] ?? null,
             'timezone' => $validated['timezone'],
             'gender' => $validated['gender'],
             'tutoring_preference' => $validated['tutoring_preference'],
             'is_online' => in_array($validated['tutoring_preference'], ['online', 'both']),
             'is_home' => in_array($validated['tutoring_preference'], ['home', 'both']),
             'hourly_rate' => $validated['hourly_rate'],
-            'currency' => CountryCurrency::forCountry($validated['country']),
             'program' => $validated['program'],
             'major' => $validated['major'],
             'university' => $validated['university'],
@@ -123,6 +127,10 @@ class TutorRegistrationController extends Controller
             'teaching_experience' => $validated['teaching_experience'],
             'status' => 'pending',
         ];
+
+        if (Schema::hasColumn('tutor_registrations', 'currency')) {
+            $tutorData['currency'] = CountryCurrency::forCountry($validated['country']);
+        }
 
         // Create Registration Record
         $tutor = TutorRegistration::create($tutorData);
@@ -136,6 +144,13 @@ class TutorRegistrationController extends Controller
         } catch (\Throwable $e) {
             // Log the error but don't crash the user session
             \Illuminate\Support\Facades\Log::error('Admin tutor registration alert mail failed: ' . $e->getMessage());
+        }
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'redirect' => url('/tutor/dashboard'),
+            ]);
         }
 
         return redirect('/tutor/dashboard')->with('success', 'Your application as a tutor has been submitted successfully!');

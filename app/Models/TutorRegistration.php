@@ -13,6 +13,8 @@ class TutorRegistration extends Model
         'email',
         'phone',
         'country',
+        'city',
+        'area',
         'timezone',
         'gender',
         'tutoring_preference',
@@ -128,6 +130,12 @@ class TutorRegistration extends Model
 
     public function getAreaAttribute()
     {
+        // Return the stored area value if it exists (new registrations)
+        if (!empty($this->attributes['area'])) {
+            return $this->attributes['area'];
+        }
+
+        // Legacy fallback: derive area from bio/university text (old records)
         $searchString = strtolower($this->university . ' ' . $this->bio . ' ' . $this->teaching_experience);
         if (strtolower($this->country) === 'pk') {
             if (str_contains($searchString, 'karachi')) {

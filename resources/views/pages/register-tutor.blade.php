@@ -186,6 +186,10 @@
     from { opacity: 0; transform: translateY(14px); }
     to   { opacity: 1; transform: translateY(0); }
 }
+@keyframes location-dropdown-in {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
 
 /* ===== STEP HEADER ===== */
 .step-heading {
@@ -805,6 +809,37 @@
                         </div>
                     </div>
 
+                    {{-- City (Pakistan only) --}}
+                    <div class="form-group" id="city-group" style="display:none;">
+                        <label class="field-label">City <span class="req">*</span></label>
+                        <div class="field-wrap">
+                            <i class="fas fa-city field-icon"></i>
+                            <select id="city" name="city">
+                                <option value="" disabled {{ old('city') ? '' : 'selected' }}>Select your city</option>
+                                <option value="Lahore"         {{ old('city') == 'Lahore'         ? 'selected' : '' }}>Lahore</option>
+                                <option value="Karachi"        {{ old('city') == 'Karachi'        ? 'selected' : '' }}>Karachi</option>
+                                <option value="Islamabad"      {{ old('city') == 'Islamabad'      ? 'selected' : '' }}>Islamabad</option>
+                                <option value="Rawalpindi"     {{ old('city') == 'Rawalpindi'     ? 'selected' : '' }}>Rawalpindi</option>
+                                <option value="Faisalabad"     {{ old('city') == 'Faisalabad'     ? 'selected' : '' }}>Faisalabad</option>
+                                <option value="Multan"         {{ old('city') == 'Multan'         ? 'selected' : '' }}>Multan</option>
+                                <option value="Peshawar"       {{ old('city') == 'Peshawar'       ? 'selected' : '' }}>Peshawar</option>
+                                <option value="Quetta"         {{ old('city') == 'Quetta'         ? 'selected' : '' }}>Quetta</option>
+                                <option value="Other"          {{ old('city') == 'Other'          ? 'selected' : '' }}>Other City</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    {{-- Area (Pakistan only, depends on city) --}}
+                    <div class="form-group" id="area-group" style="display:none;">
+                        <label class="field-label">Area <span class="req">*</span></label>
+                        <div class="field-wrap">
+                            <i class="fas fa-map-marker-alt field-icon"></i>
+                            <select id="area" name="area">
+                                <option value="" disabled selected>Select city first</option>
+                            </select>
+                        </div>
+                    </div>
+
                     {{-- Phone --}}
                     <div class="form-group full-width">
                         <label class="field-label">Phone Number <span class="req">*</span></label>
@@ -1327,12 +1362,23 @@ function applyCountrySettings(countryCode, preferredTimezone = null) {
     const prefixEl = document.getElementById('phonePrefix');
     const feeSuffix = document.getElementById('feeSuffix');
 
+    // City/Area elements
+    const cityGroup  = document.getElementById('city-group');
+    const areaGroup  = document.getElementById('area-group');
+    const citySelect = document.getElementById('city');
+    const areaSelect = document.getElementById('area');
+
     if (!countryCode) {
         if (prefixEl) prefixEl.innerHTML = '<i class="fas fa-phone mr-1 text-xs"></i> +';
         if (feeSuffix) feeSuffix.textContent = '— / hr';
         if (tzSelect) {
             tzSelect.innerHTML = '<option value="" disabled selected>Select country first</option>';
         }
+        // Hide city/area
+        if (cityGroup) cityGroup.style.display = 'none';
+        if (areaGroup) areaGroup.style.display = 'none';
+        if (citySelect) { citySelect.required = false; citySelect.value = ''; }
+        if (areaSelect) { areaSelect.required = false; areaSelect.innerHTML = '<option value="" disabled selected>Select city first</option>'; }
         return;
     }
 
@@ -1360,6 +1406,106 @@ function applyCountrySettings(countryCode, preferredTimezone = null) {
             tzSelect.value = data.tz[0];
         }
     }
+
+    // Show city/area dropdowns only for Pakistan
+    if (countryCode === 'PK') {
+        if (cityGroup) cityGroup.style.display = '';
+        if (citySelect) citySelect.required = true;
+        // Restore old city value if available (for validation errors)
+        const oldCity = @json(old('city'));
+        if (oldCity && citySelect) {
+            citySelect.value = oldCity;
+            updateAreaDropdown(oldCity, @json(old('area')));
+        }
+    } else {
+        if (cityGroup) cityGroup.style.display = 'none';
+        if (areaGroup) areaGroup.style.display = 'none';
+        if (citySelect) { citySelect.required = false; citySelect.value = ''; }
+        if (areaSelect) { areaSelect.required = false; areaSelect.innerHTML = '<option value="" disabled selected>Select city first</option>'; }
+    }
+}
+
+/* ===== PAKISTAN CITY → AREAS DATA ===== */
+const pakistanCityAreas = {
+    'Lahore': [
+        'Abdalian Society', 'Al-Rehman Gardens', 'Allama Iqbal Town', 'Architect Society',
+        'Askari', 'Audits and Accounts Society', 'Bahria Orchard', 'Bahria Town',
+        'Cantt', 'Cavalry Ground', 'DHA Phase 1,2,3,4', 'DHA Phase 5,6', 'DHA Phase 7,8,9',
+        'DHA Rahbar', 'Divine Gardens', 'Eden Society', 'EME Society', 'Faisal Town',
+        'Fazaia Housing Scheme', 'Ferozpur Road', 'Formanites Housing Scheme', 'GOR',
+        'Garden Town', 'Green Town', 'Gulberg 1', 'Gulberg 2', 'Gulberg 3', 'Gulshan Ravi',
+        'Harbanspura', 'Ichra', 'IEP Engineers Town', 'Izmir Town', 'Johar Town',
+        'Jubilee Town', 'Kot Lakhpat', 'Lake City', 'Model Town', 'Mughalpura',
+        'Muslim Town', 'Mustafa Town', 'New Garden Town', 'Peco Road', 'Raiwind Road',
+        'Revenue Society', 'Sabzazar', 'Samanabad', 'Shadab Gardens', 'State Life Housing Society',
+        'Sui Gas Society', 'Tajpura', 'Thokar Niaz Baig', 'Town Ship', 'UET Housing Society',
+        'Valencia Housing Society', 'Vital Homes Housing Society', 'Wahdat Road', 'Walton Cantt',
+        'Wapda Town', 'Zaman Park', 'Other Area'
+    ],
+    'Karachi': [
+        'Clifton', 'DHA Karachi', 'Defence', 'Gulshan-e-Iqbal', 'Gulistan-e-Johar',
+        'F.B. Area', 'PECHS', 'Bahadurabad', 'North Nazimabad', 'Nazimabad',
+        'Korangi', 'Landhi', 'Malir', 'Model Colony', 'Shah Faisal Colony',
+        'Scheme 33', 'Surjani Town', 'Liaquatabad', 'New Karachi', 'Orangi Town',
+        'Saddar', 'Garden', 'Lyari', 'Baldia Town', 'SITE', 'Other Area'
+    ],
+    'Islamabad': [
+        'F-6', 'F-7', 'F-8', 'F-10', 'F-11', 'G-6', 'G-7', 'G-8', 'G-9', 'G-10', 'G-11',
+        'E-7', 'E-11', 'I-8', 'I-9', 'I-10', 'I-11', 'H-8', 'H-9', 'H-11',
+        'Bahria Town Islamabad', 'DHA Islamabad', 'PWD Housing Society',
+        'Margalla Hills', 'Bani Gala', 'Diplomatic Enclave', 'Other Area'
+    ],
+    'Rawalpindi': [
+        'Satellite Town', 'Chaklala Scheme', 'Bahria Town Rawalpindi', 'DHA Rawalpindi',
+        'Askari Colony', 'Gulzar-e-Quaid', 'Afshan Colony', 'Westridge', 'Cantt',
+        'Saddar', 'Murree Road', '6th Road', 'Adiala Road', 'Other Area'
+    ],
+    'Faisalabad': [
+        'Canal Road', 'Gulberg Faisalabad', 'Batala Colony', 'Peoples Colony',
+        'D-Ground', 'Jinnah Colony', 'Madina Town', 'Susan Road', 'Sargodha Road',
+        'Jhang Road', 'Millat Road', 'Other Area'
+    ],
+    'Multan': [
+        'Cantt', 'Shah Rukn-e-Alam', 'Bosan Road', 'Gulgasht Colony', 'Model Town Multan',
+        'New Multan', 'Dera Adda', 'Qasim Bela', 'Other Area'
+    ],
+    'Peshawar': [
+        'Hayatabad', 'University Town', 'Phase 5', 'Cantt', 'Board Bazaar',
+        'Chamkani', 'Tehkal', 'Warsak Road', 'Ring Road', 'Other Area'
+    ],
+    'Quetta': [
+        'Satellite Town', 'Jinnah Town', 'Airport Road', 'Cantt', 'Brewery Road',
+        'Hali Road', 'Zarghoon Road', 'Other Area'
+    ],
+    'Other': ['Other Area']
+};
+
+function updateAreaDropdown(cityValue, oldArea) {
+    const areaSelect = document.getElementById('area');
+    const areaGroup  = document.getElementById('area-group');
+
+    if (!cityValue || !pakistanCityAreas[cityValue]) {
+        if (areaGroup) areaGroup.style.display = 'none';
+        if (areaSelect) { areaSelect.required = false; areaSelect.innerHTML = '<option value="" disabled selected>Select city first</option>'; }
+        return;
+    }
+
+    const areas = pakistanCityAreas[cityValue];
+    areaSelect.innerHTML = '<option value="" disabled>Select your area</option>';
+    areas.forEach(function(area) {
+        const opt = document.createElement('option');
+        opt.value = area;
+        opt.textContent = area;
+        if (oldArea && area === oldArea) opt.selected = true;
+        areaSelect.appendChild(opt);
+    });
+
+    if (!oldArea) areaSelect.selectedIndex = 0;
+    areaSelect.required = true;
+
+    // Animate in
+    areaGroup.style.display = '';
+    areaGroup.style.animation = 'location-dropdown-in 0.3s ease';
 }
 
 const countrySelect = document.getElementById('country');
@@ -1370,6 +1516,15 @@ if (countrySelect) {
 
     applyCountrySettings(countrySelect.value, @json(old('timezone')));
 }
+
+// City change → populate areas
+const citySelectEl = document.getElementById('city');
+if (citySelectEl) {
+    citySelectEl.addEventListener('change', function () {
+        updateAreaDropdown(this.value, null);
+    });
+}
+
 
 /* ===== FILE PREVIEWS & IN-MEMORY CACHING ===== */
 document.getElementById('resume').addEventListener('change', function () {
@@ -1497,8 +1652,12 @@ document.getElementById('applyForm').addEventListener('submit', function (e) {
     })
     .then(async response => {
         if (response.ok) {
-            // Success: redirect user to the tutor dashboard
-            window.location.href = '/tutor/dashboard';
+            let redirectUrl = '/tutor/dashboard';
+            try {
+                const data = await response.json();
+                if (data && data.redirect) redirectUrl = data.redirect;
+            } catch (e) { /* non-JSON success response */ }
+            window.location.href = redirectUrl;
         } else if (response.status === 422) {
             // Validation errors from Laravel
             const errorsData = await response.json();
