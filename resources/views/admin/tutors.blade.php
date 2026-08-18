@@ -70,15 +70,29 @@
     @endphp
 
     <!-- Country Filter -->
-    <select id="country-filter" onchange="updateAreasDropdown(); applyFilters();" class="bg-gray-50 border border-gray-100 rounded-2xl text-[11px] font-black uppercase tracking-widest px-4 py-2.5 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none">
+    <select id="country-filter" onchange="updateCitiesDropdown(); applyFilters();" class="bg-gray-50 border border-gray-100 rounded-2xl text-[11px] font-black uppercase tracking-widest px-4 py-2.5 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none">
         <option value="">All Countries</option>
         @foreach($allCountries as $code => $name)
             <option value="{{ strtolower($code) }}">{{ $name }}</option>
         @endforeach
     </select>
 
+    <!-- City Filter (Pakistan only) -->
+    <select id="city-filter" onchange="updateAreasDropdown(); applyFilters();" class="bg-gray-50 border border-gray-100 rounded-2xl text-[11px] font-black uppercase tracking-widest px-4 py-2.5 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none" disabled style="display:none;">
+        <option value="">All Cities</option>
+        <option value="lahore">Lahore</option>
+        <option value="karachi">Karachi</option>
+        <option value="islamabad">Islamabad</option>
+        <option value="rawalpindi">Rawalpindi</option>
+        <option value="faisalabad">Faisalabad</option>
+        <option value="multan">Multan</option>
+        <option value="peshawar">Peshawar</option>
+        <option value="quetta">Quetta</option>
+        <option value="other">Other City</option>
+    </select>
+
     <!-- Area Filter -->
-    <select id="area-filter" onchange="applyFilters()" class="bg-gray-50 border border-gray-100 rounded-2xl text-[11px] font-black uppercase tracking-widest px-4 py-2.5 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none" disabled>
+    <select id="area-filter" onchange="applyFilters()" class="bg-gray-50 border border-gray-100 rounded-2xl text-[11px] font-black uppercase tracking-widest px-4 py-2.5 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none" disabled style="display:none;">
         <option value="">All Areas</option>
     </select>
 
@@ -133,6 +147,7 @@
                     @foreach($tutors as $tutor)
                         <tr class="hover:bg-blue-50/30 transition-colors tutor-row" 
                             data-country="{{ strtolower($tutor->country) }}" 
+                            data-city="{{ strtolower($tutor->city) }}"
                             data-area="{{ strtolower($tutor->area) }}"
                             data-program="{{ strtolower($tutor->program) }}"
                             data-status="{{ strtolower($tutor->status ?? 'pending') }}"
@@ -155,8 +170,8 @@
                             </td>
                             <td class="px-6 py-4">
                                 <span class="text-[10px] font-black uppercase text-gray-500 tracking-tighter country-val">{{ $tutor->country_name }}</span>
-                                @if($tutor->area)
-                                    <span class="text-[10px] font-bold text-blue-600 block leading-tight mt-0.5">{{ $tutor->area }}</span>
+                                @if($tutor->city)
+                                    <span class="text-[10px] font-bold text-blue-600 block leading-tight mt-0.5">{{ $tutor->city }}</span>
                                 @endif
                                 <div class="text-[10px] text-gray-400 mt-0.5">{{ $tutor->timezone }}</div>
                             </td>
@@ -213,20 +228,63 @@
 
 @push('scripts')
 <script>
-const countryAreas = {
-    'pk': [
-        'Askari', 'Allama Iqbal Town', 'Al-Rehman Gardens', 'Architect Society', 'Audits and Accounts Society', 'Abdalian Society',
-        'Bahria Town', 'Bahria Orchard', 'Cantt', 'Cavalry Ground', 'DHA Phase 1,2,3,4', 'DHA Phase 5,6', 'DHA Phase 7,8,9',
-        'DHA Rahbar', 'Divine Gardens', 'Eden Society', 'EME Society', 'Ferozpur Road', 'Faisal Town', 'Fazaia Housing Scheme',
-        'Formanites Housing Scheme', 'Gulberg 1', 'Gulberg 2', 'Gulberg 3', 'Garden Town', 'New Garden Town', 'Gulshan Ravi',
-        'Green Town', 'GOR', 'Harbanspura', 'Izmir Town', 'Ichra', 'IEP Engineers Town', 'Johar Town', 'Jubilee Town',
-        'Kot Lakhpat', 'Lake City', 'Model Town', 'Mughalpura', 'Muslim Town', 'Mustafa Town', 'Peco Road', 'Raiwind Road',
-        'Revenue Society', 'State Life Housing Society', 'Samanabad', 'Sabzazar', 'Sui Gas Society', 'Shadab Gardens',
-        'Tajpura', 'Thokar Niaz Baig', 'Town Ship', 'UET Housing Society', 'Valencia Housing Society', 'Vital Homes Housing Society',
-        'Walton Cantt', 'Wahdat Road', 'Wapda Town', 'Zaman Park', 'Satellite Town', 'Bahria Town Rawalpindi', 'Chaklala',
-        'PWD Colony', 'DHA Karachi', 'Clifton', 'Gulshan-e-Iqbal', 'PECHS', 'North Nazimabad', 'Korangi', 'Madina Town',
-        'Canal Road', 'Peoples Colony', 'Gulberg Faisalabad', 'Batala Colony', 'Hayatabad', 'University Town', 'Phase 5', 'Other Area'
+// Per-city areas for Pakistan
+const pakistanCityAreas = {
+    'lahore': [
+        'Abdalian Society', 'Al-Rehman Gardens', 'Allama Iqbal Town', 'Architect Society',
+        'Askari', 'Audits and Accounts Society', 'Bahria Orchard', 'Bahria Town',
+        'Cantt', 'Cavalry Ground', 'DHA Phase 1,2,3,4', 'DHA Phase 5,6', 'DHA Phase 7,8,9',
+        'DHA Rahbar', 'Divine Gardens', 'Eden Society', 'EME Society', 'Faisal Town',
+        'Fazaia Housing Scheme', 'Ferozpur Road', 'Formanites Housing Scheme', 'GOR',
+        'Garden Town', 'Green Town', 'Gulberg 1', 'Gulberg 2', 'Gulberg 3', 'Gulshan Ravi',
+        'Harbanspura', 'Ichra', 'IEP Engineers Town', 'Izmir Town', 'Johar Town',
+        'Jubilee Town', 'Kot Lakhpat', 'Lake City', 'Model Town', 'Mughalpura',
+        'Muslim Town', 'Mustafa Town', 'New Garden Town', 'Peco Road', 'Raiwind Road',
+        'Revenue Society', 'Sabzazar', 'Samanabad', 'Shadab Gardens', 'State Life Housing Society',
+        'Sui Gas Society', 'Tajpura', 'Thokar Niaz Baig', 'Town Ship', 'UET Housing Society',
+        'Valencia Housing Society', 'Vital Homes Housing Society', 'Wahdat Road', 'Walton Cantt',
+        'Wapda Town', 'Zaman Park', 'Other Area'
     ],
+    'karachi': [
+        'Clifton', 'DHA Karachi', 'Defence', 'Gulshan-e-Iqbal', 'Gulistan-e-Johar',
+        'F.B. Area', 'PECHS', 'Bahadurabad', 'North Nazimabad', 'Nazimabad',
+        'Korangi', 'Landhi', 'Malir', 'Model Colony', 'Shah Faisal Colony',
+        'Scheme 33', 'Surjani Town', 'Liaquatabad', 'New Karachi', 'Orangi Town',
+        'Saddar', 'Garden', 'Lyari', 'Baldia Town', 'SITE', 'Other Area'
+    ],
+    'islamabad': [
+        'F-6', 'F-7', 'F-8', 'F-10', 'F-11', 'G-6', 'G-7', 'G-8', 'G-9', 'G-10', 'G-11',
+        'E-7', 'E-11', 'I-8', 'I-9', 'I-10', 'I-11', 'H-8', 'H-9', 'H-11',
+        'Bahria Town Islamabad', 'DHA Islamabad', 'PWD Housing Society',
+        'Margalla Hills', 'Bani Gala', 'Diplomatic Enclave', 'Other Area'
+    ],
+    'rawalpindi': [
+        'Satellite Town', 'Chaklala Scheme', 'Bahria Town Rawalpindi', 'DHA Rawalpindi',
+        'Askari Colony', 'Gulzar-e-Quaid', 'Afshan Colony', 'Westridge', 'Cantt',
+        'Saddar', 'Murree Road', '6th Road', 'Adiala Road', 'Other Area'
+    ],
+    'faisalabad': [
+        'Canal Road', 'Gulberg Faisalabad', 'Batala Colony', 'Peoples Colony',
+        'D-Ground', 'Jinnah Colony', 'Madina Town', 'Susan Road', 'Sargodha Road',
+        'Jhang Road', 'Millat Road', 'Other Area'
+    ],
+    'multan': [
+        'Cantt', 'Shah Rukn-e-Alam', 'Bosan Road', 'Gulgasht Colony', 'Model Town Multan',
+        'New Multan', 'Dera Adda', 'Qasim Bela', 'Other Area'
+    ],
+    'peshawar': [
+        'Hayatabad', 'University Town', 'Phase 5', 'Cantt', 'Board Bazaar',
+        'Chamkani', 'Tehkal', 'Warsak Road', 'Ring Road', 'Other Area'
+    ],
+    'quetta': [
+        'Satellite Town', 'Jinnah Town', 'Airport Road', 'Cantt', 'Brewery Road',
+        'Hali Road', 'Zarghoon Road', 'Other Area'
+    ],
+    'other': ['Other Area']
+};
+
+// Non-Pakistan country areas (direct country → areas)
+const nonPkCountryAreas = {
     'ae': ['Downtown', 'Dubai Marina', 'Jumeirah', 'Palm Jumeirah', 'Al Barsha', 'Business Bay', 'Deira', 'Bur Dubai', 'Silicon Oasis', 'Yas Island', 'Al Reem Island', 'Khalifa City', 'Corniche', 'Al Khalidiyah', 'Al Majaz', 'Al Nahda', 'Muwaileh', 'Al Nuaimia', 'Al Rashidiya', 'Al Hamra', 'Al Marjan Island', 'Fujairah City', 'Dibba', 'Umm Al Quwain City', 'Other Area'],
     'sa': ['Olaya', 'Al Malaz', 'Al Yasmin', 'Al Sahafa', 'Al Muhammadiyah', 'Al Hamra', 'Al Naeem', 'Al Safa', 'Obhur', 'Al Haram', 'Aziziyah', 'Al Aqeeq', 'Al Shatea', 'Al Faisaliyah', 'Al Hizam', 'Al Thuqbah', 'Other Area'],
     'gb': ['Westminster', 'Kensington & Chelsea', 'Camden', 'Greenwich', 'Croydon', 'Ealing', 'City Centre', 'Edgbaston', 'Selly Oak', 'Solihull', 'Didsbury', 'Salford', 'Fallowfield', 'West End', 'Southside', 'Old Town', 'New Town', 'Leith', 'Anfield', 'Allerton', 'Headingley', 'Chapel Allerton', 'Other Area'],
@@ -246,17 +304,50 @@ const countryAreas = {
     'id': ['Menteng', 'Sudirman', 'Kemang', 'Dharmahusada', 'Gubeng', 'Seminyak', 'Kuta', 'Ubud', 'Other Area']
 };
 
-function updateAreasDropdown() {
+function updateCitiesDropdown() {
     const country = document.getElementById('country-filter').value;
+    const cityFilter = document.getElementById('city-filter');
     const areaFilter = document.getElementById('area-filter');
-    
-    // Clear existing options except default one
+
+    // Reset area first
     areaFilter.innerHTML = '<option value="">All Areas</option>';
-    
-    if (country) {
-        // Fallback to Central / Other Area if country not explicitly mapped in dictionary
-        const areasList = countryAreas[country] || ['Central', 'Other Area'];
-        const areas = [...areasList].sort();
+    areaFilter.disabled = true;
+    areaFilter.style.display = 'none';
+
+    if (country === 'pk') {
+        // Show city dropdown for Pakistan
+        cityFilter.style.display = '';
+        cityFilter.disabled = false;
+        cityFilter.value = '';
+    } else {
+        // Hide city dropdown for non-Pakistan
+        cityFilter.style.display = 'none';
+        cityFilter.disabled = true;
+        cityFilter.value = '';
+
+        // Populate areas directly from country for non-PK countries
+        if (country && nonPkCountryAreas[country]) {
+            const areas = [...nonPkCountryAreas[country]].sort();
+            areas.forEach(area => {
+                const opt = document.createElement('option');
+                opt.value = area.toLowerCase();
+                opt.textContent = area;
+                areaFilter.appendChild(opt);
+            });
+            areaFilter.disabled = false;
+            areaFilter.style.display = '';
+        }
+    }
+}
+
+function updateAreasDropdown() {
+    const city = document.getElementById('city-filter').value;
+    const areaFilter = document.getElementById('area-filter');
+
+    areaFilter.innerHTML = '<option value="">All Areas</option>';
+
+    if (city && pakistanCityAreas[city]) {
+        const areas = [...pakistanCityAreas[city]].sort();
         areas.forEach(area => {
             const opt = document.createElement('option');
             opt.value = area.toLowerCase();
@@ -264,42 +355,47 @@ function updateAreasDropdown() {
             areaFilter.appendChild(opt);
         });
         areaFilter.disabled = false;
+        areaFilter.style.display = '';
     } else {
         areaFilter.disabled = true;
+        areaFilter.style.display = 'none';
     }
 }
 
 function applyFilters() {
-    const search = document.getElementById('tutor-search').value.toLowerCase();
+    const search  = document.getElementById('tutor-search').value.toLowerCase();
     const country = document.getElementById('country-filter').value.toLowerCase();
-    const area = document.getElementById('area-filter').value.toLowerCase();
+    const city    = document.getElementById('city-filter').value.toLowerCase();
+    const area    = document.getElementById('area-filter').value.toLowerCase();
     const program = document.getElementById('program-filter').value.toLowerCase();
-    const status = document.getElementById('status-filter').value.toLowerCase();
-    const mode = document.getElementById('mode-filter').value;
-    
+    const status  = document.getElementById('status-filter').value.toLowerCase();
+    const mode    = document.getElementById('mode-filter').value;
+
     const rows = document.querySelectorAll('.tutor-row');
-    
+
     rows.forEach(row => {
-        const rowName = row.querySelector('.tutor-name').textContent.toLowerCase();
+        const rowName    = row.querySelector('.tutor-name').textContent.toLowerCase();
         const rowCountry = row.getAttribute('data-country');
-        const rowArea = row.getAttribute('data-area');
+        const rowCity    = row.getAttribute('data-city');
+        const rowArea    = row.getAttribute('data-area');
         const rowProgram = row.getAttribute('data-program');
-        const rowStatus = row.getAttribute('data-status');
-        const isOnline = row.getAttribute('data-online') === '1';
-        const isHome = row.getAttribute('data-home') === '1';
-        
-        const matchesSearch = rowName.includes(search);
-        const matchesCountry = country === "" || rowCountry === country;
-        const matchesArea = area === "" || rowArea === area;
-        const matchesProgram = program === "" || rowProgram === program;
-        const matchesStatus = status === "" || rowStatus === status;
-        
+        const rowStatus  = row.getAttribute('data-status');
+        const isOnline   = row.getAttribute('data-online') === '1';
+        const isHome     = row.getAttribute('data-home') === '1';
+
+        const matchesSearch  = rowName.includes(search);
+        const matchesCountry = country === '' || rowCountry === country;
+        const matchesCity    = city    === '' || rowCity    === city;
+        const matchesArea    = area    === '' || rowArea    === area;
+        const matchesProgram = program === '' || rowProgram === program;
+        const matchesStatus  = status  === '' || rowStatus  === status;
+
         let matchesMode = true;
-        if (mode === "online") matchesMode = isOnline;
-        else if (mode === "home") matchesMode = isHome;
-        else if (mode === "both") matchesMode = isOnline && isHome;
-        
-        if (matchesSearch && matchesCountry && matchesArea && matchesProgram && matchesStatus && matchesMode) {
+        if (mode === 'online') matchesMode = isOnline;
+        else if (mode === 'home') matchesMode = isHome;
+        else if (mode === 'both') matchesMode = isOnline && isHome;
+
+        if (matchesSearch && matchesCountry && matchesCity && matchesArea && matchesProgram && matchesStatus && matchesMode) {
             row.style.display = '';
         } else {
             row.style.display = 'none';
