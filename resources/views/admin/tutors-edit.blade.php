@@ -49,7 +49,7 @@
                         </div>
                         
                         <h3 class="text-lg font-black text-gray-900 tracking-tight">{{ $tutor->name }}</h3>
-                        <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest mt-1">{{ $tutor->email }}</p>
+                        <p class="text-[9px] font-black text-gray-400 tracking-widest mt-1">{{ $tutor->email }}</p>
                         
                         <div class="mt-6 pt-6 border-t border-gray-50 space-y-3">
                             @if($tutor->resume_path)

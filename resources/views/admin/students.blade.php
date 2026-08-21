@@ -46,7 +46,7 @@
                                 <div class="text-xs text-gray-400">{{ $req->created_at->format('M d, Y') }}</div>
                             </td>
                             <td class="px-6 py-4">
-                                <div class="text-gray-700 font-bold uppercase tracking-tighter text-xs">{{ $req->contact_method }}</div>
+                                <div class="text-gray-700 font-bold tracking-tighter text-xs">{{ $req->contact_method }}</div>
                                 <div class="text-[10px] text-gray-400 font-bold uppercase tracking-tight flex items-center gap-1.5 mt-0.5">
                                     <span>{{ $req->city }}</span>
                                     <span class="w-1 h-1 rounded-full bg-gray-300"></span>
